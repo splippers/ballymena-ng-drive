@@ -5,6 +5,7 @@
     "oneway": "no",
     "name": "Ballymoney Road",
     "lanes": "3",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 155946519,
@@ -24,6 +25,7 @@
     "oneway": "yes",
     "name": "Lower Mill Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1555932616,
@@ -58,6 +60,7 @@
     "oneway": "yes",
     "name": "Wellington Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 155947623,
@@ -107,6 +110,7 @@
     "oneway": "yes",
     "name": "Henry Street",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 527163193,
@@ -126,6 +130,7 @@
     "oneway": "yes",
     "name": "Larne Road Link",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 779151534,
@@ -145,6 +150,7 @@
     "oneway": "yes",
     "name": "Larne Road Link",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 779151527,
@@ -179,6 +185,7 @@
     "oneway": "yes",
     "name": "Larne Road Link",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 779151528,
@@ -263,6 +270,7 @@
     "oneway": "yes",
     "name": "Larne Road Link",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 779151536,
@@ -287,6 +295,7 @@
     "oneway": "yes",
     "name": "Gilmore Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4514363296,
@@ -336,6 +345,7 @@
     "oneway": "no",
     "name": "Larne Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 830502853,
@@ -365,6 +375,7 @@
     "oneway": "no",
     "name": "Queen Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 830502857,
@@ -424,6 +435,7 @@
     "oneway": "yes",
     "name": "Queen Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4514363290,
@@ -468,6 +480,7 @@
     "oneway": "no",
     "name": "Broughshane Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 830503114,
@@ -517,6 +530,7 @@
     "oneway": "no",
     "name": "Broughshane Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1160281626,
@@ -586,6 +600,7 @@
     "oneway": "no",
     "name": "Demesne Avenue",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1160281636,
@@ -690,6 +705,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1160281612,
@@ -744,6 +760,7 @@
     "oneway": "yes",
     "name": "Broughshane Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1298980698,
@@ -768,6 +785,7 @@
     "oneway": "no",
     "name": "Bridge Street",
     "lanes": "3",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 262452756,
@@ -792,6 +810,7 @@
     "oneway": "no",
     "name": "Tardree Grove",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1160281403,
@@ -856,6 +875,7 @@
     "oneway": "yes",
     "name": "Broughshane Street",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1160281372,
@@ -880,6 +900,7 @@
     "oneway": "yes",
     "name": "Waveney Road",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 262452758,
@@ -914,6 +935,7 @@
     "oneway": "no",
     "name": "Chappel Roundabout",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506768032,
@@ -1038,6 +1060,7 @@
     "oneway": "no",
     "name": "Waveney Avenue",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 155963949,
@@ -1067,6 +1090,7 @@
     "oneway": "yes",
     "name": "Broughshane Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1160281626,
@@ -1126,6 +1150,7 @@
     "oneway": "no",
     "name": "Bridge Street",
     "lanes": "4",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 12556871650,
@@ -1155,6 +1180,7 @@
     "oneway": "yes",
     "name": "Carnduff Drive",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1160281636,
@@ -1229,6 +1255,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1160281534,
@@ -1338,6 +1365,7 @@
     "oneway": "no",
     "name": "Cushendall Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1298980921,
@@ -1587,6 +1615,7 @@
     "oneway": "yes",
     "name": "Larne Road Link",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 155963921,
@@ -1616,6 +1645,7 @@
     "oneway": "yes",
     "name": "North Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1585571580,
@@ -1670,6 +1700,7 @@
     "oneway": "yes",
     "name": "Larne Road Link",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 830503005,
@@ -1719,6 +1750,7 @@
     "oneway": "yes",
     "name": "Waveney Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 155963957,
@@ -1758,6 +1790,7 @@
     "oneway": "no",
     "name": "Bridge Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 262452756,
@@ -1802,6 +1835,7 @@
     "oneway": "yes",
     "name": "Mill Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 262452770,
@@ -1841,6 +1875,7 @@
     "oneway": "yes",
     "name": "Broadway Avenue",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2363356360,
@@ -1885,6 +1920,7 @@
     "oneway": "yes",
     "name": "Thomas Street",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 262452798,
@@ -1934,6 +1970,7 @@
     "oneway": "yes",
     "name": "William Street",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 262452798,
@@ -1958,6 +1995,7 @@
     "oneway": "no",
     "name": "Albert Place",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1598886899,
@@ -2007,6 +2045,7 @@
     "oneway": "yes",
     "name": "Ballymoney Street",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1555933509,
@@ -2051,6 +2090,7 @@
     "oneway": "no",
     "name": "John Street",
     "lanes": "4",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1672833370,
@@ -2070,6 +2110,7 @@
     "oneway": "no",
     "name": "High Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1621893555,
@@ -2114,6 +2155,7 @@
     "oneway": "yes",
     "name": "Linenhall Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1160281437,
@@ -2163,6 +2205,7 @@
     "oneway": "no",
     "name": "Pat's Brae",
     "lanes": "1",
+    "surface": "sett",
     "nodes": [
       {
         "id": 4502737824,
@@ -2197,6 +2240,7 @@
     "oneway": "yes",
     "name": "George Street",
     "lanes": "2",
+    "surface": "",
     "nodes": [
       {
         "id": 8648763447,
@@ -2231,6 +2275,7 @@
     "oneway": "yes",
     "name": "Cullybackey Road",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4502737796,
@@ -2325,6 +2370,7 @@
     "oneway": "no",
     "name": "Moat Road",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1600969462,
@@ -2459,6 +2505,7 @@
     "oneway": "no",
     "name": "Chichester Park Central",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2921178220,
@@ -2523,6 +2570,7 @@
     "oneway": "no",
     "name": "Galgorm Street",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4502737824,
@@ -2552,6 +2600,7 @@
     "oneway": "no",
     "name": "Crebilly Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1699559405,
@@ -2586,6 +2635,7 @@
     "oneway": "no",
     "name": "Old Galgorm Road",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1558312660,
@@ -2730,6 +2780,7 @@
     "oneway": "no",
     "name": "Princes Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1567081739,
@@ -2784,6 +2835,7 @@
     "oneway": "no",
     "name": "Clarence Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1619196676,
@@ -2863,6 +2915,7 @@
     "oneway": "yes",
     "name": "Bridge Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8648813337,
@@ -2897,6 +2950,7 @@
     "oneway": "no",
     "name": "Trostan Avenue",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 563988841,
@@ -2941,6 +2995,7 @@
     "oneway": "no",
     "name": "Meetinghouse Lane",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1567936228,
@@ -2995,6 +3050,7 @@
     "oneway": "no",
     "name": "Demense Avenue",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1567936228,
@@ -3019,6 +3075,7 @@
     "oneway": "no",
     "name": "North Street",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1160281425,
@@ -3073,6 +3130,7 @@
     "oneway": "no",
     "name": "Galgorm Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1160281398,
@@ -3112,6 +3170,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1160281549,
@@ -3146,6 +3205,7 @@
     "oneway": "yes",
     "name": "Clonavon Terrace",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1575809418,
@@ -3185,6 +3245,7 @@
     "oneway": "yes",
     "name": "Kinhilt Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1575809418,
@@ -3224,6 +3285,7 @@
     "oneway": "no",
     "name": "Clonavon Road",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1575809418,
@@ -3248,6 +3310,7 @@
     "oneway": "no",
     "name": "Hope Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1575817059,
@@ -3277,6 +3340,7 @@
     "oneway": "no",
     "name": "Balmoral Avenue",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1598886894,
@@ -3391,6 +3455,7 @@
     "oneway": "no",
     "name": "Prospect Place",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1640988684,
@@ -3410,6 +3475,7 @@
     "oneway": "no",
     "name": "Waveney Court",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1575817012,
@@ -3434,6 +3500,7 @@
     "oneway": "no",
     "name": "Clarence Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 7959586907,
@@ -3458,6 +3525,7 @@
     "oneway": "no",
     "name": "Princes Place",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1567080268,
@@ -3497,6 +3565,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4501131498,
@@ -3561,6 +3630,7 @@
     "oneway": "no",
     "name": "Upper Princes Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1567080268,
@@ -3665,6 +3735,7 @@
     "oneway": "no",
     "name": "Dickson's Hill",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1598886897,
@@ -3754,6 +3825,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1598886900,
@@ -3798,6 +3870,7 @@
     "oneway": "no",
     "name": "Doury Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1575832026,
@@ -3992,6 +4065,7 @@
     "oneway": "no",
     "name": "Ballymoney Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2363356636,
@@ -4186,6 +4260,7 @@
     "oneway": "no",
     "name": "Parkmount Crescent",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1598886903,
@@ -4215,6 +4290,7 @@
     "oneway": "no",
     "name": "Parkmount Crescent",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1644333625,
@@ -4364,6 +4440,7 @@
     "oneway": "no",
     "name": "Kintullagh Court",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1644333619,
@@ -4483,6 +4560,7 @@
     "oneway": "no",
     "name": "Westbourne Avenue",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1598900794,
@@ -4577,6 +4655,7 @@
     "oneway": "no",
     "name": "Old Ballymoney Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1575832026,
@@ -4941,6 +5020,7 @@
     "oneway": "yes",
     "name": "Hill Street",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1575880497,
@@ -4975,6 +5055,7 @@
     "oneway": "no",
     "name": "Mount Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1575880626,
@@ -5009,6 +5090,7 @@
     "oneway": "no",
     "name": "Ballymoney Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1575953224,
@@ -5068,6 +5150,7 @@
     "oneway": "no",
     "name": "Ballymoney Road",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3165808655,
@@ -5097,6 +5180,7 @@
     "oneway": "yes",
     "name": "Parkway",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1575956401,
@@ -5166,6 +5250,7 @@
     "oneway": "no",
     "name": "Duke Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1598886901,
@@ -5205,6 +5290,7 @@
     "oneway": "no",
     "name": "Thomas Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1575968178,
@@ -5239,6 +5325,7 @@
     "oneway": "no",
     "name": "Greenmount Roundabout",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4502430393,
@@ -5368,6 +5455,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4502737805,
@@ -5502,6 +5590,7 @@
     "oneway": "yes",
     "name": "Parkway",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1640988679,
@@ -5591,6 +5680,7 @@
     "oneway": "yes",
     "name": "North Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1575963196,
@@ -5635,6 +5725,7 @@
     "oneway": "yes",
     "name": "Parkway",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2374995738,
@@ -5684,6 +5775,7 @@
     "oneway": "no",
     "name": "Market Road",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1598900793,
@@ -5743,6 +5835,7 @@
     "oneway": "yes",
     "name": "Greenmount Terrace",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1575968178,
@@ -5777,6 +5870,7 @@
     "oneway": "no",
     "name": "Greenmount Avenue",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3167595727,
@@ -5811,6 +5905,7 @@
     "oneway": "no",
     "name": "Greenmount Avenue",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1575969688,
@@ -5835,6 +5930,7 @@
     "oneway": "yes",
     "name": "Trostan Avenue",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1575972601,
@@ -5869,6 +5965,7 @@
     "oneway": "yes",
     "name": "Trostan Avenue",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1621899723,
@@ -5893,6 +5990,7 @@
     "oneway": "no",
     "name": "Glenravel Park",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8655919328,
@@ -5972,6 +6070,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1585571857,
@@ -6156,6 +6255,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 10633159233,
@@ -6215,6 +6315,7 @@
     "oneway": "no",
     "name": "Arran Avenue",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1648370145,
@@ -6349,6 +6450,7 @@
     "oneway": "no",
     "name": "Crebilly Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1585571682,
@@ -6403,6 +6505,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1585571575,
@@ -6437,6 +6540,7 @@
     "oneway": "yes",
     "name": "Granville Drive",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1160281740,
@@ -6471,6 +6575,7 @@
     "oneway": "no",
     "name": "Barra Drive",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1648370258,
@@ -6625,6 +6730,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1585571678,
@@ -6899,6 +7005,7 @@
     "oneway": "yes",
     "name": "Glenshesk Drive",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1585571595,
@@ -6978,6 +7085,7 @@
     "oneway": "no",
     "name": "Granville Drive",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8655919333,
@@ -7062,6 +7170,7 @@
     "oneway": "no",
     "name": "Braidwater Retail Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4505200318,
@@ -7141,6 +7250,7 @@
     "oneway": "no",
     "name": "Bridge Street",
     "lanes": "3",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8648813342,
@@ -7160,6 +7270,7 @@
     "oneway": "no",
     "name": "Henry Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 262452759,
@@ -7209,6 +7320,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1598886865,
@@ -7228,6 +7340,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 5578765816,
@@ -7272,6 +7385,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1589738005,
@@ -7311,6 +7425,7 @@
     "oneway": "yes",
     "name": "Larne Road Link",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1598886874,
@@ -7405,6 +7520,7 @@
     "oneway": "yes",
     "name": "Larne Road Link",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1598886886,
@@ -7454,6 +7570,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 830503119,
@@ -7493,6 +7610,7 @@
     "oneway": "yes",
     "name": "Larne Road Link",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1598886841,
@@ -7557,6 +7675,7 @@
     "oneway": "yes",
     "name": "Larne Road Link",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1598886813,
@@ -7641,6 +7760,7 @@
     "oneway": "yes",
     "name": "Larne Road Link",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1598886842,
@@ -7715,6 +7835,7 @@
     "oneway": "yes",
     "name": "Bridge Street",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 527168776,
@@ -7749,6 +7870,7 @@
     "oneway": "yes",
     "name": "Bridge Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 830503119,
@@ -7788,6 +7910,7 @@
     "oneway": "no",
     "name": "Ballykeel Roundabout",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1598886835,
@@ -7912,6 +8035,7 @@
     "oneway": "no",
     "name": "Braidwater Roundabout",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 10998368543,
@@ -8036,6 +8160,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1589738011,
@@ -8055,6 +8180,7 @@
     "oneway": "no",
     "name": "Ladysmith Terrace",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1600952372,
@@ -8114,6 +8240,7 @@
     "oneway": "no",
     "name": "Paradise Avenue",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1600952176,
@@ -8158,6 +8285,7 @@
     "oneway": "no",
     "name": "Railway Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1600952451,
@@ -8202,6 +8330,7 @@
     "oneway": "no",
     "name": "Railway Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1600952281,
@@ -8326,6 +8455,7 @@
     "oneway": "no",
     "name": "James Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1600969465,
@@ -8355,6 +8485,7 @@
     "oneway": "no",
     "name": "Castle Gardens",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1658940719,
@@ -8379,6 +8510,7 @@
     "oneway": "no",
     "name": "Waring Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1605507523,
@@ -8403,6 +8535,7 @@
     "oneway": "no",
     "name": "Casement Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1600969463,
@@ -8477,6 +8610,7 @@
     "oneway": "no",
     "name": "Moat Road",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1558285922,
@@ -8576,6 +8710,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 8655830849,
@@ -8595,6 +8730,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1589738016,
@@ -8614,6 +8750,7 @@
     "oneway": "no",
     "name": "Chichester Park East",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1600969526,
@@ -8763,6 +8900,7 @@
     "oneway": "no",
     "name": "Chichester Park West",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1604264888,
@@ -8787,6 +8925,7 @@
     "oneway": "no",
     "name": "James Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 830502853,
@@ -8846,6 +8985,7 @@
     "oneway": "no",
     "name": "Edward Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4517528002,
@@ -8875,6 +9015,7 @@
     "oneway": "no",
     "name": "Frances Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1600969595,
@@ -8909,6 +9050,7 @@
     "oneway": "no",
     "name": "Waring Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4517527994,
@@ -8928,6 +9070,7 @@
     "oneway": "no",
     "name": "Castle Demesne Link",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1619154017,
@@ -8952,6 +9095,7 @@
     "oneway": "yes",
     "name": "Bryan Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 155959465,
@@ -8976,6 +9120,7 @@
     "oneway": "yes",
     "name": "Broughshane Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1160281498,
@@ -9005,6 +9150,7 @@
     "oneway": "no",
     "name": "Fountain Place",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1575953224,
@@ -9034,6 +9180,7 @@
     "oneway": "no",
     "name": "Audley Roundabout",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 262452787,
@@ -9163,6 +9310,7 @@
     "oneway": "no",
     "name": "Trostan Avenue",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1621899723,
@@ -9182,6 +9330,7 @@
     "oneway": "no",
     "name": "Wakehurst Road",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 527180214,
@@ -9291,6 +9440,7 @@
     "oneway": "yes",
     "name": "Church Street",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2363356360,
@@ -9375,6 +9525,7 @@
     "oneway": "no",
     "name": "Crebilly Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1556261371,
@@ -9604,6 +9755,7 @@
     "oneway": "no",
     "name": "Old Grange Avenue",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1645781085,
@@ -9658,6 +9810,7 @@
     "oneway": "no",
     "name": "Grangeleigh Avenue",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1645780448,
@@ -9677,6 +9830,7 @@
     "oneway": "no",
     "name": "Grange Road",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1645780863,
@@ -9836,6 +9990,7 @@
     "oneway": "no",
     "name": "Grange Avenue",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1645780394,
@@ -9875,6 +10030,7 @@
     "oneway": "no",
     "name": "Grangeleigh Avenue",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1645780723,
@@ -9909,6 +10065,7 @@
     "oneway": "no",
     "name": "Old Grange Avenue",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1645780770,
@@ -9928,6 +10085,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 10588799871,
@@ -9982,6 +10140,7 @@
     "oneway": "no",
     "name": "The Grange",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1645780399,
@@ -10106,6 +10265,7 @@
     "oneway": "no",
     "name": "Leighmore Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1645780510,
@@ -10125,6 +10285,7 @@
     "oneway": "no",
     "name": "Grangegorm Drive",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1645781058,
@@ -10144,6 +10305,7 @@
     "oneway": "no",
     "name": "Cambridge Avenue",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1645780881,
@@ -10173,6 +10335,7 @@
     "oneway": "no",
     "name": "Shandon Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1645780866,
@@ -10192,6 +10355,7 @@
     "oneway": "no",
     "name": "Grange Valley",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1645781088,
@@ -10311,6 +10475,7 @@
     "oneway": "no",
     "name": "Leighinmohr Crescent",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 10588799864,
@@ -10410,6 +10575,7 @@
     "oneway": "no",
     "name": "Leighinmohr Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1645780505,
@@ -10479,6 +10645,7 @@
     "oneway": "no",
     "name": "Leighinmohr Avenue",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1645780628,
@@ -10688,6 +10855,7 @@
     "oneway": "no",
     "name": "Old Grange Avenue",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1645781085,
@@ -10742,6 +10910,7 @@
     "oneway": "no",
     "name": "Grangeleigh Avenue",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1645780438,
@@ -10766,6 +10935,7 @@
     "oneway": "no",
     "name": "Grangegorm Drive",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1645780377,
@@ -10830,6 +11000,7 @@
     "oneway": "no",
     "name": "Tullymore Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10589560384,
@@ -10854,6 +11025,7 @@
     "oneway": "no",
     "name": "Tullymore Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1645780362,
@@ -10938,6 +11110,7 @@
     "oneway": "no",
     "name": "Grangewood Avenue",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3512353096,
@@ -10957,6 +11130,7 @@
     "oneway": "no",
     "name": "Cambridge Drive",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1645780903,
@@ -10981,6 +11155,7 @@
     "oneway": "no",
     "name": "Shandon Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1645780770,
@@ -11105,6 +11280,7 @@
     "oneway": "no",
     "name": "The Grange",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1645780866,
@@ -11129,6 +11305,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1645788388,
@@ -11163,6 +11340,7 @@
     "oneway": "no",
     "name": "Shandon Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1645788387,
@@ -11182,6 +11360,7 @@
     "oneway": "no",
     "name": "Prospect",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10801771175,
@@ -11306,6 +11485,7 @@
     "oneway": "no",
     "name": "Demesne Avenue",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 12554018575,
@@ -11340,6 +11520,7 @@
     "oneway": "yes",
     "name": "Corlea Gardens",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1658028036,
@@ -11404,6 +11585,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12553999764,
@@ -11433,6 +11615,7 @@
     "oneway": "no",
     "name": "Demesne Avenue",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1672815265,
@@ -11457,6 +11640,7 @@
     "oneway": "no",
     "name": "Farm Lodge",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1658922800,
@@ -11541,6 +11725,7 @@
     "oneway": "no",
     "name": "Farm Lodge",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1658922815,
@@ -11615,6 +11800,7 @@
     "oneway": "no",
     "name": "Suffolk Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1658788817,
@@ -11669,6 +11855,7 @@
     "oneway": "no",
     "name": "Warden Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1298980698,
@@ -11748,6 +11935,7 @@
     "oneway": "no",
     "name": "Slemish Court",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4767897039,
@@ -11772,6 +11960,7 @@
     "oneway": "no",
     "name": "Farm Lodge Avenue",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1658922849,
@@ -11941,6 +12130,7 @@
     "oneway": "no",
     "name": "Summerfield Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1658788804,
@@ -11960,6 +12150,7 @@
     "oneway": "no",
     "name": "Slemish Drive",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1658788840,
@@ -11999,6 +12190,7 @@
     "oneway": "no",
     "name": "Glendun Drive",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1770578216,
@@ -12113,6 +12305,7 @@
     "oneway": "no",
     "name": "Holland Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1658832312,
@@ -12187,6 +12380,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1658832293,
@@ -12211,6 +12405,7 @@
     "oneway": "no",
     "name": "Frances Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1600969595,
@@ -12245,6 +12440,7 @@
     "oneway": "no",
     "name": "Greenvale Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1672769323,
@@ -12269,6 +12465,7 @@
     "oneway": "no",
     "name": "Glendun Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4512381957,
@@ -12398,6 +12595,7 @@
     "oneway": "no",
     "name": "Warden Square",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7193946305,
@@ -12427,6 +12625,7 @@
     "oneway": "no",
     "name": "Skerry Court",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10998363412,
@@ -12466,6 +12665,7 @@
     "oneway": "no",
     "name": "Farm Lodge Avenue",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1658788729,
@@ -12510,6 +12710,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506708502,
@@ -12684,6 +12885,7 @@
     "oneway": "no",
     "name": "Garfield Place",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1672815324,
@@ -12718,6 +12920,7 @@
     "oneway": "yes",
     "name": "Broadway Avenue",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1546464336,
@@ -12737,6 +12940,7 @@
     "oneway": "yes",
     "name": "Glenravel Park",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1585571590,
@@ -12776,6 +12980,7 @@
     "oneway": "no",
     "name": "Springwell Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1672825025,
@@ -12800,6 +13005,7 @@
     "oneway": "no",
     "name": "Richmond Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1658812063,
@@ -12889,6 +13095,7 @@
     "oneway": "no",
     "name": "Springwell Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1598886901,
@@ -12918,6 +13125,7 @@
     "oneway": "no",
     "name": "Regent's Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12563973986,
@@ -12962,6 +13170,7 @@
     "oneway": "no",
     "name": "Sydney Lane",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1672833357,
@@ -12986,6 +13195,7 @@
     "oneway": "no",
     "name": "Wakehurst Park",
     "lanes": "",
+    "surface": "sett",
     "nodes": [
       {
         "id": 1685971251,
@@ -13025,6 +13235,7 @@
     "oneway": "no",
     "name": "Chichester Park West",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1685971192,
@@ -13049,6 +13260,7 @@
     "oneway": "no",
     "name": "Phoenix Fields",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1600952433,
@@ -13073,6 +13285,7 @@
     "oneway": "no",
     "name": "Brooke Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1685971234,
@@ -13137,6 +13350,7 @@
     "oneway": "no",
     "name": "Wakehurst Park",
     "lanes": "",
+    "surface": "sett",
     "nodes": [
       {
         "id": 1685971130,
@@ -13166,6 +13380,7 @@
     "oneway": "no",
     "name": "Phoenix Fields",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1685971103,
@@ -13190,6 +13405,7 @@
     "oneway": "no",
     "name": "Wakehurst Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1685971058,
@@ -13324,6 +13540,7 @@
     "oneway": "no",
     "name": "Brooke Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12574554059,
@@ -13403,6 +13620,7 @@
     "oneway": "no",
     "name": "Brooke Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10557721327,
@@ -13432,6 +13650,7 @@
     "oneway": "no",
     "name": "Brooke Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10557721324,
@@ -13481,6 +13700,7 @@
     "oneway": "no",
     "name": "Phoenix Fields",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7861607889,
@@ -13590,6 +13810,7 @@
     "oneway": "no",
     "name": "Chichester Park Central",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1165357588,
@@ -13674,6 +13895,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1585571822,
@@ -13773,6 +13995,7 @@
     "oneway": "no",
     "name": "Kintyre Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1699559367,
@@ -13802,6 +14025,7 @@
     "oneway": "no",
     "name": "Kintyre Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1699559388,
@@ -13821,6 +14045,7 @@
     "oneway": "no",
     "name": "Inchcolm Avenue",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1585571693,
@@ -13860,6 +14085,7 @@
     "oneway": "no",
     "name": "Barra Drive",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1699559409,
@@ -13879,6 +14105,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1699559397,
@@ -13903,6 +14130,7 @@
     "oneway": "no",
     "name": "Moatview Court",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1699559420,
@@ -13922,6 +14150,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1699559405,
@@ -14031,6 +14260,7 @@
     "oneway": "no",
     "name": "Kintyre Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1699559399,
@@ -14060,6 +14290,7 @@
     "oneway": "no",
     "name": "Inchcolm Avenue",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1699559419,
@@ -14084,6 +14315,7 @@
     "oneway": "no",
     "name": "Iona Gardens",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1710656094,
@@ -14108,6 +14340,7 @@
     "oneway": "no",
     "name": "Old Crebilly Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1585571787,
@@ -14147,6 +14380,7 @@
     "oneway": "no",
     "name": "Meadowvale",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1699572946,
@@ -14216,6 +14450,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1701539558,
@@ -14260,6 +14495,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1672825024,
@@ -14289,6 +14525,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3133978381,
@@ -14373,6 +14610,7 @@
     "oneway": "no",
     "name": "Devenagh Way",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1770578249,
@@ -14422,6 +14660,7 @@
     "oneway": "no",
     "name": "Greenview",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1770578216,
@@ -14481,6 +14720,7 @@
     "oneway": "no",
     "name": "Devenagh Way",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1770578262,
@@ -14580,6 +14820,7 @@
     "oneway": "no",
     "name": "Glenariff Crescent",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1770578239,
@@ -14744,6 +14985,7 @@
     "oneway": "no",
     "name": "Deerfin Way",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1770578258,
@@ -14798,6 +15040,7 @@
     "oneway": "no",
     "name": "Devenagh Court",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1770578261,
@@ -14867,6 +15110,7 @@
     "oneway": "no",
     "name": "Westbourne Avenue",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1644333635,
@@ -14916,6 +15160,7 @@
     "oneway": "no",
     "name": "Carniny Court",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1789995643,
@@ -14980,6 +15225,7 @@
     "oneway": "no",
     "name": "Sunningdale Park",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1789995520,
@@ -15004,6 +15250,7 @@
     "oneway": "no",
     "name": "Carndale Meadows",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1789995649,
@@ -15043,6 +15290,7 @@
     "oneway": "no",
     "name": "Carnvale Close",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1789995505,
@@ -15062,6 +15310,7 @@
     "oneway": "no",
     "name": "Carndale Meadows",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1789995653,
@@ -15081,6 +15330,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1803351691,
@@ -15160,6 +15410,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12566446006,
@@ -15264,6 +15515,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2580876911,
@@ -15538,6 +15790,7 @@
     "oneway": "no",
     "name": "Hugomont Avenue",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2122284223,
@@ -15627,6 +15880,7 @@
     "oneway": "no",
     "name": "Hugomont Park",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2122284206,
@@ -15721,6 +15975,7 @@
     "oneway": "yes",
     "name": "North Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1299533584,
@@ -15780,6 +16035,7 @@
     "oneway": "no",
     "name": "Parkmount Road",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2363356502,
@@ -15934,6 +16190,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2373223366,
@@ -15968,6 +16225,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1589738032,
@@ -15987,6 +16245,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 8656075848,
@@ -16036,6 +16295,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 5559412006,
@@ -16075,6 +16335,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2373223380,
@@ -16134,6 +16395,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2374995734,
@@ -16198,6 +16460,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2374995737,
@@ -16272,6 +16535,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2375006105,
@@ -16406,6 +16670,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2363374727,
@@ -16445,6 +16710,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2592935450,
@@ -16464,6 +16730,7 @@
     "oneway": "yes",
     "name": "Alexander Street",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 262452774,
@@ -16513,6 +16780,7 @@
     "oneway": "no",
     "name": "Waring Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2580719525,
@@ -16622,6 +16890,7 @@
     "oneway": "no",
     "name": "Alfred Street Place",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12574651025,
@@ -16656,6 +16925,7 @@
     "oneway": "no",
     "name": "Carnvale",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2580876854,
@@ -16740,6 +17010,7 @@
     "oneway": "no",
     "name": "Andena Grange",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2582042051,
@@ -16799,6 +17070,7 @@
     "oneway": "no",
     "name": "Andena Grange",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2582042040,
@@ -16973,6 +17245,7 @@
     "oneway": "no",
     "name": "Kintullagh Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2582044189,
@@ -17062,6 +17335,7 @@
     "oneway": "no",
     "name": "Brookleigh Heights",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2582048162,
@@ -17146,6 +17420,7 @@
     "oneway": "no",
     "name": "Parkmount Avenue",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2582048187,
@@ -17165,6 +17440,7 @@
     "oneway": "no",
     "name": "Rockgrove Heights",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2583122161,
@@ -17334,6 +17610,7 @@
     "oneway": "no",
     "name": "Rockgrove Brae",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2583124524,
@@ -17413,6 +17690,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2624569747,
@@ -17447,6 +17725,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2624569756,
@@ -17466,6 +17745,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2773988940,
@@ -17570,6 +17850,7 @@
     "oneway": "no",
     "name": "Meetinghouse Lane",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1567936228,
@@ -17614,6 +17895,7 @@
     "oneway": "no",
     "name": "Moat Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1558285723,
@@ -17708,6 +17990,7 @@
     "oneway": "no",
     "name": "Deerfin Road",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4499465402,
@@ -17727,6 +18010,7 @@
     "oneway": "no",
     "name": "St Patrick's Terrace",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12554018544,
@@ -17801,6 +18085,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12554018518,
@@ -17950,6 +18235,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2882487284,
@@ -18029,6 +18315,7 @@
     "oneway": "no",
     "name": "Glenshesk Drive",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2884153808,
@@ -18058,6 +18345,7 @@
     "oneway": "no",
     "name": "Chichester Park Central",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1600969526,
@@ -18117,6 +18405,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2884318824,
@@ -18206,6 +18495,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2884318823,
@@ -18225,6 +18515,7 @@
     "oneway": "no",
     "name": "Parkmore Drive",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2934154530,
@@ -18434,6 +18725,7 @@
     "oneway": "no",
     "name": "Parkmore Heights",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2934154507,
@@ -18558,6 +18850,7 @@
     "oneway": "no",
     "name": "Meadow Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2934162509,
@@ -18577,6 +18870,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2934440877,
@@ -18596,6 +18890,7 @@
     "oneway": "no",
     "name": "Cullybackey Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1619196695,
@@ -18710,6 +19005,7 @@
     "oneway": "no",
     "name": "Parkmore Close",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2934154035,
@@ -18804,6 +19100,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3115745403,
@@ -18868,6 +19165,7 @@
     "oneway": "no",
     "name": "Larne Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505200370,
@@ -19127,6 +19425,7 @@
     "oneway": "no",
     "name": "Douglas Terrace",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3124609311,
@@ -19166,6 +19465,7 @@
     "oneway": "no",
     "name": "Fisherwick Gardens",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3133978409,
@@ -19225,6 +19525,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3133978388,
@@ -19264,6 +19565,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3134277621,
@@ -19433,6 +19735,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1690980290,
@@ -19457,6 +19760,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 3165809688,
@@ -19486,6 +19790,7 @@
     "oneway": "yes",
     "name": "Waveney Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 155963951,
@@ -19505,6 +19810,7 @@
     "oneway": "yes",
     "name": "Waveney Road",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 155963945,
@@ -19544,6 +19850,7 @@
     "oneway": "no",
     "name": "Galgorm Road",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3165808627,
@@ -19568,6 +19875,7 @@
     "oneway": "no",
     "name": "Galgorm Road",
     "lanes": "3",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 155946518,
@@ -19597,6 +19905,7 @@
     "oneway": "no",
     "name": "Galgorm Road",
     "lanes": "3",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1585571575,
@@ -19631,6 +19940,7 @@
     "oneway": "no",
     "name": "Waveney Avenue",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3165808619,
@@ -19660,6 +19970,7 @@
     "oneway": "no",
     "name": "Smithfield Place",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2592935503,
@@ -19704,6 +20015,7 @@
     "oneway": "no",
     "name": "Westbourne Avenue",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1789995512,
@@ -19808,6 +20120,7 @@
     "oneway": "no",
     "name": "Ballymoney Road",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1575880624,
@@ -19837,6 +20150,7 @@
     "oneway": "no",
     "name": "Mount Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3167595721,
@@ -19866,6 +20180,7 @@
     "oneway": "no",
     "name": "Thomas Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 3167595727,
@@ -19910,6 +20225,7 @@
     "oneway": "no",
     "name": "Thomas Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 3167595735,
@@ -19974,6 +20290,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3167595721,
@@ -20003,6 +20320,7 @@
     "oneway": "no",
     "name": "Tardree Grove",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 3167614409,
@@ -20027,6 +20345,7 @@
     "oneway": "no",
     "name": "Broughshane Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 3179519585,
@@ -20071,6 +20390,7 @@
     "oneway": "no",
     "name": "Broughshane Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 262452778,
@@ -20135,6 +20455,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1645780745,
@@ -20249,6 +20570,7 @@
     "oneway": "no",
     "name": "Castle Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4506441759,
@@ -20288,6 +20610,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3455646395,
@@ -20337,6 +20660,7 @@
     "oneway": "no",
     "name": "Galgorm Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2363356294,
@@ -20501,6 +20825,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3455645653,
@@ -20755,6 +21080,7 @@
     "oneway": "no",
     "name": "Cambridge Avenue",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1645780954,
@@ -20869,6 +21195,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3554817737,
@@ -21018,6 +21345,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3554817749,
@@ -21062,6 +21390,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3554817740,
@@ -21151,6 +21480,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3554817764,
@@ -21185,6 +21515,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3554817770,
@@ -21239,6 +21570,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4015281993,
@@ -21263,6 +21595,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6715469981,
@@ -21307,6 +21640,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4015282041,
@@ -21341,6 +21675,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4017627760,
@@ -21370,6 +21705,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4017627763,
@@ -21399,6 +21735,7 @@
     "oneway": "no",
     "name": "Patrick Place",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4017644752,
@@ -21428,6 +21765,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4017644756,
@@ -21447,6 +21785,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4017644758,
@@ -21491,6 +21830,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4017644764,
@@ -21525,6 +21865,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1600952445,
@@ -21554,6 +21895,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2882614557,
@@ -21613,6 +21955,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4017644775,
@@ -21652,6 +21995,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4017644781,
@@ -21726,6 +22070,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4017644890,
@@ -21745,6 +22090,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4017644892,
@@ -21769,6 +22115,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4017644894,
@@ -21788,6 +22135,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 9233357927,
@@ -21807,6 +22155,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4017654058,
@@ -21841,6 +22190,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4017654059,
@@ -21880,6 +22230,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12574645196,
@@ -21919,6 +22270,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4017654065,
@@ -21978,6 +22330,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4318978498,
@@ -22002,6 +22355,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4318978501,
@@ -22026,6 +22380,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4352663733,
@@ -22055,6 +22410,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4352663736,
@@ -22074,6 +22430,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4446539386,
@@ -22178,6 +22535,7 @@
     "oneway": "no",
     "name": "Leighinmohr Avenue",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4497513101,
@@ -22197,6 +22555,7 @@
     "oneway": "no",
     "name": "Ladysmith Terrace",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1600952031,
@@ -22216,6 +22575,7 @@
     "oneway": "no",
     "name": "Deerfin Road",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1685971179,
@@ -22235,6 +22595,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12310298364,
@@ -22409,6 +22770,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4501072327,
@@ -22448,6 +22810,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4501181037,
@@ -22552,6 +22915,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4501181056,
@@ -22631,6 +22995,7 @@
     "oneway": "no",
     "name": "Parkmore Close",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4501436575,
@@ -22650,6 +23015,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4501485652,
@@ -22754,6 +23120,7 @@
     "oneway": "yes",
     "name": "North Road",
     "lanes": "3",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2363374723,
@@ -22798,6 +23165,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "3",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 12566376445,
@@ -22847,6 +23215,7 @@
     "oneway": "yes",
     "name": "North Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4502430405,
@@ -22896,6 +23265,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4502430403,
@@ -23005,6 +23375,7 @@
     "oneway": "yes",
     "name": "North Road",
     "lanes": "3",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4502430430,
@@ -23054,6 +23425,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4502737585,
@@ -23108,6 +23480,7 @@
     "oneway": "yes",
     "name": "Ballymoney Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4502737585,
@@ -23127,6 +23500,7 @@
     "oneway": "yes",
     "name": "Cullybackey Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1619196666,
@@ -23151,6 +23525,7 @@
     "oneway": "yes",
     "name": "Cullybackey Road",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4502430404,
@@ -23180,6 +23555,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4503003577,
@@ -23219,6 +23595,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4503003578,
@@ -23243,6 +23620,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4503003580,
@@ -23282,6 +23660,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4503003582,
@@ -23301,6 +23680,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4503003587,
@@ -23340,6 +23720,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4503004991,
@@ -23394,6 +23775,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4503004994,
@@ -23413,6 +23795,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4503005000,
@@ -23432,6 +23815,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1672825024,
@@ -23616,6 +24000,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4505200190,
@@ -23645,6 +24030,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505200191,
@@ -23774,6 +24160,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1585571640,
@@ -23833,6 +24220,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2373201503,
@@ -23872,6 +24260,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 5559412006,
@@ -24036,6 +24425,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505200234,
@@ -24055,6 +24445,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505200236,
@@ -24079,6 +24470,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505200238,
@@ -24098,6 +24490,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505200240,
@@ -24117,6 +24510,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505200242,
@@ -24146,6 +24540,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505200244,
@@ -24170,6 +24565,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505200237,
@@ -24189,6 +24585,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505200259,
@@ -24213,6 +24610,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505200261,
@@ -24232,6 +24630,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10633159243,
@@ -24301,6 +24700,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4505200263,
@@ -24330,6 +24730,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8656075849,
@@ -24379,6 +24780,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4505200299,
@@ -24398,6 +24800,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505200308,
@@ -24452,6 +24855,7 @@
     "oneway": "no",
     "name": "Braidwater Retail Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4505200318,
@@ -24551,6 +24955,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505200324,
@@ -24610,6 +25015,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4505200359,
@@ -24629,6 +25035,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505200360,
@@ -24653,6 +25060,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505200362,
@@ -24682,6 +25090,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505337332,
@@ -24741,6 +25150,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505337313,
@@ -24760,6 +25170,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505337315,
@@ -24779,6 +25190,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505337317,
@@ -24803,6 +25215,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505337319,
@@ -24827,6 +25240,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505337321,
@@ -24846,6 +25260,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505337289,
@@ -24880,6 +25295,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505337292,
@@ -24929,6 +25345,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505337321,
@@ -25068,6 +25485,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4505337347,
@@ -25112,6 +25530,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4505337353,
@@ -25186,6 +25605,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4505337381,
@@ -25230,6 +25650,7 @@
     "oneway": "no",
     "name": "Kintyre Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1699559388,
@@ -25349,6 +25770,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4505400425,
@@ -25373,6 +25795,7 @@
     "oneway": "no",
     "name": "River View",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505400435,
@@ -25487,6 +25910,7 @@
     "oneway": "no",
     "name": "Shona Green",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4505400443,
@@ -25506,6 +25930,7 @@
     "oneway": "no",
     "name": "Shona Green",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4505400445,
@@ -25525,6 +25950,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4505400464,
@@ -25574,6 +26000,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4524165705,
@@ -25633,6 +26060,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506382133,
@@ -25652,6 +26080,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506382127,
@@ -25671,6 +26100,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506382129,
@@ -25690,6 +26120,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506382131,
@@ -25714,6 +26145,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506382133,
@@ -25733,6 +26165,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506382135,
@@ -25787,6 +26220,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506382131,
@@ -25811,6 +26245,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506382127,
@@ -25830,6 +26265,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506382129,
@@ -25849,6 +26285,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4524165707,
@@ -25943,6 +26380,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4506382131,
@@ -26017,6 +26455,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506382146,
@@ -26036,6 +26475,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4506382154,
@@ -26085,6 +26525,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506406399,
@@ -26109,6 +26550,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506406404,
@@ -26133,6 +26575,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506406403,
@@ -26152,6 +26595,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1621917001,
@@ -26201,6 +26645,7 @@
     "oneway": "no",
     "name": "Castle Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1621917001,
@@ -26240,6 +26685,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4506441759,
@@ -26269,6 +26715,7 @@
     "oneway": "yes",
     "name": "Meetinghouse Lane",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2580876755,
@@ -26298,6 +26745,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506466757,
@@ -26317,6 +26765,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506466751,
@@ -26376,6 +26825,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506466754,
@@ -26420,6 +26870,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506466762,
@@ -26439,6 +26890,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2373223369,
@@ -26463,6 +26915,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4506466770,
@@ -26482,6 +26935,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2373223361,
@@ -26521,6 +26975,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506466773,
@@ -26555,6 +27010,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4506466777,
@@ -26574,6 +27030,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4506466776,
@@ -26598,6 +27055,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506466787,
@@ -26622,6 +27080,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506467394,
@@ -26641,6 +27100,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506467395,
@@ -26675,6 +27135,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506466786,
@@ -26749,6 +27210,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506467405,
@@ -26768,6 +27230,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506467407,
@@ -26787,6 +27250,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8655867669,
@@ -26836,6 +27300,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506573907,
@@ -26905,6 +27370,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506573903,
@@ -26944,6 +27410,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506573909,
@@ -26973,6 +27440,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506573912,
@@ -27012,6 +27480,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506632647,
@@ -27031,6 +27500,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506632645,
@@ -27050,6 +27520,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4506695719,
@@ -27074,6 +27545,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4506695900,
@@ -27148,6 +27620,7 @@
     "oneway": "no",
     "name": "Granville Drive",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506695945,
@@ -27222,6 +27695,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1160281524,
@@ -27311,6 +27785,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506708505,
@@ -27330,6 +27805,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506708507,
@@ -27349,6 +27825,7 @@
     "oneway": "no",
     "name": "Skerry Court",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4506742537,
@@ -27368,6 +27845,7 @@
     "oneway": "no",
     "name": "Skerry Court",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4506742536,
@@ -27387,6 +27865,7 @@
     "oneway": "no",
     "name": "Warden Square",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4506767989,
@@ -27406,6 +27885,7 @@
     "oneway": "no",
     "name": "Warden Square",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4506767990,
@@ -27425,6 +27905,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506833542,
@@ -27454,6 +27935,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1555935005,
@@ -27488,6 +27970,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4506833549,
@@ -27507,6 +27990,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506833553,
@@ -27526,6 +28010,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506833552,
@@ -27555,6 +28040,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506833544,
@@ -27589,6 +28075,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506833570,
@@ -27608,6 +28095,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506833572,
@@ -27627,6 +28115,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506833574,
@@ -27646,6 +28135,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506833576,
@@ -27685,6 +28175,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506833577,
@@ -27714,6 +28205,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4506833580,
@@ -27733,6 +28225,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506833582,
@@ -27757,6 +28250,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2882487264,
@@ -27786,6 +28280,7 @@
     "oneway": "no",
     "name": "Carndale Meadows",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2580876784,
@@ -27820,6 +28315,7 @@
     "oneway": "no",
     "name": "Carndale Meadows",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1789995641,
@@ -27934,6 +28430,7 @@
     "oneway": "no",
     "name": "Carndale Meadows",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4507347874,
@@ -27963,6 +28460,7 @@
     "oneway": "no",
     "name": "Carndale Meadows",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4507348390,
@@ -27987,6 +28485,7 @@
     "oneway": "no",
     "name": "Kintullagh Close",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4508814924,
@@ -28011,6 +28510,7 @@
     "oneway": "no",
     "name": "Kintullagh Court",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1575872453,
@@ -28140,6 +28640,7 @@
     "oneway": "no",
     "name": "Park Manor",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2582042044,
@@ -28254,6 +28755,7 @@
     "oneway": "no",
     "name": "Ballymoney Road",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4508896103,
@@ -28368,6 +28870,7 @@
     "oneway": "no",
     "name": "Ennismore Hall",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4508896150,
@@ -28387,6 +28890,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4508960747,
@@ -28411,6 +28915,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4508960752,
@@ -28435,6 +28940,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4508960751,
@@ -28454,6 +28960,7 @@
     "oneway": "no",
     "name": "Andena Grange",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4509449936,
@@ -28473,6 +28980,7 @@
     "oneway": "no",
     "name": "Glendun Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4511113187,
@@ -28492,6 +29000,7 @@
     "oneway": "no",
     "name": "Greenview",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4512381985,
@@ -28551,6 +29060,7 @@
     "oneway": "no",
     "name": "Devenagh Way",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1770578256,
@@ -28605,6 +29115,7 @@
     "oneway": "yes",
     "name": "Craig Court",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4512382235,
@@ -28719,6 +29230,7 @@
     "oneway": "no",
     "name": "Craig Court",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4512382236,
@@ -28813,6 +29325,7 @@
     "oneway": "yes",
     "name": "Market Road",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4512382282,
@@ -28867,6 +29380,7 @@
     "oneway": "yes",
     "name": "Market Road",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1575968178,
@@ -28886,6 +29400,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4513932400,
@@ -28930,6 +29445,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4513932415,
@@ -28954,6 +29470,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4513932418,
@@ -28973,6 +29490,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4513932423,
@@ -29002,6 +29520,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4514363162,
@@ -29031,6 +29550,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4514363164,
@@ -29105,6 +29625,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4514363169,
@@ -29134,6 +29655,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4514363171,
@@ -29153,6 +29675,7 @@
     "oneway": "yes",
     "name": "Gilmore Street",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8656901777,
@@ -29187,6 +29710,7 @@
     "oneway": "yes",
     "name": "Gilmore Street",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8656901777,
@@ -29226,6 +29750,7 @@
     "oneway": "yes",
     "name": "Gilmore Street",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 830502853,
@@ -29260,6 +29785,7 @@
     "oneway": "yes",
     "name": "Waveney Road",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 155963940,
@@ -29289,6 +29815,7 @@
     "oneway": "no",
     "name": "Chichester Park Central",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4516260758,
@@ -29498,6 +30025,7 @@
     "oneway": "no",
     "name": "Larne Road",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4516263490,
@@ -29522,6 +30050,7 @@
     "oneway": "no",
     "name": "Larne Road",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4516263492,
@@ -29646,6 +30175,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4516263514,
@@ -29755,6 +30285,7 @@
     "oneway": "no",
     "name": "Chichester Park East",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4516263538,
@@ -29869,6 +30400,7 @@
     "oneway": "no",
     "name": "Waring Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4831579171,
@@ -29898,6 +30430,7 @@
     "oneway": "no",
     "name": "Waring Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1600969592,
@@ -29917,6 +30450,7 @@
     "oneway": "no",
     "name": "Moat Road",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4517528014,
@@ -30016,6 +30550,7 @@
     "oneway": "yes",
     "name": "Henry Street",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4514363187,
@@ -30035,6 +30570,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1644333610,
@@ -30084,6 +30620,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4526408472,
@@ -30108,6 +30645,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4526408477,
@@ -30132,6 +30670,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4526408480,
@@ -30151,6 +30690,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4769234131,
@@ -30190,6 +30730,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4837097658,
@@ -30244,6 +30785,7 @@
     "oneway": "yes",
     "name": "Parkway",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4895278661,
@@ -30303,6 +30845,7 @@
     "oneway": "yes",
     "name": "Lower Mill Street",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4910912002,
@@ -30342,6 +30885,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4929035026,
@@ -30371,6 +30915,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4929035029,
@@ -30440,6 +30985,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4938206743,
@@ -30469,6 +31015,7 @@
     "oneway": "no",
     "name": "Chichester Park Central",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4977549676,
@@ -30493,6 +31040,7 @@
     "oneway": "no",
     "name": "Chichester Park Central",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4977549707,
@@ -30517,6 +31065,7 @@
     "oneway": "no",
     "name": "Doury Road",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4988848654,
@@ -30561,6 +31110,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 5082292525,
@@ -30590,6 +31140,7 @@
     "oneway": "no",
     "name": "Kintullagh Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2582044192,
@@ -30659,6 +31210,7 @@
     "oneway": "no",
     "name": "Parkmount Drive",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1598900795,
@@ -30688,6 +31240,7 @@
     "oneway": "no",
     "name": "Kintullagh Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4508814927,
@@ -30717,6 +31270,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4505200324,
@@ -30736,6 +31290,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4505200325,
@@ -30755,6 +31310,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 5578765816,
@@ -30829,6 +31385,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1589738009,
@@ -30868,6 +31425,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 5578765816,
@@ -30892,6 +31450,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 5804244104,
@@ -30941,6 +31500,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 5841658045,
@@ -30990,6 +31550,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 5841658101,
@@ -31014,6 +31575,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 5841658055,
@@ -31038,6 +31600,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12566326681,
@@ -31147,6 +31710,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 5841658075,
@@ -31171,6 +31735,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 5841658089,
@@ -31210,6 +31775,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10092680869,
@@ -31319,6 +31885,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1770570365,
@@ -31448,6 +32015,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1600969483,
@@ -31472,6 +32040,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4526408474,
@@ -31496,6 +32065,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6432414859,
@@ -31535,6 +32105,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6432414867,
@@ -31554,6 +32125,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3554817757,
@@ -31583,6 +32155,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6654372001,
@@ -31627,6 +32200,7 @@
     "oneway": "no",
     "name": "Leighinmohr Gardens",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 10588799878,
@@ -31696,6 +32270,7 @@
     "oneway": "no",
     "name": "Leighinmohr Gardens",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 6668922482,
@@ -31720,6 +32295,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6679520003,
@@ -31749,6 +32325,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6679520005,
@@ -31773,6 +32350,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6684041747,
@@ -31802,6 +32380,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6684041751,
@@ -31836,6 +32415,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1575968314,
@@ -31890,6 +32470,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6694561020,
@@ -31909,6 +32490,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6696682286,
@@ -31933,6 +32515,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4015282029,
@@ -31957,6 +32540,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6715469982,
@@ -31976,6 +32560,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6715469984,
@@ -31995,6 +32580,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6715507089,
@@ -32029,6 +32615,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6805686397,
@@ -32068,6 +32655,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6805774159,
@@ -32087,6 +32675,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6805774161,
@@ -32106,6 +32695,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6805774166,
@@ -32125,6 +32715,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6805774171,
@@ -32164,6 +32755,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6805774172,
@@ -32198,6 +32790,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6914700326,
@@ -32227,6 +32820,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6914700329,
@@ -32246,6 +32840,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6914871070,
@@ -32285,6 +32880,7 @@
     "oneway": "no",
     "name": "Beechfield Close",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 6915902780,
@@ -32324,6 +32920,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6947717267,
@@ -32343,6 +32940,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6947717269,
@@ -32402,6 +33000,7 @@
     "oneway": "no",
     "name": "Beechfield Close",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6947717279,
@@ -32441,6 +33040,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1160281473,
@@ -32500,6 +33100,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6950480925,
@@ -32549,6 +33150,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7087902251,
@@ -32568,6 +33170,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7097596498,
@@ -32642,6 +33245,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7111445713,
@@ -32666,6 +33270,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7193946307,
@@ -32685,6 +33290,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7193946309,
@@ -32714,6 +33320,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7193946308,
@@ -32733,6 +33340,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506768036,
@@ -32752,6 +33360,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10633159233,
@@ -32816,6 +33425,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7255720891,
@@ -32875,6 +33485,7 @@
     "oneway": "no",
     "name": "St Patrick\u2019s Link Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 10092680870,
@@ -32979,6 +33590,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7328962230,
@@ -32998,6 +33610,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7377616464,
@@ -33052,6 +33665,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7377616472,
@@ -33071,6 +33685,7 @@
     "oneway": "no",
     "name": "Railway Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 7398044990,
@@ -33140,6 +33755,7 @@
     "oneway": "no",
     "name": "Railway Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1600952407,
@@ -33159,6 +33775,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7400349272,
@@ -33188,6 +33805,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7400349275,
@@ -33212,6 +33830,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7400349277,
@@ -33236,6 +33855,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7400349273,
@@ -33260,6 +33880,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7400355287,
@@ -33324,6 +33945,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7400349280,
@@ -33348,6 +33970,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7400349277,
@@ -33392,6 +34015,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7655527867,
@@ -33431,6 +34055,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7756755992,
@@ -33450,6 +34075,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1585571810,
@@ -33504,6 +34130,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4512381979,
@@ -33523,6 +34150,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7825548202,
@@ -33557,6 +34185,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7841765761,
@@ -33606,6 +34235,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7841765768,
@@ -33625,6 +34255,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10801777906,
@@ -33719,6 +34350,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1672825024,
@@ -33753,6 +34385,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7850600033,
@@ -33787,6 +34420,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7850600038,
@@ -33846,6 +34480,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4318978500,
@@ -33880,6 +34515,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7850600047,
@@ -33929,6 +34565,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7858004504,
@@ -33968,6 +34605,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7861607893,
@@ -33997,6 +34635,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7867183704,
@@ -34016,6 +34655,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4497351466,
@@ -34065,6 +34705,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7877690672,
@@ -34084,6 +34725,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4506708504,
@@ -34108,6 +34750,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4446539382,
@@ -34147,6 +34790,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1658922849,
@@ -34166,6 +34810,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7883960684,
@@ -34185,6 +34830,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7883972086,
@@ -34209,6 +34855,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4507348389,
@@ -34253,6 +34900,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7883972094,
@@ -34282,6 +34930,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4507348395,
@@ -34311,6 +34960,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7883972102,
@@ -34330,6 +34980,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7883972104,
@@ -34389,6 +35040,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7883972108,
@@ -34408,6 +35060,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7883972105,
@@ -34462,6 +35115,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7883972121,
@@ -34481,6 +35135,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7883972123,
@@ -34505,6 +35160,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7883972125,
@@ -34529,6 +35185,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7883972127,
@@ -34548,6 +35205,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7883972129,
@@ -34567,6 +35225,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4506695719,
@@ -34626,6 +35285,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7885591049,
@@ -34655,6 +35315,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7885591046,
@@ -34704,6 +35365,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7885591044,
@@ -34723,6 +35385,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7889138586,
@@ -34767,6 +35430,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7889138593,
@@ -34836,6 +35500,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7891670471,
@@ -34870,6 +35535,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3455645683,
@@ -34914,6 +35580,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7893138676,
@@ -34953,6 +35620,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4017644778,
@@ -35022,6 +35690,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4505200260,
@@ -35041,6 +35710,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7911922005,
@@ -35070,6 +35740,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1575817040,
@@ -35104,6 +35775,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 7959586911,
@@ -35133,6 +35805,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7996227186,
@@ -35152,6 +35825,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 7996227188,
@@ -35186,6 +35860,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7997642553,
@@ -35230,6 +35905,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 8005405077,
@@ -35309,6 +35985,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 8005446289,
@@ -35338,6 +36015,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 8005446291,
@@ -35362,6 +36040,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 8008052226,
@@ -35381,6 +36060,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3455645684,
@@ -35400,6 +36080,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8194349553,
@@ -35419,6 +36100,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8194349556,
@@ -35438,6 +36120,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3167595724,
@@ -35457,6 +36140,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 155947612,
@@ -35501,6 +36185,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8648763433,
@@ -35530,6 +36215,7 @@
     "oneway": "yes",
     "name": "Lower Mill Street",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 155947612,
@@ -35569,6 +36255,7 @@
     "oneway": "yes",
     "name": "George Street",
     "lanes": "1",
+    "surface": "",
     "nodes": [
       {
         "id": 155947612,
@@ -35608,6 +36295,7 @@
     "oneway": "yes",
     "name": "Ballymoney Road",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8648763433,
@@ -35627,6 +36315,7 @@
     "oneway": "yes",
     "name": "Larne Road Link",
     "lanes": "3",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 155963922,
@@ -35651,6 +36340,7 @@
     "oneway": "yes",
     "name": "Larne Road Link",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 830503126,
@@ -35670,6 +36360,7 @@
     "oneway": "yes",
     "name": "Larne Road Link",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2373223382,
@@ -35694,6 +36385,7 @@
     "oneway": "yes",
     "name": "Larne Road Link",
     "lanes": "3",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8648813339,
@@ -35728,6 +36420,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 8648813337,
@@ -35752,6 +36445,7 @@
     "oneway": "no",
     "name": "Clonavon Terrace",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1160281398,
@@ -35781,6 +36475,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1160281549,
@@ -35805,6 +36500,7 @@
     "oneway": "no",
     "name": "Lower Mill Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4910912002,
@@ -35834,6 +36530,7 @@
     "oneway": "no",
     "name": "Pat's Brae",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8655791808,
@@ -35853,6 +36550,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 8655791809,
@@ -35877,6 +36575,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1803351724,
@@ -35896,6 +36595,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 8655791813,
@@ -35915,6 +36615,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 8655791811,
@@ -35934,6 +36635,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 8655830829,
@@ -35983,6 +36685,7 @@
     "oneway": "yes",
     "name": "Bryan Street",
     "lanes": "",
+    "surface": "sett",
     "nodes": [
       {
         "id": 8655830834,
@@ -36017,6 +36720,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 262452772,
@@ -36051,6 +36755,7 @@
     "oneway": "no",
     "name": "Meetinghouse Lane",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 8655830839,
@@ -36080,6 +36785,7 @@
     "oneway": "yes",
     "name": "Church Street",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2363356353,
@@ -36119,6 +36825,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 8655830845,
@@ -36143,6 +36850,7 @@
     "oneway": "yes",
     "name": "Thomas Street",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1575963208,
@@ -36167,6 +36875,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8655867669,
@@ -36186,6 +36895,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1567938507,
@@ -36215,6 +36925,7 @@
     "oneway": "yes",
     "name": "Broadway",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2363356360,
@@ -36244,6 +36955,7 @@
     "oneway": "yes",
     "name": "John Street",
     "lanes": "2",
+    "surface": "",
     "nodes": [
       {
         "id": 1621893555,
@@ -36268,6 +36980,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1555937633,
@@ -36292,6 +37005,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 8655867678,
@@ -36326,6 +37040,7 @@
     "oneway": "yes",
     "name": "Carnduff Drive",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1585571599,
@@ -36365,6 +37080,7 @@
     "oneway": "yes",
     "name": "Glenravel Park",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2420561411,
@@ -36389,6 +37105,7 @@
     "oneway": "yes",
     "name": "Glenravel Park",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8655919328,
@@ -36413,6 +37130,7 @@
     "oneway": "yes",
     "name": "Granville Drive",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8655919333,
@@ -36437,6 +37155,7 @@
     "oneway": "yes",
     "name": "Granville Drive",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8655919331,
@@ -36461,6 +37180,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4505200295,
@@ -36485,6 +37205,7 @@
     "oneway": "yes",
     "name": "Queen Street",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8656901773,
@@ -36514,6 +37235,7 @@
     "oneway": "no",
     "name": "Moat Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1558285922,
@@ -36613,6 +37335,7 @@
     "oneway": "yes",
     "name": "Larne Road Link",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1621001535,
@@ -36647,6 +37370,7 @@
     "oneway": "yes",
     "name": "Moat Road",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8658766888,
@@ -36691,6 +37415,7 @@
     "oneway": "yes",
     "name": "Moat Road",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1600969520,
@@ -36725,6 +37450,7 @@
     "oneway": "yes",
     "name": "Crebilly Road",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1598886847,
@@ -36754,6 +37480,7 @@
     "oneway": "yes",
     "name": "Crebilly Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1558295111,
@@ -36778,6 +37505,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4502430390,
@@ -36802,6 +37530,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2363356416,
@@ -36821,6 +37550,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 8658822347,
@@ -36845,6 +37575,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8658822349,
@@ -36904,6 +37635,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 8658822355,
@@ -36923,6 +37655,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 8658822350,
@@ -36942,6 +37675,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8658878600,
@@ -36971,6 +37705,7 @@
     "oneway": "no",
     "name": "Carniny Road",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1409131283,
@@ -37190,6 +37925,7 @@
     "oneway": "no",
     "name": "Old Cullybackey Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 563988663,
@@ -37279,6 +38015,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 9332637674,
@@ -37308,6 +38045,7 @@
     "oneway": "yes",
     "name": "Waveney Road",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 262452756,
@@ -37342,6 +38080,7 @@
     "oneway": "yes",
     "name": "Queen Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8656901773,
@@ -37366,6 +38105,7 @@
     "oneway": "yes",
     "name": "Henry Street",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8656901775,
@@ -37395,6 +38135,7 @@
     "oneway": "yes",
     "name": "Gilmore Street",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4514363187,
@@ -37424,6 +38165,7 @@
     "oneway": "yes",
     "name": "Queen Street",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 830502857,
@@ -37443,6 +38185,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7255720885,
@@ -37492,6 +38235,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2373196132,
@@ -37516,6 +38260,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2875995367,
@@ -37585,6 +38330,7 @@
     "oneway": "yes",
     "name": "Castle Demesne Link",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1598886882,
@@ -37609,6 +38355,7 @@
     "oneway": "yes",
     "name": "Castle Demesne Link",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 9911541942,
@@ -37633,6 +38380,7 @@
     "oneway": "no",
     "name": "Castle Demesne Link",
     "lanes": "3",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 9911541942,
@@ -37662,6 +38410,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2373201521,
@@ -37686,6 +38435,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505200243,
@@ -37710,6 +38460,7 @@
     "oneway": "no",
     "name": "Westbourne Avenue",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 9950142037,
@@ -37729,6 +38480,7 @@
     "oneway": "no",
     "name": "Westbourne Avenue",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1644333635,
@@ -37768,6 +38520,7 @@
     "oneway": "no",
     "name": "St Patrick\u2019s Link Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 10633159233,
@@ -37797,6 +38550,7 @@
     "oneway": "no",
     "name": "St Patrick\u2019s Link Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8238252390,
@@ -37811,30 +38565,12 @@
     ]
   },
   {
-    "id": 1102946709,
-    "highway": "proposed",
-    "oneway": "no",
-    "name": "",
-    "lanes": "",
-    "nodes": [
-      {
-        "id": 10633159228,
-        "lat": 54.8658142,
-        "lon": -6.2641547
-      },
-      {
-        "id": 4506695719,
-        "lat": 54.8646365,
-        "lon": -6.2671263
-      }
-    ]
-  },
-  {
     "id": 1112756879,
     "highway": "service",
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1160332413,
@@ -37864,6 +38600,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4513932418,
@@ -37883,6 +38620,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4513932416,
@@ -37912,6 +38650,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10560320187,
@@ -37931,6 +38670,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1600952166,
@@ -37965,6 +38705,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10560362621,
@@ -37984,6 +38725,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8194349554,
@@ -38003,6 +38745,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1585571682,
@@ -38022,6 +38765,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10587579990,
@@ -38046,6 +38790,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4506443407,
@@ -38080,6 +38825,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506573912,
@@ -38099,6 +38845,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 10587602681,
@@ -38118,6 +38865,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10588799864,
@@ -38137,6 +38885,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 10588799868,
@@ -38166,6 +38915,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 10588799869,
@@ -38195,6 +38945,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 10588799868,
@@ -38214,6 +38965,7 @@
     "oneway": "no",
     "name": "Leighinmohr Gardens",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 6668922472,
@@ -38253,6 +39005,7 @@
     "oneway": "no",
     "name": "Leighinmohr Gardens",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 6668924087,
@@ -38272,6 +39025,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1600952393,
@@ -38301,6 +39055,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10588828512,
@@ -38325,6 +39080,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7398044990,
@@ -38354,6 +39110,7 @@
     "oneway": "no",
     "name": "Phoenix Fields",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10588828526,
@@ -38443,6 +39200,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4497351482,
@@ -38477,6 +39235,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7877690667,
@@ -38496,6 +39255,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4497351480,
@@ -38580,6 +39340,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4497351480,
@@ -38624,6 +39385,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4497351494,
@@ -38653,6 +39415,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6432414864,
@@ -38677,6 +39440,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10589543340,
@@ -38731,6 +39495,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3554817757,
@@ -38790,6 +39555,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 10589560385,
@@ -38809,6 +39575,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10633159226,
@@ -38833,6 +39600,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10181159376,
@@ -38857,6 +39625,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10633159227,
@@ -38876,6 +39645,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7255720920,
@@ -38900,6 +39670,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10092680871,
@@ -38924,6 +39695,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10633159230,
@@ -38963,6 +39735,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7255720906,
@@ -38987,6 +39760,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 5806346137,
@@ -39006,6 +39780,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10633159243,
@@ -39025,6 +39800,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 5806346137,
@@ -39044,6 +39820,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 5559412008,
@@ -39068,6 +39845,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7255720886,
@@ -39092,6 +39870,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7255720891,
@@ -39111,6 +39890,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 10801777912,
@@ -39150,6 +39930,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4497162020,
@@ -39204,6 +39985,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10801774604,
@@ -39228,6 +40010,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7842094190,
@@ -39262,6 +40045,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10801777910,
@@ -39291,6 +40075,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3554817770,
@@ -39310,6 +40095,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10801777953,
@@ -39339,6 +40125,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10801777955,
@@ -39363,6 +40150,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10801777958,
@@ -39407,6 +40195,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 10801774600,
@@ -39431,6 +40220,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7842094186,
@@ -39460,6 +40250,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 7842094186,
@@ -39489,6 +40280,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10801771159,
@@ -39548,6 +40340,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10801771159,
@@ -39587,6 +40380,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10865014682,
@@ -39621,6 +40415,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2374995737,
@@ -39645,6 +40440,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10865014682,
@@ -39679,6 +40475,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2374995777,
@@ -39708,6 +40505,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "2",
+    "surface": "",
     "nodes": [
       {
         "id": 10865014679,
@@ -39727,6 +40525,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 10865014689,
@@ -39771,6 +40570,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10865014696,
@@ -39795,6 +40595,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 10865014689,
@@ -39824,6 +40625,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10865014693,
@@ -39843,6 +40645,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "sett",
     "nodes": [
       {
         "id": 2374995737,
@@ -39892,6 +40695,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4446488893,
@@ -39946,6 +40750,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10865047184,
@@ -39965,6 +40770,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10933857105,
@@ -39994,6 +40800,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 10982412233,
@@ -40028,6 +40835,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "3",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505200190,
@@ -40067,6 +40875,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "3",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1585571636,
@@ -40086,6 +40895,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1585571635,
@@ -40105,6 +40915,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 9425953048,
@@ -40129,35 +40940,12 @@
     ]
   },
   {
-    "id": 1182682208,
-    "highway": "construction",
-    "oneway": "no",
-    "name": "",
-    "lanes": "",
-    "nodes": [
-      {
-        "id": 7883331803,
-        "lat": 54.8668312,
-        "lon": -6.266063
-      },
-      {
-        "id": 10982412265,
-        "lat": 54.8668196,
-        "lon": -6.2649245
-      },
-      {
-        "id": 7255720910,
-        "lat": 54.8668507,
-        "lon": -6.2647805
-      }
-    ]
-  },
-  {
     "id": 1182699758,
     "highway": "residential",
     "oneway": "no",
     "name": "Trostan Avenue",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1160281542,
@@ -40182,6 +40970,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505337291,
@@ -40211,6 +41000,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4505337321,
@@ -40235,6 +41025,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10998368530,
@@ -40269,6 +41060,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10998368538,
@@ -40293,6 +41085,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 10998368538,
@@ -40322,6 +41115,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 11007960982,
@@ -40341,6 +41135,7 @@
     "oneway": "no",
     "name": "Fountain Place",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2363356371,
@@ -40365,6 +41160,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 11438594683,
@@ -40389,6 +41185,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 11697311142,
@@ -40518,6 +41315,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 8655830824,
@@ -40537,6 +41335,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 11909058805,
@@ -40561,6 +41360,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1600952451,
@@ -40595,6 +41395,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 11909913566,
@@ -40634,6 +41435,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 11909058808,
@@ -40668,6 +41470,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "paving_stones",
     "nodes": [
       {
         "id": 4506573904,
@@ -40702,6 +41505,7 @@
     "oneway": "yes",
     "name": "Broughshane Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1160281723,
@@ -40731,6 +41535,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12201424878,
@@ -40770,6 +41575,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 12201452636,
@@ -40819,6 +41625,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 12201452643,
@@ -40843,6 +41650,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 12201452645,
@@ -40882,6 +41690,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12201452663,
@@ -40911,6 +41720,7 @@
     "oneway": "yes",
     "name": "Waveney Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1160281443,
@@ -40965,6 +41775,7 @@
     "oneway": "yes",
     "name": "Waveney Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 12201452667,
@@ -40999,6 +41810,7 @@
     "oneway": "yes",
     "name": "Waveney Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 12201452668,
@@ -41023,6 +41835,7 @@
     "oneway": "yes",
     "name": "Waveney Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 155963949,
@@ -41047,6 +41860,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12553999747,
@@ -41066,6 +41880,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4506467397,
@@ -41085,6 +41900,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4506467396,
@@ -41109,6 +41925,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1672815324,
@@ -41153,6 +41970,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 12553999751,
@@ -41202,6 +42020,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4506695896,
@@ -41251,6 +42070,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12554018512,
@@ -41275,6 +42095,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12554018515,
@@ -41304,6 +42125,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12554018522,
@@ -41323,6 +42145,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4506695733,
@@ -41347,6 +42170,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12554018526,
@@ -41366,6 +42190,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4506695901,
@@ -41390,6 +42215,7 @@
     "oneway": "no",
     "name": "St Patrick's Terrace",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12554018571,
@@ -41464,6 +42290,7 @@
     "oneway": "no",
     "name": "St Patrick's Terrace",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2882487273,
@@ -41498,6 +42325,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12554018539,
@@ -41517,6 +42345,7 @@
     "oneway": "no",
     "name": "St Patrick's Terrace",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12554018543,
@@ -41536,6 +42365,7 @@
     "oneway": "no",
     "name": "St Patrick's Terrace",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12554018569,
@@ -41555,6 +42385,7 @@
     "oneway": "no",
     "name": "Demesne Avenue",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 12554018580,
@@ -41574,6 +42405,7 @@
     "oneway": "yes",
     "name": "Broadway Avenue",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8655919331,
@@ -41598,6 +42430,7 @@
     "oneway": "yes",
     "name": "Wellington Street",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2363356353,
@@ -41622,6 +42455,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12556871641,
@@ -41646,6 +42480,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12556871644,
@@ -41670,6 +42505,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12556871646,
@@ -41689,6 +42525,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12556871647,
@@ -41713,6 +42550,7 @@
     "oneway": "no",
     "name": "Bridge Street",
     "lanes": "3",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 262452770,
@@ -41737,6 +42575,7 @@
     "oneway": "yes",
     "name": "Linenhall Street",
     "lanes": "3",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 12556871654,
@@ -41766,6 +42605,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12556871655,
@@ -41795,6 +42635,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12556871657,
@@ -41819,6 +42660,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12556871661,
@@ -41848,6 +42690,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1555937637,
@@ -41867,6 +42710,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12556871668,
@@ -41896,6 +42740,7 @@
     "oneway": "no",
     "name": "John Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1598886898,
@@ -41920,6 +42765,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12556871670,
@@ -41949,6 +42795,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 12561336888,
@@ -41968,6 +42815,7 @@
     "oneway": "no",
     "name": "Slemish Court",
     "lanes": "",
+    "surface": "sett",
     "nodes": [
       {
         "id": 12561336893,
@@ -41987,6 +42835,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12561444402,
@@ -42006,6 +42855,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12561444404,
@@ -42025,6 +42875,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12561444408,
@@ -42049,6 +42900,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12561444409,
@@ -42068,6 +42920,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2363356350,
@@ -42087,6 +42940,7 @@
     "oneway": "no",
     "name": "Granville Drive",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4506695949,
@@ -42106,6 +42960,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12563187689,
@@ -42130,6 +42985,7 @@
     "oneway": "yes",
     "name": "William Street",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1555932609,
@@ -42159,6 +43015,7 @@
     "oneway": "yes",
     "name": "William Street",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1555932609,
@@ -42188,6 +43045,7 @@
     "oneway": "no",
     "name": "Crebilly Road",
     "lanes": "4",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1558295111,
@@ -42207,6 +43065,7 @@
     "oneway": "no",
     "name": "Crebilly Road",
     "lanes": "3",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 8658766882,
@@ -42231,6 +43090,7 @@
     "oneway": "no",
     "name": "Crebilly Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 12563244524,
@@ -42260,6 +43120,7 @@
     "oneway": "no",
     "name": "Crebilly Road",
     "lanes": "3",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1556261371,
@@ -42284,6 +43145,7 @@
     "oneway": "no",
     "name": "Crebilly Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1585571685,
@@ -42313,6 +43175,7 @@
     "oneway": "yes",
     "name": "Larne Road Link",
     "lanes": "3",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 155963918,
@@ -42332,6 +43195,7 @@
     "oneway": "yes",
     "name": "Bridge Street",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 155963917,
@@ -42351,6 +43215,7 @@
     "oneway": "no",
     "name": "Broughshane Road",
     "lanes": "3",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 12563949873,
@@ -42385,6 +43250,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12563949877,
@@ -42404,6 +43270,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12563949879,
@@ -42428,6 +43295,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12563949881,
@@ -42447,6 +43315,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12563949882,
@@ -42486,6 +43355,7 @@
     "oneway": "no",
     "name": "Devenagh Way",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4512382114,
@@ -42535,6 +43405,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1770578240,
@@ -42554,6 +43425,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12563973837,
@@ -42578,6 +43450,7 @@
     "oneway": "no",
     "name": "Cottage Mews",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12563973851,
@@ -42602,6 +43475,7 @@
     "oneway": "no",
     "name": "Cottage Mews",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12563973853,
@@ -42621,6 +43495,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12563973981,
@@ -42640,6 +43515,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2374995738,
@@ -42664,6 +43540,7 @@
     "oneway": "yes",
     "name": "Parkway",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1160281630,
@@ -42693,6 +43570,7 @@
     "oneway": "yes",
     "name": "Parkway",
     "lanes": "3",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1591456164,
@@ -42717,6 +43595,7 @@
     "oneway": "yes",
     "name": "Thomas Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2363356417,
@@ -42741,6 +43620,7 @@
     "oneway": "no",
     "name": "Thomas Street",
     "lanes": "4",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2363356417,
@@ -42760,6 +43640,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1575967332,
@@ -42779,6 +43660,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4988848654,
@@ -42798,6 +43680,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 6684819339,
@@ -42817,6 +43700,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12564016526,
@@ -42851,6 +43735,7 @@
     "oneway": "no",
     "name": "Thomas Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1575880626,
@@ -42870,6 +43755,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12566279591,
@@ -42924,6 +43810,7 @@
     "oneway": "no",
     "name": "Greenmount Place",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1575968314,
@@ -42953,6 +43840,7 @@
     "oneway": "no",
     "name": "Greenmount Avenue",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1575969690,
@@ -42972,6 +43860,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12566286813,
@@ -42991,6 +43880,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12566286815,
@@ -43010,6 +43900,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4512382221,
@@ -43049,6 +43940,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12566286822,
@@ -43078,6 +43970,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4512382227,
@@ -43122,6 +44015,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 5841658089,
@@ -43151,6 +44045,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 5841658066,
@@ -43180,6 +44075,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12566326700,
@@ -43199,6 +44095,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12566328104,
@@ -43228,6 +44125,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "3",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4502430424,
@@ -43257,6 +44155,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12566376419,
@@ -43276,6 +44175,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 563989006,
@@ -43305,6 +44205,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12566376423,
@@ -43324,6 +44225,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12566376425,
@@ -43343,6 +44245,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4502430402,
@@ -43377,6 +44280,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12566376430,
@@ -43426,6 +44330,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12566376427,
@@ -43450,6 +44355,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4502430403,
@@ -43479,6 +44385,7 @@
     "oneway": "no",
     "name": "Galgorm Road",
     "lanes": "4",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2375012675,
@@ -43498,6 +44405,7 @@
     "oneway": "yes",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4501485653,
@@ -43522,6 +44430,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12566376473,
@@ -43556,6 +44465,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12566376477,
@@ -43580,6 +44490,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12566376498,
@@ -43609,6 +44520,7 @@
     "oneway": "yes",
     "name": "Fountain Place",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2363356371,
@@ -43628,6 +44540,7 @@
     "oneway": "yes",
     "name": "Fountain Place",
     "lanes": "1",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 12566446005,
@@ -43647,6 +44560,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4501196530,
@@ -43671,6 +44585,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4501196527,
@@ -43695,6 +44610,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4501196531,
@@ -43719,6 +44635,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12566446013,
@@ -43748,6 +44665,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1803351708,
@@ -43772,6 +44690,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12566446019,
@@ -43801,6 +44720,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12566446022,
@@ -43845,6 +44765,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12566446041,
@@ -43954,6 +44875,7 @@
     "oneway": "no",
     "name": "Ballymoney Road",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12566446042,
@@ -43973,6 +44895,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12566446053,
@@ -44002,6 +44925,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2592935488,
@@ -44021,6 +44945,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2375012655,
@@ -44050,6 +44975,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 8648763443,
@@ -44079,6 +45005,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12566446062,
@@ -44098,6 +45025,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 3165808628,
@@ -44117,6 +45045,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12566337558,
@@ -44146,6 +45075,7 @@
     "oneway": "no",
     "name": "Princes Place",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 1575819838,
@@ -44175,6 +45105,7 @@
     "oneway": "yes",
     "name": "North Road",
     "lanes": "3",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2363374727,
@@ -44204,6 +45135,7 @@
     "oneway": "yes",
     "name": "North Road",
     "lanes": "4",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 12566403499,
@@ -44223,6 +45155,7 @@
     "oneway": "yes",
     "name": "North Road",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 155946519,
@@ -44247,6 +45180,7 @@
     "oneway": "yes",
     "name": "North Road",
     "lanes": "3",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 1160281612,
@@ -44266,6 +45200,7 @@
     "oneway": "yes",
     "name": "Larne Road Link",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 830503126,
@@ -44300,6 +45235,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12574342892,
@@ -44324,6 +45260,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12574342895,
@@ -44368,6 +45305,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12574342899,
@@ -44387,6 +45325,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12574359401,
@@ -44406,6 +45345,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12574359405,
@@ -44425,6 +45365,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 4938197048,
@@ -44449,6 +45390,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12574554033,
@@ -44478,6 +45420,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12574554036,
@@ -44507,6 +45450,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12574554080,
@@ -44526,6 +45470,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4516263507,
@@ -44550,6 +45495,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2882571875,
@@ -44579,6 +45525,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12574589911,
@@ -44618,6 +45565,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12574638405,
@@ -44662,6 +45610,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12574638406,
@@ -44691,6 +45640,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12574638415,
@@ -44710,6 +45660,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12574638416,
@@ -44729,6 +45680,7 @@
     "oneway": "no",
     "name": "Waring Street",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 2580719536,
@@ -44753,6 +45705,7 @@
     "oneway": "no",
     "name": "Moat Road",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12574651046,
@@ -44772,6 +45725,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12574651054,
@@ -44791,6 +45745,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4017654066,
@@ -44820,6 +45775,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12574645184,
@@ -44839,6 +45795,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 12574645188,
@@ -44888,6 +45845,7 @@
     "oneway": "yes",
     "name": "Thomas Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2363356399,
@@ -44912,6 +45870,7 @@
     "oneway": "yes",
     "name": "Thomas Street",
     "lanes": "2",
+    "surface": "asphalt",
     "nodes": [
       {
         "id": 2363356413,
@@ -44936,6 +45895,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 13378035672,
@@ -44955,6 +45915,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 13378035675,
@@ -44989,6 +45950,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 13378035679,
@@ -45023,6 +45985,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 13378035681,
@@ -45057,6 +46020,7 @@
     "oneway": "no",
     "name": "",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 13653208641,
@@ -45086,6 +46050,7 @@
     "oneway": "no",
     "name": "Leighinmohr Park",
     "lanes": "",
+    "surface": "",
     "nodes": [
       {
         "id": 4497162064,

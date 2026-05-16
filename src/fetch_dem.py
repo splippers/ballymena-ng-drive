@@ -7,8 +7,8 @@ that build_map.py uses to generate a real terrain heightmap.
 import json, urllib.request, urllib.error, time, os
 from utils import BBOX
 
-GRID_ROWS = 64
-GRID_COLS = 64
+GRID_ROWS = 96
+GRID_COLS = 96
 BATCH_SIZE = 100
 API_URL = 'https://api.open-elevation.com/api/v1/lookup'
 

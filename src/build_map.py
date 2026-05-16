@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
-"""Build the Ballymena BeamNG level.
+"""Build the Ballymena BeamNG level — v3.0.
 
-Improvements over v1:
-• BBOX-clipped content → level_size typically 4096 m (was 8192).
-• Terrain heightmap from SRTM DEM grid (data/dem/elevation_grid.json) via PIL resize.
-• Terrain layermap painted with asphalt under every road using PIL/ImageDraw.
-• Road node Z and building Z lifted to local terrain height from DEM.
-• Sky tuned for an overcast Northern Irish afternoon.
+New in v3.0:
+• Footways (pavement/cycleway DecalRoads) in a dedicated Footways SimGroup.
+• Feature polygon painting: parking lots → asphalt, painted before roads.
+• AI traffic waypoint network (BeamNGWaypoint graph) in a Waypoints SimGroup.
+• supportsTraffic: true.
+• Multiple named spawn points: town centre, retail parks, key road approaches.
+• Named camera bookmarks at major landmarks.
+• DEM: 96×96 grid (21 m spacing) — set in fetch_dem.py.
+• mod_info.json bumped to 3.0.0.
 """
 import json, os, struct, uuid, shutil
 from gen_box_dae import generate_unit_box_dae
@@ -18,10 +21,12 @@ LEVEL_DIR = os.path.join(OUT_DIR, 'levels', 'ballymena')
 DEM_PATH = os.path.join(BASE_DIR, 'data', 'dem', 'elevation_grid.json')
 
 TERRAIN_FILENAME = 'ballymena.ter'
-MAX_HEIGHT = 120          # metres; uint16 → h_m = value / 65535 * MAX_HEIGHT
+MAX_HEIGHT = 120
 MIN_LEVEL_SIZE = 1024
 MAX_LEVEL_SIZE = 8192
 BOUNDS_MARGIN = 1.18
+
+VERSION = '3.0.0'
 
 
 # ── I/O helpers ─────────────────────────────────────────────────────────────
@@ -39,7 +44,7 @@ def new_pid():
 
 def load_ndjson(path):
     if not os.path.exists(path):
-        return None
+        return []
     with open(path, encoding='utf-8') as f:
         return [json.loads(line) for line in f if line.strip()]
 
@@ -55,19 +60,15 @@ def load_dem():
 
 def bounds_from_ndjson(roads, buildings):
     xs, ys = [], []
-    for r in (roads or []):
+    for r in roads:
         for n in r.get('nodes', []):
             if len(n) >= 2:
-                xs.append(float(n[0]))
-                ys.append(float(n[1]))
-    for b in (buildings or []):
+                xs.append(float(n[0])); ys.append(float(n[1]))
+    for b in buildings:
         pos = b.get('position')
         if pos and len(pos) >= 2:
-            xs.append(float(pos[0]))
-            ys.append(float(pos[1]))
-    if not xs:
-        return None
-    return min(xs), max(xs), min(ys), max(ys)
+            xs.append(float(pos[0])); ys.append(float(pos[1]))
+    return (min(xs), max(xs), min(ys), max(ys)) if xs else None
 
 
 def pick_level_size(min_x, max_x, min_y, max_y):
@@ -83,14 +84,10 @@ def pick_terrain_res(level_size):
     return min(4096, max(1024, min(level_size, 4096)))
 
 
-# ── Elevation helpers ────────────────────────────────────────────────────────
+# ── Elevation ────────────────────────────────────────────────────────────────
 
 def build_elevation_array(dem, terrain_size, base_elev):
-    """
-    Return flat list of uint16 values (row-major, row 0 = south end of terrain).
-    Uses PIL.Image.resize for fast bilinear upscale from the DEM grid.
-    Falls back to all-zeros if DEM is unavailable or PIL missing.
-    """
+    """Uint16 heightmap via PIL bilinear resize; falls back to pure Python."""
     if dem is None:
         return [0] * (terrain_size * terrain_size)
     try:
@@ -102,64 +99,72 @@ def build_elevation_array(dem, terrain_size, base_elev):
         img = Image.new('I', (cols, rows))
         img.putdata(pil_data)
         img = img.resize((terrain_size, terrain_size), Image.BILINEAR)
-        return list(img.get_flattened_data())
+        return [min(65535, max(0, int(v))) for v in img.get_flattened_data()]
     except ImportError:
         pass
-    # Pure-Python fallback (slow on large grids)
     rows, cols = dem['rows'], dem['cols']
     grid = dem['grid']
     result = []
     for r in range(terrain_size):
         for c in range(terrain_size):
-            gr = r / (terrain_size - 1) * (rows - 1) if terrain_size > 1 else 0
-            gc = c / (terrain_size - 1) * (cols - 1) if terrain_size > 1 else 0
+            gr = r / max(terrain_size - 1, 1) * (rows - 1)
+            gc = c / max(terrain_size - 1, 1) * (cols - 1)
             gr0, gc0 = int(gr), int(gc)
-            gr1 = min(gr0 + 1, rows - 1)
-            gc1 = min(gc0 + 1, cols - 1)
-            dr, dc = gr - gr0, gc - gc0
-            elev = (grid[gr0][gc0] * (1-dr)*(1-dc) + grid[gr0][gc1] * (1-dr)*dc +
-                    grid[gr1][gc0] * dr*(1-dc) + grid[gr1][gc1] * dr*dc)
-            h = max(0.0, elev - base_elev)
-            result.append(min(65535, int(h / MAX_HEIGHT * 65535)))
+            gr1, gc1 = min(gr0+1, rows-1), min(gc0+1, cols-1)
+            dr, dc = gr-gr0, gc-gc0
+            elev = (grid[gr0][gc0]*(1-dr)*(1-dc) + grid[gr0][gc1]*(1-dr)*dc +
+                    grid[gr1][gc0]*dr*(1-dc) + grid[gr1][gc1]*dr*dc)
+            result.append(min(65535, max(0, int((elev - base_elev) / MAX_HEIGHT * 65535))))
     return result
 
 
-def build_layermap(roads, level_size, terrain_size):
+# ── Layermap ─────────────────────────────────────────────────────────────────
+
+def build_layermap(feature_polygons, roads, level_size, terrain_size):
     """
-    Flat list of uint8 layer indices: 0=Grass, 1=Dirt, 2=Asphalt.
-    Rasterises each DecalRoad as an asphalt stripe using PIL/ImageDraw;
-    falls back to pure-Python Bresenham if PIL is unavailable.
+    Paint order (lowest to highest):
+      1. Base fill: Grass (0)
+      2. Feature polygons: parking → Asphalt (2), waterway banks → Dirt (1)
+      3. Road stripes: Asphalt (2) on top of everything
+    PIL ImageDraw used; row 0 = north in PIL (top), row 0 = south in terrain (bottom).
     """
     half = level_size / 2.0
     n = terrain_size
 
     def to_px(x, y):
         col = (x + half) / level_size * n
-        # PIL row 0 = top (north), terrain row 0 = south — flip
-        row = n - (y + half) / level_size * n
+        row = n - (y + half) / level_size * n   # flip: PIL row 0 = top = north
         return int(col), int(row)
 
     try:
         from PIL import Image, ImageDraw
         img = Image.new('L', (n, n), 0)
         draw = ImageDraw.Draw(img)
-        for road in (roads or []):
+
+        # 1. Feature polygons
+        for poly in feature_polygons:
+            pts_px = [to_px(p[0], p[1]) for p in poly.get('pts', [])]
+            if len(pts_px) >= 3:
+                draw.polygon(pts_px, fill=poly.get('layer', 0))
+
+        # 2. Road stripes (drawn last so they override polygon fills)
+        for road in roads:
             nodes = road.get('nodes', [])
             if len(nodes) < 2:
                 continue
-            # Width is stored in node[3]; use first node's value
             w_m = float(nodes[0][3]) if len(nodes[0]) >= 4 else 5.0
             w_px = max(1, int(w_m * n / level_size))
             pts = [to_px(nd[0], nd[1]) for nd in nodes]
             for i in range(len(pts) - 1):
                 draw.line([pts[i], pts[i+1]], fill=2, width=w_px)
+
         return list(img.get_flattened_data())
     except ImportError:
         pass
 
-    # Bresenham fallback (no width)
+    # Pure-Python fallback (no polygon fill; only road stripes)
     layer = [0] * (n * n)
-    for road in (roads or []):
+    for road in roads:
         nodes = road.get('nodes', [])
         for i in range(len(nodes) - 1):
             c1, r1 = to_px(nodes[i][0], nodes[i][1])
@@ -179,8 +184,6 @@ def build_layermap(roads, level_size, terrain_size):
 def make_ter_binary(path, terrain_size, heightmap, layermap):
     n = terrain_size
     materials = ['Grass', 'Dirt', 'Asphalt']
-    hm = struct.pack(f'<{n*n}H', *heightmap)
-    lm = struct.pack(f'<{n*n}B', *layermap)
     mat_bytes = struct.pack('<I', len(materials))
     for m in materials:
         enc = m.encode('utf-8')
@@ -188,9 +191,106 @@ def make_ter_binary(path, terrain_size, heightmap, layermap):
     with open(path, 'wb') as f:
         f.write(struct.pack('B', 9))
         f.write(struct.pack('<I', n))
-        f.write(hm)
-        f.write(lm)
+        f.write(struct.pack(f'<{n*n}H', *heightmap))
+        f.write(struct.pack(f'<{n*n}B', *layermap))
         f.write(mat_bytes)
+
+
+# ── Spawn points ─────────────────────────────────────────────────────────────
+
+SPAWN_STREETS = {
+    'spawn_bridge_street':    'Bridge Street',
+    'spawn_ballymoney_road':  'Ballymoney Road',
+    'spawn_broughshane_road': 'Broughshane Road',
+    'spawn_galgorm_road':     'Galgorm Road',
+}
+
+
+def find_spawn_positions(roads, dem, base_elev):
+    """Return {spawn_name: (x, y, z)} for named spawn streets."""
+    street_to_spawn = {v: k for k, v in SPAWN_STREETS.items()}
+    found = {}
+    for road in roads:
+        name = road.get('name', '')
+        if name not in street_to_spawn:
+            continue
+        sp_name = street_to_spawn[name]
+        if sp_name in found:
+            continue
+        nodes = road.get('nodes', [])
+        if not nodes:
+            continue
+        n = nodes[len(nodes) // 2]
+        x, y = n[0], n[1]
+        z = (max(0.0, sample_dem(dem, x, y) - base_elev) if dem else 0.0)
+        found[sp_name] = (x, y, z)
+    return found
+
+
+def make_player_drop_points(cx, cy, spawn_z, extra_spawns):
+    """Default spawn at content centroid + named road spawns."""
+    drops = [{
+        'name': 'spawn_default',
+        'class': 'SpawnSphere',
+        'persistentId': new_pid(),
+        '__parent': 'PlayerDropPoints',
+        'position': [round(cx, 2), round(cy, 2), round(spawn_z + 2.0, 2)],
+        'dataBlock': 'SpawnSphereMarker',
+        'enabled': '1',
+        'homingCount': '0', 'indoorWeight': '1',
+        'isAIControlled': '0', 'lockCount': '0',
+        'outdoorWeight': '1', 'radius': 6, 'sphereWeight': '1',
+    }]
+    for sp_name, (x, y, z) in sorted(extra_spawns.items()):
+        drops.append({
+            'name': sp_name,
+            'class': 'SpawnSphere',
+            'persistentId': new_pid(),
+            '__parent': 'PlayerDropPoints',
+            'position': [round(x, 2), round(y, 2), round(z + 2.0, 2)],
+            'dataBlock': 'SpawnSphereMarker',
+            'enabled': '1',
+            'homingCount': '0', 'indoorWeight': '1',
+            'isAIControlled': '0', 'lockCount': '0',
+            'outdoorWeight': '1', 'radius': 6, 'sphereWeight': '1',
+        })
+    return drops
+
+
+# ── Camera bookmarks ─────────────────────────────────────────────────────────
+
+LANDMARK_BUILDINGS = [
+    'IMC Ballymena', 'Fairhill Shopping Centre', 'Tower Centre',
+    'Seven Towers Leisure Centre', 'Ballymena Bus Station',
+]
+
+
+def find_landmark_bookmarks(buildings, dem, base_elev, level_size):
+    """Return list of CameraBookmark objects for named buildings."""
+    dist = max(80.0, min(level_size * 0.08, 300.0))
+    bookmarks = []
+    seen = set()
+    for b in buildings:
+        name = b.get('name', '')
+        if name not in LANDMARK_BUILDINGS or name in seen:
+            continue
+        seen.add(name)
+        x, y = b['position'][0], b['position'][1]
+        z = (max(0.0, sample_dem(dem, x, y) - base_elev) if dem else 0.0)
+        cam_z = z + dist * 0.6
+        slug = name.lower().replace(' ', '_').replace("'", '')
+        bookmarks.append({
+            'name': f'bookmark_{slug}',
+            'internalName': slug,
+            'class': 'CameraBookmark',
+            'persistentId': new_pid(),
+            '__parent': 'CameraBookmarks',
+            'position': [round(x, 2), round(y - dist, 2), round(cam_z, 2)],
+            'dataBlock': 'CameraBookmarkMarker',
+            'isAIControlled': '0',
+            'rotationMatrix': [1, 0, 0, 0, 0.7, -0.7, 0, 0.7, 0.7],
+        })
+    return bookmarks
 
 
 # ── Level JSON builders ──────────────────────────────────────────────────────
@@ -206,19 +306,24 @@ def make_terrain_json(level_size, terrain_size):
     }
 
 
-def make_info_json(level_size, preview_filename=None):
+def make_info_json(level_size, spawn_names, preview_filename=None):
     info = {
         'title': 'Ballymena Town Centre',
-        'description': 'Drive the streets of Ballymena, Co Antrim, Northern Ireland — OSM road network with real SRTM terrain elevation.',
+        'description': (
+            'Drive the streets of Ballymena, Co Antrim, Northern Ireland. '
+            'OSM road network, SRTM terrain, footways, parking and AI traffic waypoints. '
+            f'v{VERSION}'
+        ),
         'size': [level_size, level_size],
         'biome': 'Northern Ireland Town',
-        'roads': 'OSM road network — primary, secondary, residential, service roads',
-        'suitablefor': 'Free Roam',
-        'features': 'OSM roads + buildings, SRTM terrain heightmap, asphalt layermap',
-        'authors': 'ballymena-ng-drive (OSM contributors / SRTM)',
+        'roads': 'OSM: A26 primary, secondary, residential, service, footways',
+        'suitablefor': 'Free Roam, Point-to-Point',
+        'features': 'SRTM terrain, asphalt/park layermap, AI waypoint graph, footways',
+        'authors': 'ballymena-ng-drive (data: © OpenStreetMap, SRTM)',
+        'version': VERSION,
         'defaultSpawnPointName': 'spawn_default',
-        'spawnPoints': [{'objectname': 'spawn_default'}],
-        'supportsTraffic': False,
+        'spawnPoints': [{'objectname': s} for s in spawn_names],
+        'supportsTraffic': True,
         'supportsTimeOfDay': True,
     }
     if preview_filename:
@@ -279,9 +384,16 @@ def make_mission_group(level_size):
          'maxHeight': MAX_HEIGHT,
          'terrainFile': '/levels/ballymena/' + TERRAIN_FILENAME},
     ]
-    for name, enabled in [('sky_and_sun', None), ('Buildings', '1'),
-                          ('DecalRoads', None), ('CameraBookmarks', None),
-                          ('PlayerDropPoints', '1')]:
+    groups = [
+        ('sky_and_sun',      None),
+        ('Buildings',        '1'),
+        ('DecalRoads',       None),
+        ('Footways',         None),
+        ('Waypoints',        '1'),
+        ('CameraBookmarks',  None),
+        ('PlayerDropPoints', '1'),
+    ]
+    for name, enabled in groups:
         obj = {'name': name, 'class': 'SimGroup',
                'persistentId': new_pid(), '__parent': 'MissionGroup'}
         if enabled:
@@ -290,10 +402,10 @@ def make_mission_group(level_size):
     return objs
 
 
-def make_camera_bookmarks(cx, cy, spawn_z, level_size):
-    dist = max(180.0, min(level_size * 0.35, 2200.0))
-    cam_z = spawn_z + max(60.0, min(level_size * 0.12, 350.0))
-    return [{
+def make_overview_bookmark(cx, cy, spawn_z, level_size):
+    dist = max(200.0, min(level_size * 0.35, 2200.0))
+    cam_z = spawn_z + max(80.0, min(level_size * 0.12, 400.0))
+    return {
         'name': 'overviewbookmark',
         'internalName': 'overview',
         'class': 'CameraBookmark',
@@ -303,27 +415,12 @@ def make_camera_bookmarks(cx, cy, spawn_z, level_size):
         'dataBlock': 'CameraBookmarkMarker',
         'isAIControlled': '0',
         'rotationMatrix': [1, 0, 0, 0, 0.7, -0.7, 0, 0.7, 0.7],
-    }]
-
-
-def make_player_drop_points(cx, cy, spawn_z):
-    return [{
-        'name': 'spawn_default',
-        'class': 'SpawnSphere',
-        'persistentId': new_pid(),
-        '__parent': 'PlayerDropPoints',
-        'position': [round(cx, 2), round(cy, 2), round(spawn_z + 2.0, 2)],
-        'dataBlock': 'SpawnSphereMarker',
-        'enabled': '1',
-        'homingCount': '0', 'indoorWeight': '1',
-        'isAIControlled': '0', 'lockCount': '0',
-        'outdoorWeight': '1', 'radius': 5, 'sphereWeight': '1',
-    }]
+    }
 
 
 # ── Preview image ────────────────────────────────────────────────────────────
 
-def make_preview(roads, buildings):
+def make_preview(roads, footways, buildings, feature_polygons):
     try:
         from PIL import Image, ImageDraw
     except ImportError:
@@ -333,38 +430,50 @@ def make_preview(roads, buildings):
     img = Image.new('RGB', (W, H), (45, 62, 45))
     d = ImageDraw.Draw(img)
 
-    all_pts = [(n[0], n[1]) for r in (roads or []) for n in r.get('nodes', [])]
+    all_pts = [(n[0], n[1]) for r in roads for n in r.get('nodes', [])]
     if not all_pts:
         img.save(os.path.join(LEVEL_DIR, 'ballymena_preview.png'))
         return
 
-    xs = [p[0] for p in all_pts]
-    ys = [p[1] for p in all_pts]
-    margin = 12
-    rng_x = max(max(xs) - min(xs), 1.0)
-    rng_y = max(max(ys) - min(ys), 1.0)
-    scale = min((W - 2*margin) / rng_x, (H - 2*margin) / rng_y)
-    ox = margin + (W - 2*margin - rng_x*scale) / 2 - min(xs)*scale
-    oy = margin + (H - 2*margin - rng_y*scale) / 2 - min(ys)*scale
+    xs = [p[0] for p in all_pts]; ys = [p[1] for p in all_pts]
+    margin = 10
+    scale = min((W - 2*margin) / max(max(xs)-min(xs), 1),
+                (H - 2*margin) / max(max(ys)-min(ys), 1))
+    ox = margin - min(xs)*scale + (W-2*margin - (max(xs)-min(xs))*scale) / 2
+    oy = margin - min(ys)*scale + (H-2*margin - (max(ys)-min(ys))*scale) / 2
 
     def px(x, y):
         return int(ox + x*scale), int(H - (oy + y*scale))
 
-    # Buildings as grey boxes
-    for b in (buildings or []):
+    # Parking polygons (dark grey)
+    for poly in feature_polygons:
+        if poly.get('layer') == 2:
+            pts_px = [px(p[0], p[1]) for p in poly.get('pts', [])]
+            if len(pts_px) >= 3:
+                d.polygon(pts_px, fill=(65, 65, 65))
+
+    # Buildings
+    for b in buildings:
         bx, by = b['position'][0], b['position'][1]
         sc = b.get('scale', [6, 6, 6])
         hw2, hd2 = sc[0]/2*scale, sc[1]/2*scale
         bpx, bpy = px(bx, by)
-        d.rectangle([bpx-hw2, bpy-hd2, bpx+hw2, bpy+hd2], fill=(85, 88, 92))
+        d.rectangle([bpx-hw2, bpy-hd2, bpx+hw2, bpy+hd2], fill=(82, 86, 90))
 
-    # Roads — colour by material variant
+    # Footways (thin light lines)
+    for r in footways:
+        nodes = r.get('nodes', [])
+        for i in range(len(nodes) - 1):
+            d.line([px(nodes[i][0], nodes[i][1]), px(nodes[i+1][0], nodes[i+1][1])],
+                   fill=(155, 155, 155), width=1)
+
+    # Roads
     mat_color = {
-        'AsphaltRoad_variation_01': (180, 155, 95),
-        'AsphaltRoad_variation_02': (148, 132, 108),
+        'AsphaltRoad_variation_01': (185, 158, 90),
+        'AsphaltRoad_variation_02': (145, 132, 105),
         'AsphaltRoad_variation_03': (108, 108, 108),
     }
-    for r in (roads or []):
+    for r in roads:
         nodes = r.get('nodes', [])
         if len(nodes) < 2:
             continue
@@ -374,26 +483,54 @@ def make_preview(roads, buildings):
             d.line([px(nodes[i][0], nodes[i][1]), px(nodes[i+1][0], nodes[i+1][1])],
                    fill=color, width=w_px)
 
-    d.text((4, 2), 'Ballymena', fill=(220, 220, 220))
-    d.text((4, H - 14), 'Co Antrim, NI', fill=(180, 180, 180))
+    d.text((4, 2), 'Ballymena', fill=(225, 225, 225))
+    d.text((4, H - 14), f'Co Antrim, NI  v{VERSION}', fill=(175, 175, 175))
     img.save(os.path.join(LEVEL_DIR, 'ballymena_preview.png'))
     print('  Preview saved')
+
+
+# ── mod_info.json ────────────────────────────────────────────────────────────
+
+def write_mod_info(dest_dir):
+    info = {
+        'name': 'ballymena-ng-drive',
+        'title': 'Ballymena Town Centre',
+        'version': VERSION,
+        'author': 'ballymena-ng-drive',
+        'description': (
+            'Ballymena, Co Antrim, NI — OSM road network, SRTM terrain, '
+            'footways/pavements, parking layer, AI traffic waypoints. '
+            'Based on OpenStreetMap data (© ODbL contributors) '
+            'and NASA SRTM elevation data.'
+        ),
+        'type': 'level',
+    }
+    path = os.path.join(dest_dir, 'mod_info.json')
+    with open(path, 'w') as f:
+        json.dump(info, f, indent=2)
 
 
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
-    roads = load_ndjson(os.path.join(OUT_DIR, 'decal_roads.ndjson')) or []
-    buildings = load_ndjson(os.path.join(OUT_DIR, 'buildings.ndjson')) or []
-    dem = load_dem()
+    roads      = load_ndjson(os.path.join(OUT_DIR, 'decal_roads.ndjson'))
+    footways   = load_ndjson(os.path.join(OUT_DIR, 'footway_roads.ndjson'))
+    buildings  = load_ndjson(os.path.join(OUT_DIR, 'buildings.ndjson'))
+    features   = load_ndjson(os.path.join(OUT_DIR, 'feature_polygons.ndjson'))
+    waypoints  = load_ndjson(os.path.join(OUT_DIR, 'waypoints.ndjson'))
+    dem        = load_dem()
 
     if dem:
-        print(f'DEM loaded: {dem["rows"]}×{dem["cols"]} grid, '
+        print(f'DEM: {dem["rows"]}×{dem["cols"]} grid, '
               f'{dem["min_elev"]:.1f}–{dem["max_elev"]:.1f} m AMSL')
         base_elev = dem['min_elev'] - 2.0
     else:
-        print('No DEM — flat terrain (run fetch_dem.py to add elevation)')
+        print('No DEM — flat terrain (run dem step)')
         base_elev = 0.0
+
+    print(f'Content: {len(roads)} roads, {len(footways)} footways, '
+          f'{len(buildings)} buildings, {len(features)} feature polygons, '
+          f'{len(waypoints)} waypoints')
 
     bounds = bounds_from_ndjson(roads, buildings)
     if bounds:
@@ -402,52 +539,67 @@ def main():
         cx = (min_x + max_x) / 2.0
         cy = (min_y + max_y) / 2.0
         print(f'Content bounds x:[{min_x:.0f},{max_x:.0f}] y:[{min_y:.0f},{max_y:.0f}]')
-        print(f'Terrain world size: {level_size} m')
-        half = level_size / 2.0
-        for v in (min_x, max_x, min_y, max_y):
-            if abs(v) > half:
-                print(f'  WARNING: coord {v:.0f} exceeds terrain half-extent {half:.0f}')
+        print(f'Terrain: {level_size} m world size')
     else:
         level_size = MIN_LEVEL_SIZE
         cx, cy = 0.0, 0.0
-        print('No content NDJSON — defaulting to 1024 m terrain')
+        print('No content — defaulting to 1024 m terrain')
 
     terrain_size = pick_terrain_res(level_size)
     spawn_z = max(0.0, sample_dem(dem, cx, cy) - base_elev) if dem else 0.0
 
     shutil.rmtree(LEVEL_DIR, ignore_errors=True)
     for sub in ('main/MissionGroup/DecalRoads',
+                'main/MissionGroup/Footways',
                 'main/MissionGroup/Buildings/buildings_group',
+                'main/MissionGroup/Waypoints',
                 'main/MissionGroup/sky_and_sun',
                 'main/MissionGroup/CameraBookmarks',
                 'main/MissionGroup/PlayerDropPoints',
                 'art/shapes/buildings'):
         os.makedirs(os.path.join(LEVEL_DIR, sub.replace('/', os.sep)), exist_ok=True)
 
+    # ── Terrain ──────────────────────────────────────────────────────────────
     print(f'Generating terrain ({terrain_size}×{terrain_size} on {level_size}×{level_size} m) …')
     heightmap = build_elevation_array(dem, terrain_size, base_elev)
     print('Painting layermap …')
-    layermap = build_layermap(roads, level_size, terrain_size)
+    layermap = build_layermap(features, roads, level_size, terrain_size)
     make_ter_binary(os.path.join(LEVEL_DIR, TERRAIN_FILENAME), terrain_size, heightmap, layermap)
 
     print('Generating building shape …')
     generate_unit_box_dae(os.path.join(LEVEL_DIR, 'art', 'shapes', 'buildings', 'box.dae'))
 
-    # Lift road node Z to terrain height (DecalRoad projects onto terrain; Z prevents burial)
-    if dem and roads:
+    # ── Lift Z to terrain height ──────────────────────────────────────────────
+    if dem:
         for road in roads:
             for node in road.get('nodes', []):
                 while len(node) < 4:
                     node.append(0.0)
                 node[2] = round(max(0.0, sample_dem(dem, node[0], node[1]) - base_elev), 2)
-
-    # Lift building centre Z to terrain_height + half_building_height
-    if dem and buildings:
+        for road in footways:
+            for node in road.get('nodes', []):
+                while len(node) < 4:
+                    node.append(0.0)
+                node[2] = round(max(0.0, sample_dem(dem, node[0], node[1]) - base_elev), 2)
         for b in buildings:
             pos = b['position']
             z_ground = max(0.0, sample_dem(dem, pos[0], pos[1]) - base_elev)
             pos[2] = round(z_ground + b['scale'][2] / 2.0, 2)
 
+    # ── Spawn points ──────────────────────────────────────────────────────────
+    extra_spawns = find_spawn_positions(roads, dem, base_elev)
+    all_spawn_names = ['spawn_default'] + sorted(extra_spawns.keys())
+    spawn_objs = make_player_drop_points(cx, cy, spawn_z, extra_spawns)
+    print(f'  Spawn points: {len(spawn_objs)} ({", ".join(sp["name"] for sp in spawn_objs)})')
+
+    # ── Camera bookmarks ──────────────────────────────────────────────────────
+    landmark_bmarks = find_landmark_bookmarks(buildings, dem, base_elev, level_size)
+    overview = make_overview_bookmark(cx, cy, spawn_z, level_size)
+    all_bookmarks = [overview] + landmark_bmarks
+    print(f'  Camera bookmarks: {len(all_bookmarks)} '
+          f'({", ".join(b["name"] for b in all_bookmarks)})')
+
+    # ── Write level files ─────────────────────────────────────────────────────
     print('Writing level files …')
     with open(os.path.join(LEVEL_DIR, 'ballymena.terrain.json'), 'w') as f:
         json.dump(make_terrain_json(level_size, terrain_size), f, indent=2)
@@ -458,16 +610,23 @@ def main():
     write_items_level(os.path.join(LEVEL_DIR, 'main', 'MissionGroup', 'sky_and_sun', 'items.level.json'),
                       make_sky_and_sun(level_size))
     write_items_level(os.path.join(LEVEL_DIR, 'main', 'MissionGroup', 'CameraBookmarks', 'items.level.json'),
-                      make_camera_bookmarks(cx, cy, spawn_z, level_size))
+                      all_bookmarks)
     write_items_level(os.path.join(LEVEL_DIR, 'main', 'MissionGroup', 'PlayerDropPoints', 'items.level.json'),
-                      make_player_drop_points(cx, cy, spawn_z))
+                      spawn_objs)
 
     if roads:
         write_items_level(os.path.join(LEVEL_DIR, 'main', 'MissionGroup', 'DecalRoads', 'items.level.json'),
                           roads)
-        print(f'  Roads: {len(roads)} DecalRoad objects')
+        print(f'  Roads: {len(roads)}')
     else:
         print('  Warning: no road data')
+
+    if footways:
+        write_items_level(os.path.join(LEVEL_DIR, 'main', 'MissionGroup', 'Footways', 'items.level.json'),
+                          footways)
+        print(f'  Footways: {len(footways)}')
+    else:
+        print('  Warning: no footway data (run process step)')
 
     if buildings:
         write_items_level(os.path.join(LEVEL_DIR, 'main', 'MissionGroup', 'Buildings', 'items.level.json'),
@@ -476,29 +635,46 @@ def main():
         write_items_level(
             os.path.join(LEVEL_DIR, 'main', 'MissionGroup', 'Buildings', 'buildings_group', 'items.level.json'),
             buildings)
-        print(f'  Buildings: {len(buildings)} TSStatic objects')
+        print(f'  Buildings: {len(buildings)}')
     else:
         print('  Warning: no building data')
 
-    make_preview(roads, buildings)
+    if waypoints:
+        write_items_level(os.path.join(LEVEL_DIR, 'main', 'MissionGroup', 'Waypoints', 'items.level.json'),
+                          waypoints)
+        print(f'  Waypoints: {len(waypoints)}')
+    else:
+        # Empty waypoints group still needs an items.level.json
+        write_items_level(os.path.join(LEVEL_DIR, 'main', 'MissionGroup', 'Waypoints', 'items.level.json'), [])
+        print('  Warning: no waypoint data (run process step)')
+
+    make_preview(roads, footways, buildings, features)
+
     preview_name = 'ballymena_preview.png'
     preview_arg = preview_name if os.path.isfile(os.path.join(LEVEL_DIR, preview_name)) else None
     with open(os.path.join(LEVEL_DIR, 'info.json'), 'w') as f:
-        json.dump(make_info_json(level_size, preview_arg), f, indent=2)
+        json.dump(make_info_json(level_size, all_spawn_names, preview_arg), f, indent=2)
     with open(os.path.join(LEVEL_DIR, 'main.decals.json'), 'w') as f:
         json.dump({'header': {'name': 'DecalData File', 'version': 2}, 'instances': {}}, f, indent=2)
     with open(os.path.join(LEVEL_DIR, 'map.json'), 'w') as f:
         json.dump({'segments': {}}, f, indent=2)
 
+    # Legacy cleanup
     for legacy in ('items.items.json', 'main.mission', 'scenes'):
         p = os.path.join(LEVEL_DIR, legacy)
         if os.path.isfile(p):
             os.remove(p)
         elif os.path.isdir(p):
             shutil.rmtree(p, ignore_errors=True)
+    # Also clean output root artefact from old builds
+    old_items = os.path.join(OUT_DIR, 'items.items.json')
+    if os.path.isfile(old_items):
+        os.remove(old_items)
+        print('  Removed legacy output/items.items.json')
 
-    print(f'\nLevel built → {LEVEL_DIR}')
-    print(f'Spawn ({cx:.0f}, {cy:.0f}, {spawn_z+2:.1f}) | terrain {level_size} m | {terrain_size}² samples')
+    print(f'\nLevel built → {LEVEL_DIR}  (v{VERSION})')
+    print(f'Spawn ({cx:.0f}, {cy:.0f}, {spawn_z+2:.1f}) | '
+          f'terrain {level_size} m | {terrain_size}² samples')
 
 
 if __name__ == '__main__':

@@ -10,6 +10,9 @@ from parse_roads import (material_for_road, simplify_polyline,
                          build_decal_road, generate_decal_roads)
 from parse_buildings import (building_height, oriented_bbox,
                               polygon_centroid, generate_buildings)
+from parse_footways import generate_footway_decals, extract_footways
+from parse_features import generate_feature_polygons
+from gen_waypoints import find_junctions, find_landmark_positions, make_waypoints
 from build_map import (pick_level_size, pick_terrain_res, bounds_from_ndjson,
                        build_elevation_array, build_layermap)
 
@@ -397,24 +400,33 @@ class TestBuildLayermap(unittest.TestCase):
                 'nodes': [[x1, y1, 0, width], [x2, y2, 0, width]]}
 
     def test_length(self):
-        result = build_layermap([], 1024, 32)
+        result = build_layermap([], [], 1024, 32)
         self.assertEqual(len(result), 32 * 32)
 
     def test_empty_roads_all_grass(self):
-        result = build_layermap([], 1024, 32)
+        result = build_layermap([], [], 1024, 32)
         self.assertTrue(all(v == 0 for v in result))
 
     def test_road_paints_asphalt(self):
         # A road crossing the middle of a 1024m world on a 64-px layermap
         road = self._make_road(-200, 0, 200, 0, 10.0)
-        result = build_layermap([road], 1024, 64)
+        result = build_layermap([], [road], 1024, 64)
         # At least some pixels should be asphalt (value 2)
         self.assertIn(2, result)
 
     def test_values_in_range(self):
         road = self._make_road(-100, 0, 100, 0, 5.0)
-        result = build_layermap([road], 1024, 32)
+        result = build_layermap([], [road], 1024, 32)
         self.assertTrue(all(0 <= v <= 2 for v in result))
+
+    def test_feature_polygon_paints_before_roads(self):
+        # A parking polygon (asphalt) in a region with no roads should still paint asphalt
+        poly = {
+            'kind': 'amenity:parking', 'layer': 2, 'name': '',
+            'pts': [[-50, -50], [50, -50], [50, 50], [-50, 50]],
+        }
+        result = build_layermap([poly], [], 1024, 64)
+        self.assertIn(2, result)
 
 
 class TestTerBinary(unittest.TestCase):
@@ -476,6 +488,205 @@ class TestGenerateBuildings(unittest.TestCase):
         # Z scale = building height
         scale_z = result[0]['scale'][2]
         self.assertAlmostEqual(scale_z, 12.0, places=0)  # 4 levels × 3 m
+
+
+# ── parse_footways ───────────────────────────────────────────────────────────
+
+class TestParseFootways(unittest.TestCase):
+    def _make_way(self, nodes, highway='footway', name=''):
+        return {'highway': highway, 'name': name, 'surface': '', 'nodes': nodes}
+
+    def _latlon_nodes(self, pairs):
+        return [{'lat': lat, 'lon': lon} for lat, lon in pairs]
+
+    def test_footway_inside_bbox(self):
+        nodes = self._latlon_nodes([(54.862, -6.280), (54.863, -6.279)])
+        way = self._make_way(nodes, highway='footway')
+        result = generate_footway_decals([way])
+        self.assertGreater(len(result), 0)
+        self.assertEqual(result[0]['class'], 'DecalRoad')
+
+    def test_footway_parent_is_footways(self):
+        nodes = self._latlon_nodes([(54.862, -6.280), (54.863, -6.279)])
+        way = self._make_way(nodes, highway='footway')
+        result = generate_footway_decals([way])
+        self.assertGreater(len(result), 0)
+        self.assertEqual(result[0]['__parent'], 'Footways')
+
+    def test_footway_outside_bbox_excluded(self):
+        nodes = self._latlon_nodes([(55.0, -6.0), (55.1, -5.9)])
+        way = self._make_way(nodes, highway='footway')
+        result = generate_footway_decals([way])
+        self.assertEqual(len(result), 0)
+
+    def test_cycleway_gets_cycleway_material(self):
+        nodes = self._latlon_nodes([(54.862, -6.280), (54.863, -6.279)])
+        way = self._make_way(nodes, highway='cycleway')
+        result = generate_footway_decals([way])
+        self.assertGreater(len(result), 0)
+        self.assertIn('Asphalt', result[0]['material'])
+
+    def test_footway_nodes_have_four_elements(self):
+        nodes = self._latlon_nodes([(54.862, -6.280), (54.863, -6.279), (54.864, -6.278)])
+        way = self._make_way(nodes, highway='path')
+        result = generate_footway_decals([way])
+        self.assertGreater(len(result), 0)
+        for n in result[0]['nodes']:
+            self.assertEqual(len(n), 4)
+
+    def test_extract_footways_filters_non_footway(self):
+        # extract_footways should include footway but not primary
+        elements = [
+            {'type': 'way', 'tags': {'highway': 'footway'}, 'nodes': [1, 2]},
+            {'type': 'way', 'tags': {'highway': 'primary'}, 'nodes': [1, 2]},
+        ]
+        nodes_map = {1: (54.862, -6.280), 2: (54.863, -6.279)}
+        ways = extract_footways(elements, nodes_map)
+        self.assertEqual(len(ways), 1)
+        self.assertEqual(ways[0]['highway'], 'footway')
+
+    def test_render_priority_below_roads(self):
+        nodes = self._latlon_nodes([(54.862, -6.280), (54.863, -6.279)])
+        way = self._make_way(nodes, highway='footway')
+        result = generate_footway_decals([way])
+        self.assertGreater(len(result), 0)
+        self.assertLess(result[0]['renderPriority'], 5)
+
+
+# ── parse_features ───────────────────────────────────────────────────────────
+
+class TestParseFeatures(unittest.TestCase):
+    def _make_feature(self, kind, nodes, name=''):
+        return {'kind': kind, 'name': name, 'nodes': nodes}
+
+    def _latlon_nodes(self, pairs):
+        return [{'lat': lat, 'lon': lon} for lat, lon in pairs]
+
+    def test_parking_maps_to_asphalt(self):
+        nodes = self._latlon_nodes([
+            (54.862, -6.280), (54.862, -6.279),
+            (54.863, -6.279), (54.863, -6.280),
+        ])
+        feat = self._make_feature('amenity:parking', nodes)
+        result = generate_feature_polygons([feat])
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0]['layer'], 2)  # LAYER_ASPHALT
+
+    def test_park_maps_to_grass(self):
+        nodes = self._latlon_nodes([
+            (54.862, -6.280), (54.862, -6.279),
+            (54.863, -6.279), (54.863, -6.280),
+        ])
+        feat = self._make_feature('leisure:park', nodes)
+        result = generate_feature_polygons([feat])
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0]['layer'], 0)  # LAYER_GRASS
+
+    def test_waterway_maps_to_dirt(self):
+        nodes = self._latlon_nodes([
+            (54.862, -6.280), (54.862, -6.279),
+            (54.863, -6.279), (54.863, -6.280),
+        ])
+        feat = self._make_feature('waterway:river', nodes)
+        result = generate_feature_polygons([feat])
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0]['layer'], 1)  # LAYER_DIRT
+
+    def test_unknown_kind_excluded(self):
+        nodes = self._latlon_nodes([
+            (54.862, -6.280), (54.862, -6.279),
+            (54.863, -6.279), (54.863, -6.280),
+        ])
+        feat = self._make_feature('unknown:thing', nodes)
+        result = generate_feature_polygons([feat])
+        self.assertEqual(len(result), 0)
+
+    def test_outside_bbox_excluded(self):
+        nodes = self._latlon_nodes([
+            (55.0, -5.0), (55.0, -4.99), (55.01, -4.99), (55.01, -5.0),
+        ])
+        feat = self._make_feature('leisure:park', nodes)
+        result = generate_feature_polygons([feat])
+        self.assertEqual(len(result), 0)
+
+    def test_result_has_pts_field(self):
+        nodes = self._latlon_nodes([
+            (54.862, -6.280), (54.862, -6.279),
+            (54.863, -6.279), (54.863, -6.280),
+        ])
+        feat = self._make_feature('amenity:parking', nodes)
+        result = generate_feature_polygons([feat])
+        self.assertIn('pts', result[0])
+        self.assertGreater(len(result[0]['pts']), 2)
+
+
+# ── gen_waypoints ────────────────────────────────────────────────────────────
+
+class TestGenWaypoints(unittest.TestCase):
+    def _make_road(self, nodes, name=''):
+        return {'nodes': nodes, 'name': name}
+
+    def test_junction_detected_two_roads(self):
+        # Two roads sharing an endpoint → one junction
+        roads = [
+            self._make_road([[0.0, 0.0, 5.0, 7.0], [100.0, 0.0, 5.0, 7.0]]),
+            self._make_road([[0.0, 0.0, 5.0, 7.0], [0.0, 100.0, 5.0, 7.0]]),
+        ]
+        junctions = find_junctions(roads)
+        self.assertGreaterEqual(len(junctions), 1)
+
+    def test_no_junction_single_road(self):
+        roads = [self._make_road([[0.0, 0.0, 5.0, 7.0], [100.0, 0.0, 5.0, 7.0]])]
+        junctions = find_junctions(roads)
+        self.assertEqual(len(junctions), 0)
+
+    def test_junction_position_is_averaged(self):
+        # Both roads touch (0,0) — junction should be at (0,0)
+        roads = [
+            self._make_road([[0.0, 0.0, 5.0, 7.0], [50.0, 0.0, 5.0, 7.0]]),
+            self._make_road([[0.0, 0.0, 5.0, 7.0], [0.0, 50.0, 5.0, 7.0]]),
+        ]
+        junctions = find_junctions(roads)
+        self.assertGreater(len(junctions), 0)
+        x, y, z = junctions[0]
+        self.assertAlmostEqual(x, 0.0, places=1)
+        self.assertAlmostEqual(y, 0.0, places=1)
+
+    def test_landmark_found(self):
+        # Road named 'Bridge Street' → landmark waypoint emitted
+        roads = [
+            self._make_road([[10.0, 20.0, 5.0, 7.0], [30.0, 40.0, 5.0, 7.0]], name='Bridge Street'),
+        ]
+        landmarks = find_landmark_positions(roads)
+        self.assertIn('wp_bridge_street', landmarks)
+
+    def test_landmark_not_duplicated(self):
+        roads = [
+            self._make_road([[10.0, 20.0, 5.0, 7.0], [30.0, 40.0, 5.0, 7.0]], name='Bridge Street'),
+            self._make_road([[50.0, 60.0, 5.0, 7.0], [70.0, 80.0, 5.0, 7.0]], name='Bridge Street'),
+        ]
+        landmarks = find_landmark_positions(roads)
+        self.assertEqual(list(landmarks.keys()).count('wp_bridge_street'), 1)
+
+    def test_make_waypoints_returns_beamngwaypoint(self):
+        junctions = [(10.0, 20.0, 5.0)]
+        landmarks = {'wp_bridge_street': (50.0, 60.0, 5.0)}
+        wps = make_waypoints(junctions, landmarks)
+        classes = [w['class'] for w in wps]
+        self.assertTrue(all(c == 'BeamNGWaypoint' for c in classes))
+
+    def test_make_waypoints_count(self):
+        junctions = [(0.0, 0.0, 0.0), (10.0, 10.0, 0.0)]
+        landmarks = {'wp_galgorm_road': (5.0, 5.0, 0.0)}
+        wps = make_waypoints(junctions, landmarks)
+        self.assertEqual(len(wps), 3)
+
+    def test_waypoints_have_required_fields(self):
+        wps = make_waypoints([(0.0, 0.0, 0.0)], {})
+        self.assertIn('persistentId', wps[0])
+        self.assertIn('position', wps[0])
+        self.assertIn('radius', wps[0])
+        self.assertEqual(wps[0]['__parent'], 'Waypoints')
 
 
 if __name__ == '__main__':

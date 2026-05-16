@@ -4,13 +4,15 @@
 Usage:
     python run.py fetch     # Download OSM data (roads, buildings, features)
     python run.py dem       # Download SRTM elevation grid (Open-Elevation API)
-    python run.py process   # Convert OSM data to BeamNG NDJSON
-    python run.py build     # Generate terrain + level files
+    python run.py process   # Convert OSM to BeamNG NDJSON (roads, footways, buildings, features)
+    python run.py build     # Assemble level: terrain + waypoints + packaging
     python run.py all       # Full pipeline: fetch + dem + process + build
 """
 import sys, os, subprocess
 
 SRC_DIR = os.path.dirname(os.path.abspath(__file__))
+
+VALID = frozenset(('fetch', 'dem', 'process', 'build', 'all'))
 
 
 def run_script(name):
@@ -20,11 +22,8 @@ def run_script(name):
     print(f"{'='*60}", flush=True)
     result = subprocess.run([sys.executable, path], cwd=SRC_DIR)
     if result.returncode != 0:
-        print(f"  FAILED with code {result.returncode}")
+        print(f"  FAILED (exit {result.returncode})")
         sys.exit(result.returncode)
-
-
-VALID = ('fetch', 'dem', 'process', 'build', 'all')
 
 
 def main():
@@ -32,7 +31,7 @@ def main():
     for cmd in cmds:
         if cmd not in VALID:
             print(f"Unknown command: {cmd}")
-            print(f"Usage: python run.py [{' | '.join(VALID)}]")
+            print(f"Usage: python run.py [{' | '.join(sorted(VALID))}]")
             sys.exit(1)
         if cmd in ('fetch', 'all'):
             run_script('fetch_osm.py')
@@ -40,7 +39,10 @@ def main():
             run_script('fetch_dem.py')
         if cmd in ('process', 'all'):
             run_script('parse_roads.py')
+            run_script('parse_footways.py')
             run_script('parse_buildings.py')
+            run_script('parse_features.py')
+            run_script('gen_waypoints.py')
         if cmd in ('build', 'all'):
             run_script('build_map.py')
 

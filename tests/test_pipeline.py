@@ -13,6 +13,9 @@ from parse_buildings import (building_height, oriented_bbox,
 from parse_footways import generate_footway_decals, extract_footways
 from parse_features import generate_feature_polygons
 from gen_waypoints import find_junctions, find_landmark_positions, make_waypoints
+from gen_photo_spots import (heading_to_rotation_matrix, make_billboard_tsstatic,
+                              make_photo_waypoint, generate_photo_spots)
+from validate_photos import REQUIRED_FIELDS, BBOX as PHOTO_BBOX
 from build_map import (pick_level_size, pick_terrain_res, bounds_from_ndjson,
                        build_elevation_array, build_layermap)
 
@@ -687,6 +690,185 @@ class TestGenWaypoints(unittest.TestCase):
         self.assertIn('position', wps[0])
         self.assertIn('radius', wps[0])
         self.assertEqual(wps[0]['__parent'], 'Waypoints')
+
+
+# ── gen_photo_spots ──────────────────────────────────────────────────────────
+
+class TestHeadingToRotationMatrix(unittest.TestCase):
+    def _rot(self, h):
+        return heading_to_rotation_matrix(h)
+
+    def test_heading_0_is_identity_xy(self):
+        m = self._rot(0)
+        self.assertAlmostEqual(m[0], 1.0, places=4)   # cos 0
+        self.assertAlmostEqual(m[4], 1.0, places=4)
+        self.assertAlmostEqual(m[1], 0.0, places=4)   # -sin 0
+        self.assertAlmostEqual(m[3], 0.0, places=4)
+
+    def test_heading_90_rotates_normal_to_plus_x(self):
+        # normal +Y = (0,1,0); after heading-90 rotation it should become +X = (1,0,0)
+        m = self._rot(90)
+        # Apply M to +Y column vector: col1 of M = (m[1], m[4], m[7])
+        nx = m[1]; ny = m[4]
+        self.assertAlmostEqual(nx, 1.0, places=4)
+        self.assertAlmostEqual(ny, 0.0, places=4)
+
+    def test_heading_180_flips_y(self):
+        m = self._rot(180)
+        # normal +Y → -Y
+        nx = m[1]; ny = m[4]
+        self.assertAlmostEqual(nx,  0.0, places=4)
+        self.assertAlmostEqual(ny, -1.0, places=4)
+
+    def test_matrix_is_nine_elements(self):
+        self.assertEqual(len(self._rot(45)), 9)
+
+    def test_rotation_is_orthogonal(self):
+        m = self._rot(37)
+        # det should be ±1; for 2D rotation det = m[0]*m[4] - m[1]*m[3]
+        det = m[0] * m[4] - m[1] * m[3]
+        self.assertAlmostEqual(abs(det), 1.0, places=4)
+
+
+class TestMakeBillboardTSStatic(unittest.TestCase):
+    def test_class_and_parent(self):
+        obj = make_billboard_tsstatic('test_id', 100.0, 200.0, 5.0, 0)
+        self.assertEqual(obj['class'], 'TSStatic')
+        self.assertEqual(obj['__parent'], 'PhotoSpots')
+
+    def test_name_contains_id(self):
+        obj = make_billboard_tsstatic('bridge_c1920', 0.0, 0.0, 0.0, 0)
+        self.assertIn('bridge_c1920', obj['name'])
+
+    def test_shape_is_billboard_plane(self):
+        obj = make_billboard_tsstatic('x', 0.0, 0.0, 0.0, 0)
+        self.assertIn('billboard', obj['shapeName'])
+        self.assertIn('plane.dae', obj['shapeName'])
+
+    def test_scale_reflects_billboard_size(self):
+        obj = make_billboard_tsstatic('x', 0.0, 0.0, 0.0, 0)
+        self.assertEqual(obj['scale'][0], 4.0)   # width
+        self.assertEqual(obj['scale'][2], 3.0)   # height
+
+    def test_position_z_offset(self):
+        obj = make_billboard_tsstatic('x', 0.0, 0.0, 10.0, 0)
+        # Z should be ground + half billboard height
+        self.assertAlmostEqual(obj['position'][2], 10.0 + 1.5, places=2)
+
+    def test_has_persistent_id(self):
+        obj = make_billboard_tsstatic('x', 0.0, 0.0, 0.0, 0)
+        self.assertIn('persistentId', obj)
+
+
+class TestMakePhotoWaypoint(unittest.TestCase):
+    def test_name_prefix(self):
+        wp = make_photo_waypoint('bridge_c1920', 0.0, 0.0, 0.0, 'desc')
+        self.assertTrue(wp['name'].startswith('photo_'))
+
+    def test_class_and_parent(self):
+        wp = make_photo_waypoint('x', 0.0, 0.0, 0.0, '')
+        self.assertEqual(wp['class'], 'BeamNGWaypoint')
+        self.assertEqual(wp['__parent'], 'PhotoSpots')
+
+    def test_radius_is_positive(self):
+        wp = make_photo_waypoint('x', 0.0, 0.0, 0.0, '')
+        self.assertGreater(wp['radius'], 0)
+
+
+class TestGeneratePhotoSpots(unittest.TestCase):
+    def _make_photo(self, pid='test_spot', lat=54.863, lon=-6.279):
+        return {
+            'id': pid, 'lat': lat, 'lon': lon,
+            'heading': 0, 'description': 'test',
+            'year_then': 1920, 'year_now': None,
+            'image_then': None, 'image_now': None,
+            'credit_then': '', 'credit_now': '',
+        }
+
+    def test_spot_inside_bbox_emits_two_objects(self):
+        photos = [self._make_photo()]
+        with tempfile.TemporaryDirectory() as td:
+            objects, generated = generate_photo_spots(photos, None, 0.0, td)
+        self.assertEqual(len(objects), 2)    # 1 TSStatic + 1 waypoint
+        self.assertEqual(len(generated), 1)
+
+    def test_spot_outside_bbox_excluded(self):
+        photos = [self._make_photo(lat=55.0, lon=-6.0)]
+        with tempfile.TemporaryDirectory() as td:
+            objects, generated = generate_photo_spots(photos, None, 0.0, td)
+        self.assertEqual(len(objects), 0)
+        self.assertEqual(len(generated), 0)
+
+    def test_objects_have_correct_classes(self):
+        photos = [self._make_photo()]
+        with tempfile.TemporaryDirectory() as td:
+            objects, _ = generate_photo_spots(photos, None, 0.0, td)
+        classes = {o['class'] for o in objects}
+        self.assertIn('TSStatic', classes)
+        self.assertIn('BeamNGWaypoint', classes)
+
+    def test_composite_placeholder_created(self):
+        photos = [self._make_photo('placeholder_test')]
+        with tempfile.TemporaryDirectory() as td:
+            generate_photo_spots(photos, None, 0.0, td)
+            png = os.path.join(td, 'placeholder_test.png')
+            self.assertTrue(os.path.exists(png))
+
+
+class TestValidatePhotos(unittest.TestCase):
+    def test_required_fields_defined(self):
+        self.assertIn('id', REQUIRED_FIELDS)
+        self.assertIn('lat', REQUIRED_FIELDS)
+        self.assertIn('lon', REQUIRED_FIELDS)
+        self.assertIn('image_then', REQUIRED_FIELDS)
+
+    def test_bbox_constants_sane(self):
+        s, w, n, e = PHOTO_BBOX
+        self.assertLess(s, n)    # south < north
+        self.assertLess(w, e)    # west < east (both negative, west more negative)
+        # Center should be around Ballymena
+        self.assertAlmostEqual((s + n) / 2, 54.865, places=1)
+
+    def test_manifest_is_valid(self):
+        manifest_path = os.path.join(
+            os.path.dirname(__file__), '..', 'data', 'photos', 'photo_manifest.json')
+        self.assertTrue(os.path.exists(manifest_path),
+                        'photo_manifest.json missing from data/photos/')
+        with open(manifest_path) as f:
+            data = json.load(f)
+        photos = data.get('photos', [])
+        self.assertGreater(len(photos), 0)
+        s, w, n, e = PHOTO_BBOX
+        for p in photos:
+            with self.subTest(id=p.get('id')):
+                for field in REQUIRED_FIELDS:
+                    self.assertTrue(p.get(field),
+                                    f'Missing field "{field}" in entry {p.get("id")}')
+                self.assertTrue(s <= p['lat'] <= n, f'lat out of BBOX: {p["lat"]}')
+                self.assertTrue(w <= p['lon'] <= e, f'lon out of BBOX: {p["lon"]}')
+
+
+class TestBillboardDae(unittest.TestCase):
+    def test_generates_valid_collada(self):
+        from gen_billboard_dae import generate_billboard_dae
+        with tempfile.TemporaryDirectory() as td:
+            path = os.path.join(td, 'plane.dae')
+            generate_billboard_dae(path)
+            self.assertTrue(os.path.exists(path))
+            with open(path) as f:
+                content = f.read()
+            self.assertIn('COLLADA', content)
+            self.assertIn('Z_UP', content)
+            self.assertIn('plane_mesh', content)
+
+    def test_dae_has_uv_coordinates(self):
+        from gen_billboard_dae import generate_billboard_dae
+        with tempfile.TemporaryDirectory() as td:
+            path = os.path.join(td, 'plane.dae')
+            generate_billboard_dae(path)
+            with open(path) as f:
+                content = f.read()
+            self.assertIn('TEXCOORD', content)
 
 
 if __name__ == '__main__':

@@ -5,14 +5,15 @@ Usage:
     python run.py fetch     # Download OSM data (roads, buildings, features)
     python run.py dem       # Download SRTM elevation grid (Open-Elevation API)
     python run.py process   # Convert OSM to BeamNG NDJSON (roads, footways, buildings, features)
+    python run.py photos    # Validate manifest + generate photo-spot billboards/waypoints
     python run.py build     # Assemble level: terrain + waypoints + packaging
-    python run.py all       # Full pipeline: fetch + dem + process + build
+    python run.py all       # Full pipeline: fetch + dem + process + photos + build
 """
 import sys, os, subprocess
 
 SRC_DIR = os.path.dirname(os.path.abspath(__file__))
 
-VALID = frozenset(('fetch', 'dem', 'process', 'build', 'all'))
+VALID = frozenset(('fetch', 'dem', 'process', 'photos', 'build', 'all'))
 
 
 def run_script(name):
@@ -43,6 +44,9 @@ def main():
             run_script('parse_buildings.py')
             run_script('parse_features.py')
             run_script('gen_waypoints.py')
+        if cmd in ('photos', 'all'):
+            run_script('validate_photos.py')
+            run_script('gen_photo_spots.py')
         if cmd in ('build', 'all'):
             run_script('build_map.py')
 

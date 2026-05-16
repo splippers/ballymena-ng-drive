@@ -1,18 +1,16 @@
 #!/usr/bin/env python3
-"""Build the Ballymena BeamNG level — v3.0.
+"""Build the Ballymena BeamNG level — v4.0.
 
-New in v3.0:
-• Footways (pavement/cycleway DecalRoads) in a dedicated Footways SimGroup.
-• Feature polygon painting: parking lots → asphalt, painted before roads.
-• AI traffic waypoint network (BeamNGWaypoint graph) in a Waypoints SimGroup.
-• supportsTraffic: true.
-• Multiple named spawn points: town centre, retail parks, key road approaches.
-• Named camera bookmarks at major landmarks.
-• DEM: 96×96 grid (21 m spacing) — set in fetch_dem.py.
-• mod_info.json bumped to 3.0.0.
+New in v4.0:
+• Photo spots: geolocated "Then & Now" billboard panels + trigger waypoints.
+• photo_manifest.json bundled into level data/ for Lua overlay script.
+• photo_spots.lua copied to level scripts/ directory.
+• Billboard plane.dae generated in art/shapes/billboard/.
+• PhotoSpots SimGroup added to MissionGroup.
 """
 import json, os, struct, uuid, shutil
 from gen_box_dae import generate_unit_box_dae
+from gen_billboard_dae import generate_billboard_dae
 from utils import get_bbox_meters, sample_dem
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,7 +24,10 @@ MIN_LEVEL_SIZE = 1024
 MAX_LEVEL_SIZE = 8192
 BOUNDS_MARGIN = 1.18
 
-VERSION = '3.0.0'
+VERSION = '4.0.0'
+
+PHOTO_MANIFEST_SRC = os.path.join(BASE_DIR, 'data', 'photos', 'photo_manifest.json')
+LUA_SCRIPT_SRC     = os.path.join(BASE_DIR, 'scripts', 'photo_spots.lua')
 
 
 # ── I/O helpers ─────────────────────────────────────────────────────────────
@@ -390,6 +391,7 @@ def make_mission_group(level_size):
         ('DecalRoads',       None),
         ('Footways',         None),
         ('Waypoints',        '1'),
+        ('PhotoSpots',       '1'),
         ('CameraBookmarks',  None),
         ('PlayerDropPoints', '1'),
     ]
@@ -513,12 +515,13 @@ def write_mod_info(dest_dir):
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
-    roads      = load_ndjson(os.path.join(OUT_DIR, 'decal_roads.ndjson'))
-    footways   = load_ndjson(os.path.join(OUT_DIR, 'footway_roads.ndjson'))
-    buildings  = load_ndjson(os.path.join(OUT_DIR, 'buildings.ndjson'))
-    features   = load_ndjson(os.path.join(OUT_DIR, 'feature_polygons.ndjson'))
-    waypoints  = load_ndjson(os.path.join(OUT_DIR, 'waypoints.ndjson'))
-    dem        = load_dem()
+    roads       = load_ndjson(os.path.join(OUT_DIR, 'decal_roads.ndjson'))
+    footways    = load_ndjson(os.path.join(OUT_DIR, 'footway_roads.ndjson'))
+    buildings   = load_ndjson(os.path.join(OUT_DIR, 'buildings.ndjson'))
+    features    = load_ndjson(os.path.join(OUT_DIR, 'feature_polygons.ndjson'))
+    waypoints   = load_ndjson(os.path.join(OUT_DIR, 'waypoints.ndjson'))
+    photo_spots = load_ndjson(os.path.join(OUT_DIR, 'photo_spots.ndjson'))
+    dem         = load_dem()
 
     if dem:
         print(f'DEM: {dem["rows"]}×{dem["cols"]} grid, '
@@ -528,9 +531,10 @@ def main():
         print('No DEM — flat terrain (run dem step)')
         base_elev = 0.0
 
+    n_photo_spots = sum(1 for o in photo_spots if o.get('class') == 'TSStatic')
     print(f'Content: {len(roads)} roads, {len(footways)} footways, '
           f'{len(buildings)} buildings, {len(features)} feature polygons, '
-          f'{len(waypoints)} waypoints')
+          f'{len(waypoints)} waypoints, {n_photo_spots} photo spots')
 
     bounds = bounds_from_ndjson(roads, buildings)
     if bounds:
@@ -553,10 +557,15 @@ def main():
                 'main/MissionGroup/Footways',
                 'main/MissionGroup/Buildings/buildings_group',
                 'main/MissionGroup/Waypoints',
+                'main/MissionGroup/PhotoSpots',
                 'main/MissionGroup/sky_and_sun',
                 'main/MissionGroup/CameraBookmarks',
                 'main/MissionGroup/PlayerDropPoints',
-                'art/shapes/buildings'):
+                'art/shapes/buildings',
+                'art/shapes/billboard',
+                'art/textures/photo_spots',
+                'data',
+                'scripts'):
         os.makedirs(os.path.join(LEVEL_DIR, sub.replace('/', os.sep)), exist_ok=True)
 
     # ── Terrain ──────────────────────────────────────────────────────────────
@@ -568,6 +577,7 @@ def main():
 
     print('Generating building shape …')
     generate_unit_box_dae(os.path.join(LEVEL_DIR, 'art', 'shapes', 'buildings', 'box.dae'))
+    generate_billboard_dae(os.path.join(LEVEL_DIR, 'art', 'shapes', 'billboard', 'plane.dae'))
 
     # ── Lift Z to terrain height ──────────────────────────────────────────────
     if dem:
@@ -644,9 +654,31 @@ def main():
                           waypoints)
         print(f'  Waypoints: {len(waypoints)}')
     else:
-        # Empty waypoints group still needs an items.level.json
         write_items_level(os.path.join(LEVEL_DIR, 'main', 'MissionGroup', 'Waypoints', 'items.level.json'), [])
         print('  Warning: no waypoint data (run process step)')
+
+    # ── Photo spots ───────────────────────────────────────────────────────────
+    write_items_level(os.path.join(LEVEL_DIR, 'main', 'MissionGroup', 'PhotoSpots', 'items.level.json'),
+                      photo_spots)
+    print(f'  Photo spots: {n_photo_spots} billboards '
+          f'(run "python run.py photos" to regenerate)')
+
+    # Copy photo composite textures generated by gen_photo_spots.py
+    src_tex_dir = os.path.join(OUT_DIR, 'levels', 'ballymena', 'art', 'textures', 'photo_spots')
+    dst_tex_dir = os.path.join(LEVEL_DIR, 'art', 'textures', 'photo_spots')
+    if os.path.isdir(src_tex_dir) and src_tex_dir != dst_tex_dir:
+        for fname in os.listdir(src_tex_dir):
+            if fname.endswith('.png'):
+                shutil.copy2(os.path.join(src_tex_dir, fname),
+                             os.path.join(dst_tex_dir, fname))
+
+    # Bundle manifest + Lua script into the level (for in-game Lua access)
+    if os.path.exists(PHOTO_MANIFEST_SRC):
+        shutil.copy2(PHOTO_MANIFEST_SRC,
+                     os.path.join(LEVEL_DIR, 'data', 'photo_manifest.json'))
+    if os.path.exists(LUA_SCRIPT_SRC):
+        shutil.copy2(LUA_SCRIPT_SRC,
+                     os.path.join(LEVEL_DIR, 'scripts', 'photo_spots.lua'))
 
     make_preview(roads, footways, buildings, features)
 

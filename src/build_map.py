@@ -1,16 +1,19 @@
 #!/usr/bin/env python3
-"""Build the Ballymena BeamNG level — v4.1.
+"""Build the Ballymena BeamNG level — v4.2.
 
-New in v4.1:
-• Per-type 3-D building shapes: pitched-roof (brick/render) for houses &
-  terraces; flat-roof variants (commercial, retail, industrial, church) for
-  everything else. 971 residential buildings get gabled roofs.
+New in v4.2:
+• Satellite ground-plane: Esri World Imagery aerial photo applied as a
+  textured TSStatic quad covering the full level area.  Run
+  "python run.py satellite" to fetch tiles first; build_map.py then
+  embeds the texture and generates a UV-correct satellite_plane.dae.
 • Photo spots (v4.0): billboard panels + Then & Now Lua overlay.
+• Typed building shapes (v4.1): pitched-roof / flat-roof variants.
 """
 import json, os, struct, uuid, shutil
 from gen_box_dae import generate_unit_box_dae
 from gen_billboard_dae import generate_billboard_dae
 from gen_building_shapes import generate_all_shapes
+from gen_sat_plane_dae import generate_sat_plane_dae
 from utils import get_bbox_meters, sample_dem
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,10 +27,12 @@ MIN_LEVEL_SIZE = 1024
 MAX_LEVEL_SIZE = 8192
 BOUNDS_MARGIN = 1.18
 
-VERSION = '4.1.0'
+VERSION = '4.2.0'
 
 PHOTO_MANIFEST_SRC = os.path.join(BASE_DIR, 'data', 'photos', 'photo_manifest.json')
 LUA_SCRIPT_SRC     = os.path.join(BASE_DIR, 'scripts', 'photo_spots.lua')
+SAT_PNG_SRC        = os.path.join(BASE_DIR, 'data', 'satellite', 'ballymena_satellite.png')
+SAT_GEO_SRC        = os.path.join(BASE_DIR, 'data', 'satellite', 'satellite_geo.json')
 
 
 # ── I/O helpers ─────────────────────────────────────────────────────────────
@@ -55,6 +60,31 @@ def load_dem():
         return None
     with open(DEM_PATH) as f:
         return json.load(f)
+
+
+def load_satellite_geo():
+    """Return satellite geo-reference dict, or None if not yet fetched."""
+    if not os.path.exists(SAT_GEO_SRC):
+        return None
+    with open(SAT_GEO_SRC) as f:
+        return json.load(f)
+
+
+def make_satellite_ground_plane(level_size, u_max, v_max, base_elev):
+    """Return TSStatic object for the satellite ground plane."""
+    return {
+        'name': 'satellite_ground',
+        'class': 'TSStatic',
+        'persistentId': new_pid(),
+        '__parent': 'MissionGroup',
+        'position': [0.0, 0.0, round(base_elev - 0.3, 2)],
+        'shapeName': '/levels/ballymena/art/shapes/terrain/satellite_plane.dae',
+        'scale': [round(float(level_size), 1),
+                  round(float(level_size), 1), 1.0],
+        'rotationMatrix': [1, 0, 0, 0, 1, 0, 0, 0, 1],
+        'useInstanceRenderData': False,
+        'annotation': 'TERRAIN',
+    }
 
 
 # ── Terrain sizing ───────────────────────────────────────────────────────────
@@ -563,6 +593,8 @@ def main():
                 'main/MissionGroup/PlayerDropPoints',
                 'art/shapes/buildings',
                 'art/shapes/billboard',
+                'art/shapes/terrain',
+                'art/terrain',
                 'art/textures/photo_spots',
                 'data',
                 'scripts'):
@@ -581,6 +613,22 @@ def main():
     n_shapes = generate_all_shapes(shapes_dir)
     print(f'  {n_shapes} typed shape variants + box.dae fallback')
     generate_billboard_dae(os.path.join(LEVEL_DIR, 'art', 'shapes', 'billboard', 'plane.dae'))
+
+    # ── Satellite ground plane ────────────────────────────────────────────────
+    sat_geo = load_satellite_geo()
+    sat_plane_obj = None
+    if sat_geo and os.path.exists(SAT_PNG_SRC):
+        u_max = sat_geo.get('crop_width',  sat_geo.get('tex_width',  1)) / sat_geo['tex_width']
+        v_max = sat_geo.get('crop_height', sat_geo.get('tex_height', 1)) / sat_geo['tex_height']
+        terrain_dir = os.path.join(LEVEL_DIR, 'art', 'terrain')
+        shutil.copy2(SAT_PNG_SRC, os.path.join(terrain_dir, 'satellite.png'))
+        sat_dae_path = os.path.join(LEVEL_DIR, 'art', 'shapes', 'terrain', 'satellite_plane.dae')
+        generate_sat_plane_dae(sat_dae_path, u_max=u_max, v_max=v_max)
+        sat_plane_obj = make_satellite_ground_plane(level_size, u_max, v_max, base_elev)
+        print(f'  Satellite ground plane: {os.path.getsize(SAT_PNG_SRC)//1024} KB  '
+              f'UV u_max={u_max:.3f} v_max={v_max:.3f}')
+    else:
+        print('  Satellite ground plane: skipped (run "python run.py satellite" to fetch)')
 
     # ── Lift Z to terrain height ──────────────────────────────────────────────
     if dem:
@@ -618,8 +666,11 @@ def main():
         json.dump(make_terrain_json(level_size, terrain_size), f, indent=2)
 
     write_items_level(os.path.join(LEVEL_DIR, 'main', 'items.level.json'), make_root_main())
+    mission_objs = make_mission_group(level_size)
+    if sat_plane_obj:
+        mission_objs.append(sat_plane_obj)
     write_items_level(os.path.join(LEVEL_DIR, 'main', 'MissionGroup', 'items.level.json'),
-                      make_mission_group(level_size))
+                      mission_objs)
     write_items_level(os.path.join(LEVEL_DIR, 'main', 'MissionGroup', 'sky_and_sun', 'items.level.json'),
                       make_sky_and_sun(level_size))
     write_items_level(os.path.join(LEVEL_DIR, 'main', 'MissionGroup', 'CameraBookmarks', 'items.level.json'),

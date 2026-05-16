@@ -1,5 +1,5 @@
 """Unit tests for the Ballymena NG Drive pipeline."""
-import sys, os, json, struct, math, unittest, tempfile, shutil
+import sys, os, json, struct, math, unittest, tempfile, shutil, re
 
 # Ensure src/ is importable regardless of cwd
 SRC = os.path.join(os.path.dirname(__file__), '..', 'src')
@@ -19,7 +19,10 @@ from gen_photo_spots import (heading_to_rotation_matrix, make_billboard_tsstatic
                               make_photo_waypoint, generate_photo_spots)
 from validate_photos import REQUIRED_FIELDS, BBOX as PHOTO_BBOX
 from build_map import (pick_level_size, pick_terrain_res, bounds_from_ndjson,
-                       build_elevation_array, build_layermap)
+                       build_elevation_array, build_layermap,
+                       make_satellite_ground_plane)
+from fetch_satellite import deg2tile, tile_nw_latlon
+from gen_sat_plane_dae import generate_sat_plane_dae
 
 
 # ── utils ────────────────────────────────────────────────────────────────────
@@ -977,6 +980,146 @@ class TestBillboardDae(unittest.TestCase):
             with open(path) as f:
                 content = f.read()
             self.assertIn('TEXCOORD', content)
+
+
+# ── fetch_satellite ──────────────────────────────────────────────────────────
+
+class TestDeg2Tile(unittest.TestCase):
+    def test_returns_integers(self):
+        xt, yt = deg2tile(54.864, -6.278, 17)
+        self.assertIsInstance(xt, int)
+        self.assertIsInstance(yt, int)
+
+    def test_tile_coords_in_valid_range(self):
+        xt, yt = deg2tile(54.864, -6.278, 17)
+        n = 2 ** 17
+        self.assertGreaterEqual(xt, 0)
+        self.assertLess(xt, n)
+        self.assertGreaterEqual(yt, 0)
+        self.assertLess(yt, n)
+
+    def test_east_tile_greater_than_west(self):
+        xt_west, _ = deg2tile(54.864, -6.293, 17)
+        xt_east, _ = deg2tile(54.864, -6.262, 17)
+        self.assertGreater(xt_east, xt_west)
+
+    def test_south_tile_greater_than_north(self):
+        # In slippy-map tile coordinates y increases southward
+        _, yt_north = deg2tile(54.874, -6.278, 17)
+        _, yt_south = deg2tile(54.856, -6.278, 17)
+        self.assertGreater(yt_south, yt_north)
+
+    def test_known_zoom16_tile(self):
+        # Verify computed values for London (51.5, -0.1) at zoom 16
+        # n=65536; x = int(179.9/360*65536)=32749; this anchors the implementation
+        xt, yt = deg2tile(51.5, -0.1, 16)
+        self.assertEqual(xt, 32749)
+        # y value confirms latitude formula (not pinned to specific value, just sane range)
+        self.assertGreater(yt, 20000)
+        self.assertLess(yt, 25000)
+
+
+class TestTileNwLatlon(unittest.TestCase):
+    def test_returns_tuple_of_floats(self):
+        lat, lon = tile_nw_latlon(32747, 21781, 16)
+        self.assertIsInstance(lat, float)
+        self.assertIsInstance(lon, float)
+
+    def test_roundtrip_nw_corner(self):
+        # NW corner lat/lon of a tile should map back to that tile (or its north neighbour
+        # at the exact boundary — allow ±1 due to floating-point precision)
+        xt0, yt0 = deg2tile(54.870, -6.285, 16)
+        lat_nw, lon_nw = tile_nw_latlon(xt0, yt0, 16)
+        xt1, yt1 = deg2tile(lat_nw, lon_nw, 16)
+        self.assertEqual(xt0, xt1)
+        self.assertIn(yt1, (yt0 - 1, yt0))
+
+    def test_adjacent_tile_nw_corner_is_east(self):
+        lat0, lon0 = tile_nw_latlon(10, 10, 10)
+        lat1, lon1 = tile_nw_latlon(11, 10, 10)
+        self.assertGreater(lon1, lon0)
+
+    def test_south_tile_has_lower_lat(self):
+        lat_n, _ = tile_nw_latlon(10, 10, 10)
+        lat_s, _ = tile_nw_latlon(10, 11, 10)
+        self.assertGreater(lat_n, lat_s)
+
+
+# ── gen_sat_plane_dae ────────────────────────────────────────────────────────
+
+class TestSatPlaneDae(unittest.TestCase):
+    def _make(self, td, u_max=1.0, v_max=1.0):
+        path = os.path.join(td, 'sat_plane.dae')
+        generate_sat_plane_dae(path, u_max=u_max, v_max=v_max)
+        return path
+
+    def test_file_is_created(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = self._make(td)
+            self.assertTrue(os.path.exists(path))
+
+    def test_is_valid_collada(self):
+        with tempfile.TemporaryDirectory() as td:
+            with open(self._make(td)) as f:
+                txt = f.read()
+            self.assertIn('COLLADA', txt)
+            self.assertIn('Z_UP', txt)
+
+    def test_has_texture_reference(self):
+        with tempfile.TemporaryDirectory() as td:
+            with open(self._make(td)) as f:
+                txt = f.read()
+            self.assertIn('satellite.png', txt)
+            self.assertIn('TEXCOORD', txt)
+
+    def test_has_two_triangles(self):
+        with tempfile.TemporaryDirectory() as td:
+            with open(self._make(td)) as f:
+                txt = f.read()
+            m = re.search(r'<triangles[^>]+count="(\d+)"', txt)
+            self.assertIsNotNone(m)
+            self.assertEqual(int(m.group(1)), 2)
+
+    def test_uv_max_respected(self):
+        with tempfile.TemporaryDirectory() as td:
+            with open(self._make(td, u_max=0.875, v_max=0.75)) as f:
+                txt = f.read()
+            self.assertIn('0.875000', txt)
+            self.assertIn('0.750000', txt)
+
+    def test_unit_uv_fills_texture(self):
+        with tempfile.TemporaryDirectory() as td:
+            with open(self._make(td, u_max=1.0, v_max=1.0)) as f:
+                txt = f.read()
+            self.assertIn('1.000000', txt)
+
+
+# ── build_map satellite helpers ───────────────────────────────────────────────
+
+class TestMakeSatelliteGroundPlane(unittest.TestCase):
+    def _obj(self, level_size=4096, u_max=1.0, v_max=1.0, base_elev=0.0):
+        return make_satellite_ground_plane(level_size, u_max, v_max, base_elev)
+
+    def test_is_tsstatic(self):
+        self.assertEqual(self._obj()['class'], 'TSStatic')
+
+    def test_has_satellite_plane_shape(self):
+        self.assertIn('satellite_plane', self._obj()['shapeName'])
+
+    def test_scale_matches_level_size(self):
+        obj = self._obj(level_size=2048)
+        self.assertAlmostEqual(obj['scale'][0], 2048.0)
+        self.assertAlmostEqual(obj['scale'][1], 2048.0)
+
+    def test_position_slightly_below_base(self):
+        obj = self._obj(base_elev=5.0)
+        self.assertLess(obj['position'][2], 5.0)
+
+    def test_has_persistent_id(self):
+        self.assertIn('persistentId', self._obj())
+
+    def test_parent_is_mission_group(self):
+        self.assertEqual(self._obj()['__parent'], 'MissionGroup')
 
 
 if __name__ == '__main__':

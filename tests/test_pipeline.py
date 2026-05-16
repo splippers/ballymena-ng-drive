@@ -13,6 +13,8 @@ from parse_buildings import (building_height, oriented_bbox,
 from parse_footways import generate_footway_decals, extract_footways
 from parse_features import generate_feature_polygons
 from gen_waypoints import find_junctions, find_landmark_positions, make_waypoints
+from gen_building_shapes import (shape_for_building, shape_dae_path,
+                                  generate_all_shapes, SHAPES, OSM_TAG_TO_SHAPE)
 from gen_photo_spots import (heading_to_rotation_matrix, make_billboard_tsstatic,
                               make_photo_waypoint, generate_photo_spots)
 from validate_photos import REQUIRED_FIELDS, BBOX as PHOTO_BBOX
@@ -690,6 +692,112 @@ class TestGenWaypoints(unittest.TestCase):
         self.assertIn('position', wps[0])
         self.assertIn('radius', wps[0])
         self.assertEqual(wps[0]['__parent'], 'Waypoints')
+
+
+# ── gen_building_shapes ──────────────────────────────────────────────────────
+
+class TestBuildingShapeMapping(unittest.TestCase):
+    def test_house_gets_pitched_brick(self):
+        self.assertEqual(shape_for_building('house'), 'pitched_brick')
+
+    def test_terrace_gets_pitched_brick(self):
+        self.assertEqual(shape_for_building('terrace'), 'pitched_brick')
+
+    def test_semidetached_gets_pitched_render(self):
+        self.assertEqual(shape_for_building('semidetached_house'), 'pitched_render')
+
+    def test_retail_gets_flat_retail(self):
+        self.assertEqual(shape_for_building('retail'), 'flat_retail')
+
+    def test_church_gets_flat_church(self):
+        self.assertEqual(shape_for_building('church'), 'flat_church')
+
+    def test_industrial_gets_flat_industrial(self):
+        self.assertEqual(shape_for_building('industrial'), 'flat_industrial')
+
+    def test_unknown_tag_gets_default(self):
+        shape = shape_for_building('spaceship')
+        self.assertIn(shape, SHAPES)
+
+    def test_all_mapped_tags_have_valid_shape(self):
+        for tag, shape in OSM_TAG_TO_SHAPE.items():
+            self.assertIn(shape, SHAPES, f'tag "{tag}" maps to unknown shape "{shape}"')
+
+    def test_dae_path_contains_shape_name(self):
+        path = shape_dae_path('pitched_brick')
+        self.assertIn('pitched_brick', path)
+        self.assertTrue(path.endswith('.dae'))
+
+
+class TestBuildingShapeGeometry(unittest.TestCase):
+    def test_generate_all_shapes_writes_files(self):
+        with tempfile.TemporaryDirectory() as td:
+            n = generate_all_shapes(td)
+            self.assertEqual(n, len(SHAPES))
+            for name in SHAPES:
+                path = os.path.join(td, f'{name}.dae')
+                self.assertTrue(os.path.exists(path),
+                                f'{name}.dae was not created')
+
+    def test_pitched_dae_is_valid_collada(self):
+        with tempfile.TemporaryDirectory() as td:
+            generate_all_shapes(td)
+            with open(os.path.join(td, 'pitched_brick.dae')) as f:
+                content = f.read()
+            self.assertIn('COLLADA', content)
+            self.assertIn('Z_UP', content)
+
+    def test_flat_dae_is_valid_collada(self):
+        with tempfile.TemporaryDirectory() as td:
+            generate_all_shapes(td)
+            with open(os.path.join(td, 'flat_commercial.dae')) as f:
+                content = f.read()
+            self.assertIn('COLLADA', content)
+
+    def test_pitched_has_more_triangles_than_flat(self):
+        # Pitched roof has 14 tris vs flat's 10 tris
+        with tempfile.TemporaryDirectory() as td:
+            generate_all_shapes(td)
+            for name, content in [
+                ('pitched_brick', open(os.path.join(td, 'pitched_brick.dae')).read()),
+                ('flat_commercial', open(os.path.join(td, 'flat_commercial.dae')).read()),
+            ]:
+                self.assertIn('count=', content)
+            import re
+            def tri_count(path):
+                txt = open(path).read()
+                m = re.search(r'<triangles[^>]+count="(\d+)"', txt)
+                return int(m.group(1)) if m else 0
+            pitched_n = tri_count(os.path.join(td, 'pitched_brick.dae'))
+            flat_n    = tri_count(os.path.join(td, 'flat_commercial.dae'))
+            self.assertGreater(pitched_n, flat_n)
+
+    def test_buildings_use_typed_shapes(self):
+        b_house = {
+            'building': 'house', 'levels': 2, 'height': '', 'name': '',
+            'amenity': '', 'id': 1,
+            'nodes': [{'lat': 54.863, 'lon': -6.279},
+                      {'lat': 54.863, 'lon': -6.278},
+                      {'lat': 54.864, 'lon': -6.278},
+                      {'lat': 54.864, 'lon': -6.279}],
+        }
+        result = generate_buildings([b_house])
+        self.assertGreater(len(result), 0)
+        self.assertIn('pitched_brick', result[0]['shapeName'])
+
+    def test_buildings_default_shape_for_yes(self):
+        b_yes = {
+            'building': 'yes', 'levels': 2, 'height': '', 'name': '',
+            'amenity': '', 'id': 2,
+            'nodes': [{'lat': 54.863, 'lon': -6.279},
+                      {'lat': 54.863, 'lon': -6.278},
+                      {'lat': 54.864, 'lon': -6.278},
+                      {'lat': 54.864, 'lon': -6.279}],
+        }
+        result = generate_buildings([b_yes])
+        self.assertGreater(len(result), 0)
+        # Should have a valid shape path ending in .dae
+        self.assertTrue(result[0]['shapeName'].endswith('.dae'))
 
 
 # ── gen_photo_spots ──────────────────────────────────────────────────────────

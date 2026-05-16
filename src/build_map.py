@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""Build the Ballymena BeamNG level — v4.0.
+"""Build the Ballymena BeamNG level — v4.1.
 
-New in v4.0:
-• Photo spots: geolocated "Then & Now" billboard panels + trigger waypoints.
-• photo_manifest.json bundled into level data/ for Lua overlay script.
-• photo_spots.lua copied to level scripts/ directory.
-• Billboard plane.dae generated in art/shapes/billboard/.
-• PhotoSpots SimGroup added to MissionGroup.
+New in v4.1:
+• Per-type 3-D building shapes: pitched-roof (brick/render) for houses &
+  terraces; flat-roof variants (commercial, retail, industrial, church) for
+  everything else. 971 residential buildings get gabled roofs.
+• Photo spots (v4.0): billboard panels + Then & Now Lua overlay.
 """
 import json, os, struct, uuid, shutil
 from gen_box_dae import generate_unit_box_dae
 from gen_billboard_dae import generate_billboard_dae
+from gen_building_shapes import generate_all_shapes
 from utils import get_bbox_meters, sample_dem
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,7 +24,7 @@ MIN_LEVEL_SIZE = 1024
 MAX_LEVEL_SIZE = 8192
 BOUNDS_MARGIN = 1.18
 
-VERSION = '4.0.0'
+VERSION = '4.1.0'
 
 PHOTO_MANIFEST_SRC = os.path.join(BASE_DIR, 'data', 'photos', 'photo_manifest.json')
 LUA_SCRIPT_SRC     = os.path.join(BASE_DIR, 'scripts', 'photo_spots.lua')
@@ -575,8 +575,11 @@ def main():
     layermap = build_layermap(features, roads, level_size, terrain_size)
     make_ter_binary(os.path.join(LEVEL_DIR, TERRAIN_FILENAME), terrain_size, heightmap, layermap)
 
-    print('Generating building shape …')
-    generate_unit_box_dae(os.path.join(LEVEL_DIR, 'art', 'shapes', 'buildings', 'box.dae'))
+    shapes_dir = os.path.join(LEVEL_DIR, 'art', 'shapes', 'buildings')
+    print('Generating building shapes …')
+    generate_unit_box_dae(os.path.join(shapes_dir, 'box.dae'))
+    n_shapes = generate_all_shapes(shapes_dir)
+    print(f'  {n_shapes} typed shape variants + box.dae fallback')
     generate_billboard_dae(os.path.join(LEVEL_DIR, 'art', 'shapes', 'billboard', 'plane.dae'))
 
     # ── Lift Z to terrain height ──────────────────────────────────────────────

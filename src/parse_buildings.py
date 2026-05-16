@@ -2,12 +2,12 @@
 """Convert OSM building footprints to BeamNG TSStatic objects, clipped to BBOX."""
 import json, os, math, uuid
 from utils import latlon_to_meters, get_bbox_meters
+from gen_building_shapes import shape_for_building, shape_dae_path
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data', 'osm')
 OUT_DIR = os.path.join(os.path.dirname(__file__), '..', 'output')
 os.makedirs(OUT_DIR, exist_ok=True)
 
-SHAPE_PATH = '/levels/ballymena/art/shapes/buildings/box.dae'
 STOREY_HEIGHT = 3.0
 
 
@@ -74,13 +74,15 @@ def generate_buildings(buildings):
         height = max(height, 1.0)
         cos_a, sin_a = math.cos(angle), math.sin(angle)
         rot = [cos_a, sin_a, 0, -sin_a, cos_a, 0, 0, 0, 1]
+        bldg_tag = b.get('building', 'yes')
+        shape = shape_for_building(bldg_tag)
         obj = {
             'class': 'TSStatic',
             'persistentId': str(uuid.uuid4()),
             '__parent': 'buildings_group',
             # Z is set to height/2 here (base at Z=0); build_map.py adjusts for terrain height
             'position': [round(cx, 2), round(cz, 2), round(height / 2, 2)],
-            'shapeName': SHAPE_PATH,
+            'shapeName': shape_dae_path(shape),
             'scale': [round(width, 2), round(depth, 2), round(height, 2)],
             'rotationMatrix': rot,
             'useInstanceRenderData': True,

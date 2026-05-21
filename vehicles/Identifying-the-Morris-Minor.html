@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BeamNG.drive Morris Minor Van Mod - Cursor Build Recipe</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+    }
+    .code-font {
+        font-family: 'JetBrains Mono', monospace;
+    }
+    .gradient-text {
+        background: linear-gradient(90deg, #f97316 0%, #ea580c 50%, #c2410c 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    .copy-btn {
+        transition: all 0.2s ease;
+    }
+    .copy-btn:hover {
+        transform: translateY(-2px);
+    }
+    .step-card {
+        transition: all 0.3s ease;
+    }
+    .step-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    }
+    .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+    .accordion-content.active {
+        max-height: 5000px;
+    }
+    pre::-webkit-scrollbar {
+        height: 8px;
+        width: 8px;
+    }
+    pre::-webkit-scrollbar-thumb {
+        background: #4b5563;
+        border-radius: 4px;
+    }
+    pre::-webkit-scrollbar-track {
+        background: #1f2937;
+    }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <!-- Header -->
+    <header class="bg-gradient-to-br from-slate-900 via-slate-800 to-orange-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="flex-1">
+                    <div class="inline-flex items-center gap-2 bg-orange-500/20 border border-orange-500/30 rounded-full px-4 py-1 mb-6">
+                        <i class="fa-solid fa-car"></i>
+                        <span class="text-sm font-medium">BeamNG.drive Mod Recipe</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                        Morris Minor <span class="gradient-text">Ballymena Van</span> for Cursor AI
+                    </h1>
+                    <p class="text-lg text-slate-300 mb-8 max-w-2xl">
+                        Complete step-by-step build recipe to create a driveable Morris Minor van molded for Ballymena specs. Includes JBeam templates, Blender workflow, and exact Cursor prompts to automate the entire mod pipeline.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#cursor-prompts" class="bg-orange-600 hover:bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold transition-all hover:scale-105 shadow-lg shadow-orange-500/30">
+                            <i class="fa-solid fa-robot mr-2"></i>Jump to Cursor Prompts
+                        </a>
+                        <a href="#jbeam" class="bg-slate-700 hover:bg-slate-600 text-white px-6 py-3 rounded-lg font-semibold transition-all hover:scale-105">
+                            <i class="fa-solid fa-code mr-2"></i>View JBeam
+                        </a>
+                    </div>
+                </div>
+                <div class="flex-1 w-full max-w-md">
+                    <div class="bg-slate-800/50 backdrop-blur border border-slate-700 rounded-2xl p-6 shadow-2xl">
+                        <h3 class="font-semibold text-lg mb-4 text-orange-400">Mod Overview</h3>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Vehicle:</span>
+                                <span class="font-medium">Morris Minor Series MM / Series II Van</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Region Spec:</span>
+                                <span class="font-medium">Ballymena, NI - RHD</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Engine:</span>
+                                <span class="font-medium">918cc / 803cc / 1098cc A-Series</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Complexity:</span>
+                                <span class="font-medium text-yellow-400">Intermediate</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Est. Build Time:</span>
+                                <span class="font-medium">6-10 hours</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Quick Nav -->
+    <nav class="sticky top-0 z-40 bg-white/80 backdrop-blur-lg border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-6 overflow-x-auto py-4 text-sm font-medium">
+                <a href="#overview" class="text-slate-600 hover:text-orange-600 whitespace-nowrap">Overview</a>
+                <a href="#prerequisites" class="text-slate-600 hover:text-orange-600 whitespace-nowrap">Prerequisites</a>
+                <a href="#folder-structure" class="text-slate-600 hover:text-orange-600 whitespace-nowrap">Folder Structure</a>
+                <a href="#blender" class="text-slate-600 hover:text-orange-600 whitespace-nowrap">Blender Workflow</a>
+                <a href="#jbeam" class="text-slate-600 hover:text-orange-600 whitespace-nowrap">JBeam Template</a>
+                <a href="#cursor-prompts" class="text-slate-600 hover:text-orange-600 whitespace-nowrap">Cursor Prompts</a>
+                <a href="#testing" class="text-slate-600 hover:text-orange-600 whitespace-nowrap">Testing</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Overview Section -->
+        <section id="overview" class="mb-16">
+            <h2 class="text-3xl font-bold mb-6">1. Project Overview</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="step-card bg-white rounded-xl p-6 border border-slate-200 shadow-sm">
+                    <div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-flag-checkered text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Goal</h3>
+                    <p class="text-slate-600 text-sm">Create a historically accurate, driveable Morris Minor van (6cwt) as sold in Ballymena dealerships c. 1953-1972. Right-hand drive, period-correct trim.</p>
+                </div>
+                <div class="step-card bg-white rounded-xl p-6 border border-slate-200 shadow-sm">
+                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-cube text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">3D Model</h3>
+                    <p class="text-slate-600 text-sm">Use a base mesh or block out from blueprints. Focus on correct van body, split windscreen pre-1956, 8" drums, and NI registration plates.</p>
+                </div>
+                <div class="step-card bg-white rounded-xl p-6 border border-slate-200 shadow-sm">
+                    <div class="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-gears text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Physics</h3>
+                    <p class="text-slate-600 text-sm">JBeam with ~50 nodes, torsion bar front, leaf spring rear. A-Series engine spec with 4-speed gearbox. ~720kg curb weight.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prerequisites -->
+        <section id="prerequisites" class="mb-16">
+            <h2 class="text-3xl font-bold mb-6">2. Prerequisites & Tools</h2>
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="p-6 border-b border-slate-200">
+                    <p class="text-slate-600">Install these before starting. Cursor will handle file generation, but you need tools for mesh & testing.</p>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead class="bg-slate-50 text-left">
+                            <tr>
+                                <th class="px-6 py-3 font-semibold">Tool</th>
+                                <th class="px-6 py-3 font-semibold">Purpose</th>
+                                <th class="px-6 py-3 font-semibold">Required For</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200">
+                            <tr>
+                                <td class="px-6 py-4 font-medium">BeamNG.drive</td>
+                                <td class="px-6 py-4 text-slate-600">Testing and validation</td>
+                                <td class="px-6 py-4"><span class="bg-red-100 text-red-700 px-2 py-1 rounded text-xs">Required</span></td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium">Blender 3.6+</td>
+                                <td class="px-6 py-4 text-slate-600">Modeling, UV, export to DAE</td>
+                                <td class="px-6 py-4"><span class="bg-red-100 text-red-700 px-2 py-1 rounded text-xs">Required</span></td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium">Cursor AI</td>
+                                <td class="px-6 py-4 text-slate-600">Generate JBeam, Lua, scripts</td>
+                                <td class="px-6 py-4"><span class="bg-red-100 text-red-700 px-2 py-1 rounded text-xs">Required</span></td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium">GIMP / Photoshop</td>
+                                <td class="px-6 py-4 text-slate-600">Textures: body, interior, plates</td>
+                                <td class="px-6 py-4"><span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs">Optional</span></td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium">Node Editor</td>
+                                <td class="px-6 py-4 text-slate-600">Debug JBeam in-game</td>
+                                <td class="px-6 py-4"><span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">Recommended</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Folder Structure -->
+        <section id="folder-structure" class="mb-16">
+            <h2 class="text-3xl font-bold mb-6">3. BeamNG Mod Folder Structure</h2>
+            <div class="bg-slate-900 rounded-xl shadow-lg overflow-hidden">
+                <div class="flex items-center justify-between bg-slate-800 px-4 py-2 border-b border-slate-700">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-regular fa-folder text-orange-400"></i>
+                        <span class="text-slate-300 text-sm font-medium">morris_minor_ballymena.zip</span>
+                    </div>
+                    <button class="copy-btn bg-slate-700 hover:bg-slate-600 text-xs text-white px-3 py-1 rounded" onclick="copyCode('folder-structure-code')">
+                        <i class="fa-regular fa-copy mr-1"></i>Copy
+                    </button>
+                </div>
+                <pre id="folder-structure-code" class="p-6 overflow-x-auto text-sm"><code class="text-slate-300 code-font">morris_minor_ballymena/
+├── mod_info.json
+├── vehicles/
+│   └── morris_minor_van/
+│       ├── morris_minor_van.jbeam          // Main chassis + body
+│       ├── morris_minor_van_engine.jbeam   // A-Series powerplant
+│       ├── morris_minor_van_suspension.jbeam
+│       ├── materials.json
+│       ├── morris_minor_van.dae            // Export from Blender
+│       └── morris_minor_van.cdae           // Cache from game
+├── art/
+│   └── vehicles/
+│       └── morris_minor_van/
+│           ├── body_c.dds                  // Color map
+│           ├── body_n.dds                  // Normal map
+│           ├── body_s.dds                  // Specular
+│           ├── interior_c.dds
+│           └── plates_ballymena.dds        // NI plates BAZ 1234
+└── ui/
+    └── modules/
+        └── apps/
+            └── VehicleInfo/
+                └── morris_minor_van.jpg    // Thumbnail 400x225</code></pre>
+            </div>
+        </section>
+
+        <!-- Blender Workflow -->
+        <section id="blender" class="mb-16">
+            <h2 class="text-3xl font-bold mb-6">4. Blender Commands & Mesh Setup</h2>
+            <div class="grid lg:grid-cols-2 gap-6">
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
+                    <h3 class="font-semibold text-lg mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-orange-600"></i>
+                        Blender Checklist
+                    </h3>
+                    <ol class="space-y-3 text-sm">
+                        <li class="flex gap-3">
+                            <span class="flex-shrink-0 w-6 h-6 bg-orange-600 text-white rounded-full flex items-center justify-center text-xs">1</span>
+                            <span>Import blueprints. Set Units: Metric, Scale 1.0. Van wheelbase = 2.184m</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="flex-shrink-0 w-6 h-6 bg-orange-600 text-white rounded-full flex items-center justify-center text-xs">2</span>
+                            <span>Model body. Separate objects: body, doors, hood, rear_doors, wheels, interior</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="flex-shrink-0 w-6 h-6 bg-orange-600 text-white rounded-full flex items-center justify-center text-xs">3</span>
+                            <span>Create empties for nodes: n0_L, n0_R, n1_L, n1_R etc. Snap to chassis hardpoints</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="flex-shrink-0 w-6 h-6 bg-orange-600 text-white rounded-full flex items-center justify-center text-xs">4</span>
+                            <span>UV unwrap. Materials named: morris_body, morris_glass, morris_interior</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="flex-shrink-0 w-6 h-6 bg-orange-600 text-white rounded-full flex items-center justify-center text-xs">5</span>
+                            <span>Apply Rotation & Scale. Origin to geometry center at Y=0 for BeamNG</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="flex-shrink-0 w-6 h-6 bg-orange-600 text-white rounded-full flex items-center justify-center text-xs">6</span>
+                            <span>Export: File > Export > Collada .dae. Check: Selection Only, Apply Modifiers</span>
+                        </li>
+                    </ol>
+                </div>
+                <div class="bg-slate-900 rounded-xl shadow-lg overflow-hidden">
+                    <div class="flex items-center justify-between bg-slate-800 px-4 py-2 border-b border-slate-700">
+                        <span class="text-slate-300 text-sm font-medium">Blender Python Helper</span>
+                        <button class="copy-btn bg-slate-700 hover:bg-slate-600 text-xs text-white px-3 py-1 rounded" onclick="copyCode('blender-script')">
+                            <i class="fa-regular fa-copy mr-1"></i>Copy
+                        </button>
+                    </div>
+                    <pre id="blender-script" class="p-6 overflow-x-auto text-sm"><code class="text-slate-300 code-font"># Run in Blender Scripting tab
+# Creates empties at common JBeam node locations for Morris Minor
+import bpy
+
+node_positions = {
+    "n0_L": (-0.6, 1.7, 0.3),   # Front left chassis
+    "n0_R": (0.6, 1.7, 0.3),    # Front right chassis
+    "n1_L": (-0.6, -0.5, 0.3),  # Rear left chassis
+    "n1_R": (0.6, -0.5, 0.3),   # Rear right chassis
+    "n2_L": (-0.65, 1.6, 0.0),  # Front left suspension
+    "n2_R": (0.65, 1.6, 0.0),   # Front right suspension
+}
+
+for name, pos in node_positions.items():
+    empty = bpy.data.objects.new(name, None)
+    empty.location = pos
+    empty.empty_display_size = 0.1
+    bpy.context.collection.objects.link(empty)
+
+print("JBeam node empties created. Use these to snap mesh vertices.")</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- JBeam Template -->
+        <section id="jbeam" class="mb-16">
+            <h2 class="text-3xl font-bold mb-6">5. JBeam Template - Morris Minor Van</h2>
+            <p class="text-slate-600 mb-6">Base JBeam for Cursor to extend. This covers chassis, body, and Ballymena-specific config. Cursor will fill node positions from your Blender empties.</p>
+            
+            <div class="bg-slate-900 rounded-xl shadow-lg overflow-hidden">
+                <div class="flex items-center justify-between bg-slate-800 px-4 py-2 border-b border-slate-700">
+                    <span class="text-slate-300 text-sm font-medium">vehicles/morris_minor_van/morris_minor_van.jbeam</span>
+                    <button class="copy-btn bg-slate-700 hover:bg-slate-600 text-xs text-white px-3 py-1 rounded" onclick="copyCode('jbeam-code')">
+                        <i class="fa-regular fa-copy mr-1"></i>Copy JBeam
+                    </button>
+                </div>
+                <pre id="jbeam-code" class="p-6 overflow-x-auto text-sm"><code class="text-slate-300 code-font">{
+"morris_minor_van": {
+    "information": {
+        "authors": "Cursor_Build",
+        "name": "Morris Minor Van Ballymena",
+        "value": 800,
+        "description": "1953-1972 Morris Minor 6cwt Van. Right-hand drive. Ballymena specification with NI plates.",
+        "model": "Morris Minor Van",
+        "country": "GB"
+    },
+    "slotType" : "main",
+    "scale": 1.0,
+    
+    "refNodes": [
+        ["ref:", "back:", "left:", "up:"],
+        [0, 1, 2, 3]
+    ],
+    
+    "nodes": [
+        ["id", "posX", "posY", "posZ"],
+        // === CHASSIS NODES ===
+        // Cursor: Replace with exported positions from Blender empties
+        ["n0_L", -0.6, 1.7, 0.3],
+        ["n0_R", 0.6, 1.7, 0.3],
+        ["n1_L", -0.6, -0.5, 0.3],
+        ["n1_R", 0.6, -0.5, 0.3],
+        ["n2_L", -0.65, 1.6, 0.0], // Suspension
+        ["n2_R", 0.65, 1.6, 0.0],
+        ["n3_L", -0.65, -0.4, 0.0],
+        ["n3_R", 0.65, -0.4, 0.0],
+        // === BODY NODES ===
+        {"nodeWeight": 20},
+        ["b0_L", -0.7, 1.5, 0.8],  // Front fender
+        ["b0_R", 0.7, 1.5, 0.8],
+        ["b1_L", -0.7, -0.8, 0.8], // Rear fender
+        ["b1_R", 0.7, -0.8, 0.8],
+        ["r0", 0, 0.5, 1.4],       // Roof center
+    ],
+    
+    "beams": [
+        ["id1:", "id2:"],
+        // === CHASSIS STRUCTURE ===
+        {"beamType":"|BOUNDED", "beamSpring": 4001000, "beamDamp": 400},
+        ["n0_L", "n0_R"],
+        ["n1_L", "n1_R"],
+        ["n0_L", "n1_L"],
+        ["n0_R", "n1_R"],
+        ["n0_L", "n1_R"],
+        ["n0_R", "n1_L"],
+        // === BODY STRUCTURE ===
+        {"beamType":"|NORMAL", "beamSpring": 1001000, "beamDamp": 200},
+        ["n0_L", "b0_L"],
+        ["n0_R", "b0_R"],
+        ["n1_L", "b1_L"],
+        ["n1_R", "b1_R"],
+    ],
+    
+    "flexbodies": [
+        ["mesh", "[group]:", "back:", "left:", "up:"],
+        ["morris_minor_van", ["body"], [0, 0, 0], [-1, 0, 0], [0, 0, 1]],
+    ],
+    
+    "slots": [
+        ["type", "default", "description"],
+        ["morris_minor_engine", "morris_minor_engine_1098", "Engine"],
+        ["morris_minor_suspension_F", "morris_minor_suspension_F", "Front Suspension"],
+        ["morris_minor_suspension_R", "morris_minor_suspension_R", "Rear Suspension"],
+    ],
+    
+    "camerasInternal": [
+        ["posX","posY","posZ","dirX","dirY","dirZ","fov","name"],
+        [0.35, 0.3, 1.0, 0, 1, 0, 65, "RHD Driver"], // Ballymena RHD
+    ],
+    
+    "licenseplates": {
+        "sizeX": 0.52,
+        "sizeY": 0.11,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "offsetZ": 0.0,
+        "rotX": 0,
+        "rotY": 0,
+        "rotZ": 0
+    },
+    
+    "licenseplateFormat": {
+        "condition": {
+            "sceneradio": "northern_ireland"
+        },
+        "format": "BAZ 1234", // Period NI plate style
+        "color": "white"
+    },
+}
+}</code></pre>
+            </div>
+        </section>
+
+        <!-- Cursor Prompts -->
+        <section id="cursor-prompts" class="mb-16">
+            <h2 class="text-3xl font-bold mb-6">6. Cursor AI Prompts - Execute in Order</h2>
+            <p class="text-slate-600 mb-6">Copy each prompt into Cursor Composer with your project folder open. Cursor will generate files, fix JBeam, and validate.</p>
+
+            <div class="space-y-4">
+                <!-- Prompt 1 -->
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm">
+                    <button class="accordion-header w-full text-left p-6 flex items-center justify-between hover:bg-slate-50" onclick="toggleAccordion(this)">
+                        <div class="flex items-center gap-4">
+                            <span class="w-8 h-8 bg-orange-600 text-white rounded-lg flex items-center justify-center font-bold">1</span>
+                            <div>
+                                <h3 class="font-semibold">Generate Engine JBeam for 1098cc A-Series</h3>
+                                <p class="text-sm text-slate-500">Creates realistic torque curve and 4-speed gearbox</p>
+                            </div>
+                        <i class="fa-solid fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="accordion-content px-6">
+                        <div class="pb-6">
+                            <div class="bg-slate-50 rounded-lg p-4 relative">
+                                <button class="copy-btn absolute top-3 right-3 bg-slate-200 hover:bg-slate-300 text-xs px-3 py-1 rounded" onclick="copyCode('prompt-1')">
+                                    <i class="fa-regular fa-copy mr-1"></i>Copy
+                                </button>
+                                <pre id="prompt-1" class="text-sm pr-20 code-font"><code>Act as a BeamNG.drive JBeam engineer. 
+
+Create file: vehicles/morris_minor_van/morris_minor_van_engine.jbeam
+
+Requirements:
+1. Engine: BMC A-Series 1098cc, 48bhp @ 5100rpm, 81Nm @ 2500rpm
+2. 4-speed manual gearbox ratios: [3.64, 2.22, 1.41, 1.0] final drive 4.22
+3. Weight: 110kg, position it at engine bay nodes
+4. Include sounds: use generic i4 sounds from game
+5. Add to slotType "morris_minor_engine"
+6. Max RPM 6000, idle 800
+7. Ballymena spec: RHD steering linkages
+
+Use the main chassis nodes n0_L, n0_R as reference. Follow BeamNG JBeam 1.0 standards. Output only the complete .jbeam file content.</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prompt 2 -->
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm">
+                    <button class="accordion-header w-full text-left p-6 flex items-center justify-between hover:bg-slate-50" onclick="toggleAccordion(this)">
+                        <div class="flex items-center gap-4">
+                            <span class="w-8 h-8 bg-orange-600 text-white rounded-lg flex items-center justify-center font-bold">2</span>
+                            <div>
+                                <h3 class="font-semibold">Build Torsion Bar + Leaf Spring Suspension</h3>
+                                <p class="text-sm text-slate-500">Period-correct Morris Minor suspension physics</p>
+                            </div>
+                        <i class="fa-solid fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="accordion-content px-6">
+                        <div class="pb-6">
+                            <div class="bg-slate-50 rounded-lg p-4 relative">
+                                <button class="copy-btn absolute top-3 right-3 bg-slate-200 hover:bg-slate-300 text-xs px-3 py-1 rounded" onclick="copyCode('prompt-2')">
+                                    <i class="fa-regular fa-copy mr-1"></i>Copy
+                                </button>
+                                <pre id="prompt-2" class="text-sm pr-20 code-font"><code>Generate vehicles/morris_minor_van/morris_minor_van_suspension.jbeam
+
+Front: Torsion bar independent suspension with lever arm dampers
+Rear: Semi-elliptic leaf springs with live axle
+
+Specs:
+- Front track: 1.27m, Rear track: 1.28m
+- Wheelbase: 2.184m
+- Wheels: 14x3.5 steel, 145/80R14 tires
+- 8 inch drum brakes all round
+- Curb weight 720kg, distribute 55% front
+
+Create two parts: morris_minor_suspension_F and morris_minor_suspension_R
+Use node names from main jbeam: n2_L, n2_R, n3_L, n3_R
+Include wheels with proper offset for Morris Minor van. Use game stock wheels as placeholder if needed.</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prompt 3 -->
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm">
+                    <button class="accordion-header w-full text-left p-6 flex items-center justify-between hover:bg-slate-50" onclick="toggleAccordion(this)">
+                        <div class="flex items-center gap-4">
+                            <span class="w-8 h-8 bg-orange-600 text-white rounded-lg flex items-center justify-center font-bold">3</span>
+                            <div>
+                                <h3 class="font-semibold">Generate materials.json & Ballymena Plate Texture</h3>
+                                <p class="text-sm text-slate-500">PBR materials + Northern Ireland registration</p>
+                            </div>
+                        <i class="fa-solid fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="accordion-content px-6">
+                        <div class="pb-6">
+                            <div class="bg-slate-50 rounded-lg p-4 relative">
+                                <button class="copy-btn absolute top-3 right-3 bg-slate-200 hover:bg-slate-300 text-xs px-3 py-1 rounded" onclick="copyCode('prompt-3')">
+                                    <i class="fa-regular fa-copy mr-1"></i>Copy
+                                </button>
+                                <pre id="prompt-3" class="text-sm pr-20 code-font"><code>Create vehicles/morris_minor_van/materials.json for the Morris Minor van.
+
+Materials needed:
+1. morris_body - Red/Beige/Green paint options, PBR with clearcoat
+2. morris_glass - Split windscreen, 0.3 opacity 
+3. morris_interior - Vinyl tan, roughness 0.8
+4. morris_chrome - Bumpers and trim
+5. plates_ballymena - NI black plate with white text "BAZ 1234"
+
+Use dds texture paths: art/vehicles/morris_minor_van/body_c.dds etc.
+Include proper mapTo entries for Blender material names.
+Add emission for taillights and headlights.
+
+Also generate a Python script using Pillow to create plates_ballymena.dds with black background, white text "BAZ 1234" in UK number plate font, 512x128px.</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prompt 4 -->
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm">
+                    <button class="accordion-header w-full text-left p-6 flex items-center justify-between hover:bg-slate-50" onclick="toggleAccordion(this)">
+                        <div class="flex items-center gap-4">
+                            <span class="w-8 h-8 bg-orange-600 text-white rounded-lg flex items-center justify-center font-bold">4</span>
+                            <div>
+                                <h3 class="font-semibold">Validate JBeam & Generate mod_info.json</h3>
+                                <p class="text-sm text-slate-500">Final validation and packaging</p>
+                            </div>
+                        <i class="fa-solid fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="accordion-content px-6">
+                        <div class="pb-6">
+                            <div class="bg-slate-50 rounded-lg p-4 relative">
+                                <button class="copy-btn absolute top-3 right-3 bg-slate-200 hover:bg-slate-300 text-xs px-3 py-1 rounded" onclick="copyCode('prompt-4')">
+                                    <i class="fa-regular fa-copy mr-1"></i>Copy
+                                </button>
+                                <pre id="prompt-4" class="text-sm pr-20 code-font"><code>Scan all .jbeam files in vehicles/morris_minor_van/ and perform these validations:
+
+1. Check JSON syntax - all brackets match
+2. Verify all node references exist 
+3. Check beam spring/damp values are realistic for 720kg vehicle
+4. Ensure slotTypes match between main and part files
+5. Flag any nodes without beams as potential errors
+
+Then create mod_info.json with:
+- title: "Morris Minor Van - Ballymena Edition"
+- author: "Your Name"
+- version: "0.1.0"
+- description: "1953-1972 Morris Minor 6cwt Van. Right-hand drive, Ballymena/Northern Ireland spec."
+- tags: ["car", "classic", "british", "van", "rhd"]
+
+Finally, output a bash/powershell command to zip the folder correctly for BeamNG mod manager. Path must be vehicles/morris_minor_van/* inside zip.</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testing -->
+        <section id="testing" class="mb-16">
+            <h2 class="text-3xl font-bold mb-6">7. Testing & Debugging in BeamNG</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
+                    <h3 class="font-semibold text-lg mb-4">In-Game Test Checklist</h3>
+                    <div class="space-y-3">
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" class="mt-1 rounded text-orange-600">
+                            <span class="text-sm">Press Ctrl+T to open Node Debug. All nodes connected?</span>
+                        </label>
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" class="mt-1 rounded text-orange-600">
+                            <span class="text-sm">Press Ctrl+B for Beam Debug. No red broken beams on spawn</span>
+                        </label>
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" class="mt-1 rounded text-orange-600">
+                            <span class="text-sm">F11 Performance: FPS > 60, JBeam under 0.5ms</span>
+                        </label>
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" class="mt-1 rounded text-orange-600">
+                            <span class="text-sm">Drive test: 0-60mph in ~25s, top speed ~75mph</span>
+                        </label>
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" class="mt-1 rounded text-orange-600">
+                            <span class="text-sm">Crash test at 30mph: Body deforms, no explosion</span>
+                        </label>
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" class="mt-1 rounded text-orange-600">
+                            <span class="text-sm">RHD cockpit camera correct position</span>
+                        </label>
+                    </div>
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-6">
+                    <h3 class="font-semibold text-lg mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-triangle-exclamation text-amber-600"></i>
+                        Common Errors
+                    </h3>
+                    <dl class="space-y-4 text-sm">
+                        <div>
+                            <dt class="font-medium text-amber-900">Vehicle falls through ground</dt>
+                            <dd class="text-amber-800">Check node Z positions. Lowest node should be >0.2m. Add collision triangles in JBeam.</dd>
+                        </div>
+                        <div>
+                            <dt class="font-medium text-amber-900">Spaghetti on spawn</dt>
+                            <dd class="text-amber-800">Beam spring values too low. Increase to 2e6+ for chassis. Check for duplicate nodes.</dd>
+                        </div>
+                        <div>
+                            <dt class="font-medium text-amber-900">Mesh not appearing</dt>
+                            <dd class="text-amber-800">Verify .dae export. Check flexbody mesh name matches. Clear cache: /vehicles/ folder delete .cdae</dd>
+                        </div>
+                        <div>
+                            <dt class="font-medium text-amber-900">Console spam "Invalid JSON"</dt>
+                            <dd class="text-amber-800">Run through jsonlint.com. Common: trailing comma after last array item.</dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="bg-gradient-to-r from-orange-600 to-orange-700 rounded-2xl p-8 sm:p-12 text-white text-center shadow-xl">
+            <h2 class="text-3xl font-bold mb-4">Ready to Build Your Ballymena Minor?</h2>
+            <p class="text-orange-100 mb-6 max-w-2xl mx-auto">Follow the prompts above with Cursor and you'll have a driveable Morris Minor van in BeamNG within a day. Share your mod on beamng.com/resources when done!</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#cursor-prompts" class="bg-white text-orange-700 px-6 py-3 rounded-lg font-semibold hover:bg-orange-50 transition-all">
+                    Start with Cursor Prompts
+                </a>
+                <a href="https://documentation.beamng.com/modding/" target="_blank" class="bg-orange-500/30 border border-orange-400/50 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-500/50 transition-all">
+                    <i class="fa-solid fa-book mr-2"></i>BeamNG Docs
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-8 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+            <p>Built for BeamNG.drive 0.32+ | Morris Minor is a trademark of MG Motor. This is a fan mod, not affiliated.</p>
+            <p class="mt-2">Use Cursor AI responsibly and verify all generated physics values before driving.</p>
+        </div>
+    </footer>
+
+    <script>
+        function copyCode(elementId) {
+            const codeElement = document.getElementById(elementId);
+            const text = codeElement.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = event.target.closest('button');
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '<i class="fa-solid fa-check mr-1"></i>Copied!';
+                btn.classList.add('bg-green-600');
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.classList.remove('bg-green-600');
+                }, 2000);
+            });
+        }
+
+        function toggleAccordion(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i.fa-chevron-down');
+            
+            content.classList.toggle('active');
+            icon.style.transform = content.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const bodyRect = document.body.getBoundingClientRect().top;
+                    const elementRect = target.getBoundingClientRect().top;
+                    const elementPosition = elementRect - bodyRect;
+                    const offsetPosition = elementPosition - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

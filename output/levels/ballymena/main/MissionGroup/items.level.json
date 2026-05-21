@@ -1,0 +1,10 @@
+{"name":"theTerrain","class":"TerrainBlock","persistentId":"b8745ea4-4e2b-41af-82e6-cc2865a3f7c9","__parent":"MissionGroup","position":[-2048,-2048,0],"maxHeight":120,"terrainFile":"/levels/ballymena/ballymena.ter"}
+{"name":"sky_and_sun","class":"SimGroup","persistentId":"bd12c22f-013a-4d70-86a3-1f805c123790","__parent":"MissionGroup"}
+{"name":"Buildings","class":"SimGroup","persistentId":"0ff88dda-d63d-4245-9b01-ccc5d5268a7c","__parent":"MissionGroup","enabled":"1"}
+{"name":"DecalRoads","class":"SimGroup","persistentId":"eb6ee909-4676-45da-a42f-51c55963f853","__parent":"MissionGroup"}
+{"name":"Footways","class":"SimGroup","persistentId":"1485ee15-acb1-43f6-a242-5523c9100885","__parent":"MissionGroup"}
+{"name":"Waypoints","class":"SimGroup","persistentId":"4d48ac80-18cf-4cbb-b169-5df993876ba6","__parent":"MissionGroup","enabled":"1"}
+{"name":"PhotoSpots","class":"SimGroup","persistentId":"f1d7b00f-8569-44e5-8d02-c9f3c67c3858","__parent":"MissionGroup","enabled":"1"}
+{"name":"CameraBookmarks","class":"SimGroup","persistentId":"6e1c0e97-a3e0-4a0b-9062-5793b3d3f9b2","__parent":"MissionGroup"}
+{"name":"PlayerDropPoints","class":"SimGroup","persistentId":"45d1040e-397c-4c3f-8822-e4be4c74a8bf","__parent":"MissionGroup","enabled":"1"}
+{"name":"satellite_ground","class":"TSStatic","persistentId":"80ce2e7f-cc99-4332-a0e0-52af9070a768","__parent":"MissionGroup","position":[0.0,0.0,36.7],"shapeName":"/levels/ballymena/art/shapes/terrain/satellite_plane.dae","scale":[4096.0,4096.0,1.0],"rotationMatrix":[1,0,0,0,1,0,0,0,1],"useInstanceRenderData":false,"annotation":"TERRAIN"}

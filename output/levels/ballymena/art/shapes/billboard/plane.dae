@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor><author>gen_billboard_dae</author><authoring_tool>ballymena-ng-drive</authoring_tool></contributor>
+    <created>2026-05-16T00:00:00</created>
+    <modified>2026-05-16T00:00:00</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="billboard_effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <diffuse><color sid="diffuse">0.9 0.9 0.9 1</color></diffuse>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="billboard_mat" name="billboard_mat">
+      <instance_effect url="#billboard_effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="plane_mesh" name="billboard_plane">
+      <mesh>
+        <source id="plane_positions">
+          <float_array id="plane_positions_array" count="36">-0.500000 0.000000 0.000000 0.500000 0.000000 1.000000 0.500000 0.000000 0.000000 -0.500000 0.000000 0.000000 -0.500000 0.000000 1.000000 0.500000 0.000000 1.000000 -0.500000 0.000000 0.000000 0.500000 0.000000 0.000000 0.500000 0.000000 1.000000 -0.500000 0.000000 0.000000 0.500000 0.000000 1.000000 -0.500000 0.000000 1.000000</float_array>
+          <technique_common><accessor source="#plane_positions_array" count="12" stride="3"><param name="X" type="float"/><param name="Y" type="float"/><param name="Z" type="float"/></accessor></technique_common>
+        </source>
+        <source id="plane_normals">
+          <float_array id="plane_normals_array" count="36">0.000000 1.000000 0.000000 0.000000 1.000000 0.000000 0.000000 1.000000 0.000000 0.000000 1.000000 0.000000 0.000000 1.000000 0.000000 0.000000 1.000000 0.000000 0.000000 -1.000000 0.000000 0.000000 -1.000000 0.000000 0.000000 -1.000000 0.000000 0.000000 -1.000000 0.000000 0.000000 -1.000000 0.000000 0.000000 -1.000000 0.000000</float_array>
+          <technique_common><accessor source="#plane_normals_array" count="12" stride="3"><param name="X" type="float"/><param name="Y" type="float"/><param name="Z" type="float"/></accessor></technique_common>
+        </source>
+        <source id="plane_uvs">
+          <float_array id="plane_uvs_array" count="24">0.000000 0.000000 1.000000 1.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 1.000000 1.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 1.000000 0.000000 0.000000 1.000000 1.000000 1.000000</float_array>
+          <technique_common><accessor source="#plane_uvs_array" count="12" stride="2"><param name="S" type="float"/><param name="T" type="float"/></accessor></technique_common>
+        </source>
+        <vertices id="plane_vertices"><input semantic="POSITION" source="#plane_positions"/></vertices>
+        <triangles material="billboard_mat" count="4">
+          <input semantic="VERTEX"   source="#plane_vertices" offset="0"/>
+          <input semantic="NORMAL"   source="#plane_normals"  offset="1"/>
+          <input semantic="TEXCOORD" source="#plane_uvs"      offset="2" set="0"/>
+          <p>0 0 0 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6 7 7 7 8 8 8 9 9 9 10 10 10 11 11 11</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene">
+      <node id="billboard_plane" name="billboard_plane">
+        <instance_geometry url="#plane_mesh"><bind_material><technique_common><instance_material symbol="billboard_mat" target="#billboard_mat"/></technique_common></bind_material></instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene><instance_visual_scene url="#Scene"/></scene>
+</COLLADA>

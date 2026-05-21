@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor><author>gen_building_shapes</author><authoring_tool>ballymena-ng-drive</authoring_tool></contributor>
+    <created>2026-05-16T00:00:00</created>
+    <modified>2026-05-16T00:00:00</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="bldg_effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <diffuse><color sid="diffuse">0.8800 0.8600 0.8200 1</color></diffuse>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="bldg_mat" name="bldg_mat">
+      <instance_effect url="#bldg_effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="bldg_mesh" name="building">
+      <mesh>
+        <source id="bldg_positions">
+          <float_array id="bldg_positions_array" count="90">0.500000 -0.500000 0.000000 0.500000 0.500000 0.000000 0.500000 0.500000 1.000000 0.500000 -0.500000 0.000000 0.500000 0.500000 1.000000 0.500000 -0.500000 1.000000 -0.500000 0.500000 0.000000 -0.500000 -0.500000 0.000000 -0.500000 -0.500000 1.000000 -0.500000 0.500000 0.000000 -0.500000 -0.500000 1.000000 -0.500000 0.500000 1.000000 0.500000 0.500000 0.000000 -0.500000 0.500000 0.000000 -0.500000 0.500000 1.000000 0.500000 0.500000 0.000000 -0.500000 0.500000 1.000000 0.500000 0.500000 1.000000 -0.500000 -0.500000 0.000000 0.500000 -0.500000 0.000000 0.500000 -0.500000 1.000000 -0.500000 -0.500000 0.000000 0.500000 -0.500000 1.000000 -0.500000 -0.500000 1.000000 -0.500000 -0.500000 1.000000 0.500000 -0.500000 1.000000 0.500000 0.500000 1.000000 -0.500000 -0.500000 1.000000 0.500000 0.500000 1.000000 -0.500000 0.500000 1.000000</float_array>
+          <technique_common><accessor source="#bldg_positions_array" count="30" stride="3"><param name="X" type="float"/><param name="Y" type="float"/><param name="Z" type="float"/></accessor></technique_common>
+        </source>
+        <source id="bldg_normals">
+          <float_array id="bldg_normals_array" count="90">1.000000 0.000000 0.000000 1.000000 0.000000 0.000000 1.000000 0.000000 0.000000 1.000000 0.000000 0.000000 1.000000 0.000000 0.000000 1.000000 0.000000 0.000000 -1.000000 0.000000 0.000000 -1.000000 0.000000 0.000000 -1.000000 0.000000 0.000000 -1.000000 0.000000 0.000000 -1.000000 0.000000 0.000000 -1.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 1.000000 0.000000 0.000000 1.000000 0.000000 0.000000 1.000000 0.000000 0.000000 1.000000 0.000000 0.000000 1.000000 0.000000 0.000000 -1.000000 0.000000 0.000000 -1.000000 0.000000 0.000000 -1.000000 0.000000 0.000000 -1.000000 0.000000 0.000000 -1.000000 0.000000 0.000000 -1.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 1.000000 0.000000 0.000000 1.000000 0.000000 0.000000 1.000000 0.000000 0.000000 1.000000 0.000000 0.000000 1.000000</float_array>
+          <technique_common><accessor source="#bldg_normals_array" count="30" stride="3"><param name="X" type="float"/><param name="Y" type="float"/><param name="Z" type="float"/></accessor></technique_common>
+        </source>
+        <vertices id="bldg_vertices"><input semantic="POSITION" source="#bldg_positions"/></vertices>
+        <triangles material="bldg_mat" count="10">
+          <input semantic="VERTEX" source="#bldg_vertices" offset="0"/>
+          <input semantic="NORMAL" source="#bldg_normals"  offset="1"/>
+          <p>0 0 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 11 11 12 12 13 13 14 14 15 15 16 16 17 17 18 18 19 19 20 20 21 21 22 22 23 23 24 24 25 25 26 26 27 27 28 28 29 29</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene">
+      <node id="building" name="building">
+        <instance_geometry url="#bldg_mesh"><bind_material><technique_common><instance_material symbol="bldg_mat" target="#bldg_mat"/></technique_common></bind_material></instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene><instance_visual_scene url="#Scene"/></scene>
+</COLLADA>

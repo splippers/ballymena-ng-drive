@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor><authoring_tool>ballymena-ng-drive</authoring_tool></contributor>
+    <created>2026-05-16T00:00:00</created>
+    <modified>2026-05-16T00:00:00</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="sat_image" name="sat_image">
+      <init_from>/levels/ballymena/art/terrain/satellite.png</init_from>
+    </image>
+  </library_images>
+  <library_effects>
+    <effect id="sat_effect">
+      <profile_COMMON>
+        <newparam sid="sat_surface">
+          <surface type="2D"><init_from>sat_image</init_from></surface>
+        </newparam>
+        <newparam sid="sat_sampler">
+          <sampler2D><source>sat_surface</source></sampler2D>
+        </newparam>
+        <technique sid="common">
+          <lambert>
+            <diffuse><texture texture="sat_sampler" texcoord="CHANNEL0"/></diffuse>
+            <transparent opaque="A_ONE"><color>1 1 1 1</color></transparent>
+            <transparency><float>1.0</float></transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="sat_mat" name="sat_mat">
+      <instance_effect url="#sat_effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="plane_mesh" name="satellite_plane">
+      <mesh>
+        <source id="plane_pos">
+          <float_array id="plane_pos_arr" count="12">-0.500000 -0.500000 0.000000 0.500000 -0.500000 0.000000 0.500000 0.500000 0.000000 -0.500000 0.500000 0.000000</float_array>
+          <technique_common>
+            <accessor source="#plane_pos_arr" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="plane_nrm">
+          <float_array id="plane_nrm_arr" count="12">0.000000 0.000000 1.000000 0.000000 0.000000 1.000000 0.000000 0.000000 1.000000 0.000000 0.000000 1.000000</float_array>
+          <technique_common>
+            <accessor source="#plane_nrm_arr" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="plane_uv">
+          <float_array id="plane_uv_arr" count="8">0.000000 0.000000 0.705811 0.000000 0.705811 0.711914 0.000000 0.711914</float_array>
+          <technique_common>
+            <accessor source="#plane_uv_arr" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="plane_verts">
+          <input semantic="POSITION" source="#plane_pos"/>
+        </vertices>
+        <triangles material="sat_mat" count="2">
+          <input semantic="VERTEX"   source="#plane_verts" offset="0"/>
+          <input semantic="NORMAL"   source="#plane_nrm"   offset="1"/>
+          <input semantic="TEXCOORD" source="#plane_uv"    offset="2" set="0"/>
+          <p>0 0 0 1 1 1 2 2 2 0 0 0 2 2 2 3 3 3</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene">
+      <node id="satellite_plane" name="satellite_plane">
+        <instance_geometry url="#plane_mesh">
+          <bind_material><technique_common>
+            <instance_material symbol="sat_mat" target="#sat_mat"/>
+          </technique_common></bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene><instance_visual_scene url="#Scene"/></scene>
+</COLLADA>

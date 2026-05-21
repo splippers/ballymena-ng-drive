@@ -1,0 +1,37 @@
+{
+  "title": "Ballymena Town Centre",
+  "description": "Drive the streets of Ballymena, Co Antrim, Northern Ireland. OSM road network, SRTM terrain, footways, parking and AI traffic waypoints. v4.2.0",
+  "size": [
+    4096,
+    4096
+  ],
+  "biome": "Northern Ireland Town",
+  "roads": "OSM: A26 primary, secondary, residential, service, footways",
+  "suitablefor": "Free Roam, Point-to-Point",
+  "features": "SRTM terrain, asphalt/park layermap, AI waypoint graph, footways",
+  "authors": "ballymena-ng-drive (data: \u00a9 OpenStreetMap, SRTM)",
+  "version": "4.2.0",
+  "defaultSpawnPointName": "spawn_default",
+  "spawnPoints": [
+    {
+      "objectname": "spawn_default"
+    },
+    {
+      "objectname": "spawn_ballymoney_road"
+    },
+    {
+      "objectname": "spawn_bridge_street"
+    },
+    {
+      "objectname": "spawn_broughshane_road"
+    },
+    {
+      "objectname": "spawn_galgorm_road"
+    }
+  ],
+  "supportsTraffic": true,
+  "supportsTimeOfDay": true,
+  "previews": [
+    "ballymena_preview.png"
+  ]
+}

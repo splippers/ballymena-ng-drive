@@ -1,0 +1,15 @@
+{
+  "binaryFormat": "version(char), size(unsigned int), heightMap(heightMapSize * heightMapItemSize), layerMap(layerMapSize * layerMapItemSize), materialNames",
+  "datafile": "/levels/ballymena/ballymena.ter",
+  "heightMapItemSize": 2,
+  "heightMapSize": 16777216,
+  "layerMapItemSize": 1,
+  "layerMapSize": 16777216,
+  "materials": [
+    "Grass",
+    "Dirt",
+    "Asphalt"
+  ],
+  "size": 4096,
+  "version": 9
+}

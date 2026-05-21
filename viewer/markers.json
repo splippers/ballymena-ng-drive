@@ -1,0 +1,107 @@
+[
+  {
+    "name": "Town Centre",
+    "x": 564.0,
+    "y": 722.0,
+    "color": "#e74c3c",
+    "type": "waypoint"
+  },
+  {
+    "name": "Fairhill Shopping",
+    "x": 860.0,
+    "y": 420.0,
+    "color": "#3498db",
+    "type": "waypoint"
+  },
+  {
+    "name": "IMC Cinema",
+    "x": 260.0,
+    "y": 820.0,
+    "color": "#f39c12",
+    "type": "waypoint"
+  },
+  {
+    "name": "Seven Towers",
+    "x": 180.0,
+    "y": 260.0,
+    "color": "#2ecc71",
+    "type": "waypoint"
+  },
+  {
+    "name": "Bus Station",
+    "x": 700.0,
+    "y": 660.0,
+    "color": "#9b59b6",
+    "type": "waypoint"
+  },
+  {
+    "name": "Sainsbury's",
+    "x": 660.0,
+    "y": 300.0,
+    "color": "#1abc9c",
+    "type": "waypoint"
+  },
+  {
+    "name": "Ballymoney Rd",
+    "x": 100.0,
+    "y": 580.0,
+    "color": "#e67e22",
+    "type": "waypoint"
+  },
+  {
+    "name": "Bridge St",
+    "x": 500.0,
+    "y": 900.0,
+    "color": "#34495e",
+    "type": "waypoint"
+  },
+  {
+    "name": "Church St",
+    "x": 540.0,
+    "y": 660.0,
+    "color": "#7f8c8d",
+    "type": "waypoint"
+  },
+  {
+    "name": "Market",
+    "x": 580.0,
+    "y": 500.0,
+    "color": "#d35400",
+    "type": "waypoint"
+  },
+  {
+    "name": "Railway Station",
+    "x": 700.0,
+    "y": 340.0,
+    "color": "#c0392b",
+    "type": "waypoint"
+  },
+  {
+    "name": "Castle St",
+    "x": 380.0,
+    "y": 620.0,
+    "color": "#16a085",
+    "type": "waypoint"
+  },
+  {
+    "name": "Peoples Park",
+    "x": 220.0,
+    "y": 420.0,
+    "color": "#27ae60",
+    "type": "waypoint"
+  },
+  {
+    "name": "Broughshane St",
+    "x": 340.0,
+    "y": 300.0,
+    "color": "#2980b9",
+    "type": "waypoint"
+  },
+  {
+    "name": "Town Hall",
+    "x": 520.0,
+    "y": 560.0,
+    "color": "#8e44ad",
+    "type": "waypoint"
+  }
+]

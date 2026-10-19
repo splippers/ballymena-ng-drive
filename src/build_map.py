@@ -16,7 +16,8 @@ from gen_building_shapes import generate_all_shapes
 from gen_sat_plane_dae import generate_sat_plane_dae
 from game_elements import build_game_elements
 from osm_parse import load_roads
-from utils import get_bbox_meters, sample_dem
+from utils import (get_bbox_meters, sample_dem,
+                   CENTER_LAT, CENTER_LON, LAT_SCALE, LON_SCALE)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT_DIR = os.path.join(BASE_DIR, 'output')
@@ -159,36 +160,70 @@ def pick_terrain_res(level_size):
 
 # ── Elevation ────────────────────────────────────────────────────────────────
 
-def build_elevation_array(dem, terrain_size, base_elev):
-    """Uint16 heightmap via PIL bilinear resize; falls back to pure Python."""
+def build_elevation_array(dem, terrain_size, base_elev, level_size=None):
+    """Uint16 heightmap, **sampled** from the DEM in world space.
+
+    Row 0 = south, col 0 = west — the ``.ter`` bottom-left origin — so the
+    elevation mesh, the layermap and every object all resolve world (x, y)
+    through the same transform.  The game reads grid sample r at
+    world y = -level/2 + r * squareSize (TerrainBlock position is the
+    south-west corner), so south must come first.
+
+    The DEM is sampled (never stretched to fit the terrain): features keep
+    their true scale, and ground outside the DEM clamps to its nearest edge.
+
+    ``step`` is ``level_size / terrain_size`` — exactly the TerrainBlock
+    ``squareSize`` — so heightmap rows land on the same world positions the
+    engine samples them at.
+    """
     if dem is None:
         return [0] * (terrain_size * terrain_size)
+    level = float(level_size or terrain_size)
+    half = level / 2.0
+    step = level / max(terrain_size, 1)            # == TerrainBlock squareSize
+
     try:
-        from PIL import Image
-        rows, cols = dem['rows'], dem['cols']
-        grid = dem['grid']
-        pil_data = [min(65535, max(0, int((grid[r][c] - base_elev) / MAX_HEIGHT * 65535)))
-                    for r in range(rows) for c in range(cols)]
-        img = Image.new('I', (cols, rows))
-        img.putdata(pil_data)
-        img = img.resize((terrain_size, terrain_size), Image.BILINEAR)
-        return [min(65535, max(0, int(v))) for v in img.get_flattened_data()]
+        return _sample_dem_grid(dem, terrain_size, base_elev, half, step)
     except ImportError:
         pass
-    rows, cols = dem['rows'], dem['cols']
-    grid = dem['grid']
-    result = []
+
+    # Pure-Python fallback (no numpy): sample_dem per cell.
+    out = []
     for r in range(terrain_size):
+        y = -half + r * step                       # row 0 = south
         for c in range(terrain_size):
-            gr = r / max(terrain_size - 1, 1) * (rows - 1)
-            gc = c / max(terrain_size - 1, 1) * (cols - 1)
-            gr0, gc0 = int(gr), int(gc)
-            gr1, gc1 = min(gr0+1, rows-1), min(gc0+1, cols-1)
-            dr, dc = gr-gr0, gc-gc0
-            elev = (grid[gr0][gc0]*(1-dr)*(1-dc) + grid[gr0][gc1]*(1-dr)*dc +
-                    grid[gr1][gc0]*dr*(1-dc) + grid[gr1][gc1]*dr*dc)
-            result.append(min(65535, max(0, int((elev - base_elev) / MAX_HEIGHT * 65535))))
-    return result
+            x = -half + c * step                  # col 0 = west
+            e = (sample_dem(dem, x, y) - base_elev) / MAX_HEIGHT * 65535.0
+            out.append(min(65535, max(0, int(e))))
+    return out
+
+
+def _sample_dem_grid(dem, terrain_size, base_elev, half, step):
+    """Vectorised world-space DEM sampling (row 0 = south, col 0 = west)."""
+    import numpy as np
+    rows, cols = dem['rows'], dem['cols']
+    grid = np.asarray(dem['grid'], dtype=np.float32)
+    s, w, n, e = dem['bbox']
+
+    idx = np.arange(terrain_size, dtype=np.float64)
+    xs = -half + idx * step                        # col 0 = west
+    ys = -half + idx * step                        # row 0 = south
+    lats = CENTER_LAT + ys / LAT_SCALE
+    lons = CENTER_LON + xs / LON_SCALE
+    rr = np.clip((lats - s) / (n - s) * (rows - 1), 0.0, rows - 1.0)
+    cc = np.clip((lons - w) / (e - w) * (cols - 1), 0.0, cols - 1.0)
+
+    r0 = np.clip(np.floor(rr).astype(np.int64), 0, rows - 2)
+    c0 = np.clip(np.floor(cc).astype(np.int64), 0, cols - 2)
+    dr = (rr - r0).astype(np.float32)[:, None]
+    dc = (cc - c0).astype(np.float32)[None, :]
+    elev = (grid[np.ix_(r0, c0)] * (1 - dr) * (1 - dc)
+            + grid[np.ix_(r0, c0 + 1)] * (1 - dr) * dc
+            + grid[np.ix_(r0 + 1, c0)] * dr * (1 - dc)
+            + grid[np.ix_(r0 + 1, c0 + 1)] * dr * dc)
+    arr = np.clip((elev - np.float32(base_elev)) / np.float32(MAX_HEIGHT) * 65535.0,
+                  0.0, 65535.0)
+    return arr.astype(np.uint16).reshape(-1).tolist()
 
 
 # ── Layermap ─────────────────────────────────────────────────────────────────
@@ -199,15 +234,17 @@ def build_layermap(feature_polygons, roads, level_size, terrain_size):
       1. Base fill: Grass (0)
       2. Feature polygons: parking → Asphalt (2), waterway banks → Dirt (1)
       3. Road stripes: Asphalt (2) on top of everything
-    PIL ImageDraw used; row 0 = north in PIL (top), row 0 = south in terrain (bottom).
+    Row 0 = south, col 0 = west — the same bottom-left origin the heightmap
+    uses, i.e. index r is the .ter sample row the engine reads at
+    world y = -level_size/2 + r * (level_size / terrain_size).
     """
     half = level_size / 2.0
     n = terrain_size
 
     def to_px(x, y):
-        col = (x + half) / level_size * n
-        row = n - (y + half) / level_size * n   # flip: PIL row 0 = top = north
-        return int(col), int(row)
+        col = int((x + half) / level_size * n)
+        row = int((y + half) / level_size * n)     # row 0 = south
+        return col, row
 
     try:
         from PIL import Image, ImageDraw
@@ -375,7 +412,7 @@ def make_terrain_json(level_size, terrain_size):
         'heightMapItemSize': 2, 'heightMapSize': terrain_size * terrain_size,
         'layerMapItemSize': 1, 'layerMapSize': terrain_size * terrain_size,
         'materials': ['Grass', 'Dirt', 'Asphalt'],
-        'size': level_size, 'version': 9,
+        'size': terrain_size, 'version': 9,
     }
 
 
@@ -448,13 +485,16 @@ def make_root_main():
              'persistentId': new_pid(), 'enabled': '1'}]
 
 
-def make_mission_group(level_size):
+def make_mission_group(level_size, terrain_size=None):
     half = level_size // 2
+    grid = terrain_size or pick_terrain_res(level_size)
     objs = [
         {'name': 'theTerrain', 'class': 'TerrainBlock',
          'persistentId': new_pid(), '__parent': 'MissionGroup',
-         'position': [-half, -half, 0],
+         'position': [-half, -half, 0],   # SW corner: terrain spans ±level/2
+         'squareSize': level_size / grid,  # metres per heightmap sample
          'maxHeight': MAX_HEIGHT,
+         'castShadows': True,
          'terrainFile': '/levels/ballymena/' + TERRAIN_FILENAME},
     ]
     groups = [
@@ -658,7 +698,7 @@ def main():
 
     # ── Terrain ──────────────────────────────────────────────────────────────
     print(f'Generating terrain ({terrain_size}×{terrain_size} on {level_size}×{level_size} m) …')
-    heightmap = build_elevation_array(dem, terrain_size, base_elev)
+    heightmap = build_elevation_array(dem, terrain_size, base_elev, level_size)
     print('Painting layermap …')
     layermap = build_layermap(features, roads, level_size, terrain_size)
     make_ter_binary(os.path.join(LEVEL_DIR, TERRAIN_FILENAME), terrain_size, heightmap, layermap)
@@ -747,7 +787,7 @@ def main():
         json.dump(make_terrain_json(level_size, terrain_size), f, indent=2)
 
     write_items_level(os.path.join(LEVEL_DIR, 'main', 'items.level.json'), make_root_main())
-    mission_objs = make_mission_group(level_size)
+    mission_objs = make_mission_group(level_size, terrain_size)
     if sat_plane_obj:
         mission_objs.append(sat_plane_obj)
     write_items_level(os.path.join(LEVEL_DIR, 'main', 'MissionGroup', 'items.level.json'),

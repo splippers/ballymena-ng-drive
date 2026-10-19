@@ -14,6 +14,8 @@ from gen_box_dae import generate_unit_box_dae
 from gen_billboard_dae import generate_billboard_dae
 from gen_building_shapes import generate_all_shapes
 from gen_sat_plane_dae import generate_sat_plane_dae
+from game_elements import build_game_elements
+from osm_parse import load_roads
 from utils import get_bbox_meters, sample_dem
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -90,6 +92,40 @@ def make_satellite_ground_plane(level_size, u_max, v_max, base_elev):
         'rotationMatrix': [1, 0, 0, 0, 1, 0, 0, 0, 1],
         'useInstanceRenderData': False,
         'annotation': 'TERRAIN',
+    }
+
+
+# ── Game elements (OSM semantics → DecalRoads / point furniture) ─────────────
+
+def make_game_element_road(elem):
+    """Convert a game-elements ``linear`` dict into a BeamNG DecalRoad object.
+
+    Node z is already terrain-relative (the module samples the DEM through the
+    same ``sample_dem - base_elev`` transform the road nodes use), so no extra
+    lift is applied here.
+    """
+    width = float(elem['width'])
+    nodes = [[round(n[0], 2), round(n[1], 2), round(n[2], 2), round(width, 2)]
+             for n in elem['nodes']]
+    if len(nodes) < 2:
+        return None
+    return {
+        'class':           'DecalRoad',
+        'persistentId':    new_pid(),
+        '__parent':        'DecalRoads',
+        'position':        nodes[0][:3],
+        'improvedSpline':  True,
+        'breakAngle':      10,
+        'distanceFade':    [300, 50],
+        'renderPriority':  5,
+        'overObjects':     True,
+        'useTemplate':     True,
+        'material':        elem['material'],
+        'nodes':           nodes,
+        'startEndFade':    [round(width * 0.8, 1), round(width * 0.8, 1)],
+        'textureLength':   max(1, round(width * 2.5)),
+        'name':            elem['name'],
+        'gameElement':     elem.get('gameElement', ''),
     }
 
 
@@ -428,6 +464,7 @@ def make_mission_group(level_size):
         ('Footways',         None),
         ('Waypoints',        '1'),
         ('PhotoSpots',       '1'),
+        ('GameElements',     '1'),
         ('CameraBookmarks',  None),
         ('PlayerDropPoints', '1'),
     ]
@@ -606,6 +643,7 @@ def main():
                 'main/MissionGroup/Buildings/buildings_group',
                 'main/MissionGroup/Waypoints',
                 'main/MissionGroup/PhotoSpots',
+                'main/MissionGroup/GameElements',
                 'main/MissionGroup/sky_and_sun',
                 'main/MissionGroup/CameraBookmarks',
                 'main/MissionGroup/PlayerDropPoints',
@@ -678,6 +716,31 @@ def main():
     print(f'  Camera bookmarks: {len(all_bookmarks)} '
           f'({", ".join(b["name"] for b in all_bookmarks)})')
 
+    # ── Game elements (OSM road semantics → medians/barriers/signs) ───────────
+    osm_roads = load_roads()
+    game_element_objects = []
+    if osm_roads:
+        def _elev_fn(x, y):
+            return max(0.0, sample_dem(dem, x, y) - base_elev) if dem else 0.0
+
+        elements = build_game_elements(osm_roads, _elev_fn,
+                                       world_half=level_size / 2.0)
+        elem_roads = [dr for dr in (make_game_element_road(e)
+                                    for e in elements['linear']) if dr]
+        roads.extend(elem_roads)
+        for obj in elements['objects']:
+            obj = dict(obj)
+            obj.setdefault('persistentId', new_pid())
+            obj['__parent'] = 'GameElements'
+            game_element_objects.append(obj)
+        n_med = sum(1 for e in elements['linear']
+                    if e.get('gameElement') == 'central_reserve')
+        print(f'  Game elements: {len(elem_roads)} linear '
+              f'({n_med} central reservations), '
+              f'{len(game_element_objects)} point objects')
+    else:
+        print('  Game elements: skipped (no raw OSM cache — run "python run.py fetch")')
+
     # ── Write level files ─────────────────────────────────────────────────────
     print('Writing level files …')
     with open(os.path.join(LEVEL_DIR, 'ballymena.terrain.json'), 'w') as f:
@@ -728,6 +791,11 @@ def main():
     else:
         write_items_level(os.path.join(LEVEL_DIR, 'main', 'MissionGroup', 'Waypoints', 'items.level.json'), [])
         print('  Warning: no waypoint data (run process step)')
+
+    # ── Game elements (speed signs, lamps, bridge/tunnel markers) ─────────────
+    write_items_level(os.path.join(LEVEL_DIR, 'main', 'MissionGroup', 'GameElements', 'items.level.json'),
+                      game_element_objects)
+    print(f'  Game elements: {len(game_element_objects)} point objects')
 
     # ── Photo spots ───────────────────────────────────────────────────────────
     write_items_level(os.path.join(LEVEL_DIR, 'main', 'MissionGroup', 'PhotoSpots', 'items.level.json'),

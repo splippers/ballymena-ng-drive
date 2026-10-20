@@ -3,18 +3,19 @@
 
 Usage:
     python run.py fetch      # Download OSM data (roads, buildings, features)
+    python run.py lidar      # Download OSNI 1 m LiDAR terrain (NI, high-res)
     python run.py dem        # Download SRTM elevation grid (Open-Elevation API)
     python run.py satellite  # Download Esri aerial imagery tiles; stitch satellite.png
     python run.py process    # Convert OSM to BeamNG NDJSON (roads, footways, buildings, features)
     python run.py photos     # Validate manifest + generate photo-spot billboards/waypoints
     python run.py build      # Assemble level: terrain + waypoints + packaging
-    python run.py all        # Full pipeline: fetch + dem + satellite + process + photos + build
+    python run.py all        # Full pipeline: fetch + lidar + satellite + process + photos + build
 """
 import sys, os, subprocess
 
 SRC_DIR = os.path.dirname(os.path.abspath(__file__))
 
-VALID = frozenset(('fetch', 'dem', 'satellite', 'process', 'photos', 'build', 'all'))
+VALID = frozenset(('fetch', 'lidar', 'dem', 'satellite', 'process', 'photos', 'build', 'all'))
 
 
 def run_script(name):
@@ -37,6 +38,8 @@ def main():
             sys.exit(1)
         if cmd in ('fetch', 'all'):
             run_script('fetch_osm.py')
+        if cmd in ('lidar', 'all'):
+            run_script('fetch_lidar.py')
         if cmd in ('dem', 'all'):
             run_script('fetch_dem.py')
         if cmd in ('satellite', 'all'):

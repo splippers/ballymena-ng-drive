@@ -14,12 +14,17 @@ from gen_box_dae import generate_unit_box_dae
 from gen_billboard_dae import generate_billboard_dae
 from gen_building_shapes import generate_all_shapes
 from gen_sat_plane_dae import generate_sat_plane_dae
-from utils import get_bbox_meters, sample_dem
+from game_elements import build_game_elements
+from osm_parse import load_roads
+from utils import (get_bbox_meters, sample_dem,
+                   CENTER_LAT, CENTER_LON, LAT_SCALE, LON_SCALE)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT_DIR = os.path.join(BASE_DIR, 'output')
 LEVEL_DIR = os.path.join(OUT_DIR, 'levels', 'ballymena')
-DEM_PATH = os.path.join(BASE_DIR, 'data', 'dem', 'elevation_grid.json')
+DEM_DIR = os.path.join(BASE_DIR, 'data', 'dem')
+DEM_PATH = os.path.join(DEM_DIR, 'elevation_grid.json')
+DEM_LIDAR_PATH = os.path.join(DEM_DIR, 'elevation_grid_lidar.json')
 
 TERRAIN_FILENAME = 'ballymena.ter'
 MAX_HEIGHT = 120
@@ -27,7 +32,7 @@ MIN_LEVEL_SIZE = 1024
 MAX_LEVEL_SIZE = 8192
 BOUNDS_MARGIN = 1.18
 
-VERSION = '4.2.0'
+VERSION = '4.3.0'
 
 PHOTO_MANIFEST_SRC = os.path.join(BASE_DIR, 'data', 'photos', 'photo_manifest.json')
 LUA_SCRIPT_SRC     = os.path.join(BASE_DIR, 'scripts', 'photo_spots.lua')
@@ -56,10 +61,14 @@ def load_ndjson(path):
 
 
 def load_dem():
-    if not os.path.exists(DEM_PATH):
-        return None
-    with open(DEM_PATH) as f:
-        return json.load(f)
+    """Prefer the high-resolution OSNI LiDAR grid; fall back to the SRTM grid."""
+    for path in (DEM_LIDAR_PATH, DEM_PATH):
+        if os.path.exists(path):
+            with open(path) as f:
+                dem = json.load(f)
+            dem['source_path'] = os.path.basename(path)
+            return dem
+    return None
 
 
 def load_satellite_geo():
@@ -84,6 +93,40 @@ def make_satellite_ground_plane(level_size, u_max, v_max, base_elev):
         'rotationMatrix': [1, 0, 0, 0, 1, 0, 0, 0, 1],
         'useInstanceRenderData': False,
         'annotation': 'TERRAIN',
+    }
+
+
+# ── Game elements (OSM semantics → DecalRoads / point furniture) ─────────────
+
+def make_game_element_road(elem):
+    """Convert a game-elements ``linear`` dict into a BeamNG DecalRoad object.
+
+    Node z is already terrain-relative (the module samples the DEM through the
+    same ``sample_dem - base_elev`` transform the road nodes use), so no extra
+    lift is applied here.
+    """
+    width = float(elem['width'])
+    nodes = [[round(n[0], 2), round(n[1], 2), round(n[2], 2), round(width, 2)]
+             for n in elem['nodes']]
+    if len(nodes) < 2:
+        return None
+    return {
+        'class':           'DecalRoad',
+        'persistentId':    new_pid(),
+        '__parent':        'DecalRoads',
+        'position':        nodes[0][:3],
+        'improvedSpline':  True,
+        'breakAngle':      10,
+        'distanceFade':    [300, 50],
+        'renderPriority':  5,
+        'overObjects':     True,
+        'useTemplate':     True,
+        'material':        elem['material'],
+        'nodes':           nodes,
+        'startEndFade':    [round(width * 0.8, 1), round(width * 0.8, 1)],
+        'textureLength':   max(1, round(width * 2.5)),
+        'name':            elem['name'],
+        'gameElement':     elem.get('gameElement', ''),
     }
 
 
@@ -117,36 +160,70 @@ def pick_terrain_res(level_size):
 
 # ── Elevation ────────────────────────────────────────────────────────────────
 
-def build_elevation_array(dem, terrain_size, base_elev):
-    """Uint16 heightmap via PIL bilinear resize; falls back to pure Python."""
+def build_elevation_array(dem, terrain_size, base_elev, level_size=None):
+    """Uint16 heightmap, **sampled** from the DEM in world space.
+
+    Row 0 = south, col 0 = west — the ``.ter`` bottom-left origin — so the
+    elevation mesh, the layermap and every object all resolve world (x, y)
+    through the same transform.  The game reads grid sample r at
+    world y = -level/2 + r * squareSize (TerrainBlock position is the
+    south-west corner), so south must come first.
+
+    The DEM is sampled (never stretched to fit the terrain): features keep
+    their true scale, and ground outside the DEM clamps to its nearest edge.
+
+    ``step`` is ``level_size / terrain_size`` — exactly the TerrainBlock
+    ``squareSize`` — so heightmap rows land on the same world positions the
+    engine samples them at.
+    """
     if dem is None:
         return [0] * (terrain_size * terrain_size)
+    level = float(level_size or terrain_size)
+    half = level / 2.0
+    step = level / max(terrain_size, 1)            # == TerrainBlock squareSize
+
     try:
-        from PIL import Image
-        rows, cols = dem['rows'], dem['cols']
-        grid = dem['grid']
-        pil_data = [min(65535, max(0, int((grid[r][c] - base_elev) / MAX_HEIGHT * 65535)))
-                    for r in range(rows) for c in range(cols)]
-        img = Image.new('I', (cols, rows))
-        img.putdata(pil_data)
-        img = img.resize((terrain_size, terrain_size), Image.BILINEAR)
-        return [min(65535, max(0, int(v))) for v in img.get_flattened_data()]
+        return _sample_dem_grid(dem, terrain_size, base_elev, half, step)
     except ImportError:
         pass
-    rows, cols = dem['rows'], dem['cols']
-    grid = dem['grid']
-    result = []
+
+    # Pure-Python fallback (no numpy): sample_dem per cell.
+    out = []
     for r in range(terrain_size):
+        y = -half + r * step                       # row 0 = south
         for c in range(terrain_size):
-            gr = r / max(terrain_size - 1, 1) * (rows - 1)
-            gc = c / max(terrain_size - 1, 1) * (cols - 1)
-            gr0, gc0 = int(gr), int(gc)
-            gr1, gc1 = min(gr0+1, rows-1), min(gc0+1, cols-1)
-            dr, dc = gr-gr0, gc-gc0
-            elev = (grid[gr0][gc0]*(1-dr)*(1-dc) + grid[gr0][gc1]*(1-dr)*dc +
-                    grid[gr1][gc0]*dr*(1-dc) + grid[gr1][gc1]*dr*dc)
-            result.append(min(65535, max(0, int((elev - base_elev) / MAX_HEIGHT * 65535))))
-    return result
+            x = -half + c * step                  # col 0 = west
+            e = (sample_dem(dem, x, y) - base_elev) / MAX_HEIGHT * 65535.0
+            out.append(min(65535, max(0, int(e))))
+    return out
+
+
+def _sample_dem_grid(dem, terrain_size, base_elev, half, step):
+    """Vectorised world-space DEM sampling (row 0 = south, col 0 = west)."""
+    import numpy as np
+    rows, cols = dem['rows'], dem['cols']
+    grid = np.asarray(dem['grid'], dtype=np.float32)
+    s, w, n, e = dem['bbox']
+
+    idx = np.arange(terrain_size, dtype=np.float64)
+    xs = -half + idx * step                        # col 0 = west
+    ys = -half + idx * step                        # row 0 = south
+    lats = CENTER_LAT + ys / LAT_SCALE
+    lons = CENTER_LON + xs / LON_SCALE
+    rr = np.clip((lats - s) / (n - s) * (rows - 1), 0.0, rows - 1.0)
+    cc = np.clip((lons - w) / (e - w) * (cols - 1), 0.0, cols - 1.0)
+
+    r0 = np.clip(np.floor(rr).astype(np.int64), 0, rows - 2)
+    c0 = np.clip(np.floor(cc).astype(np.int64), 0, cols - 2)
+    dr = (rr - r0).astype(np.float32)[:, None]
+    dc = (cc - c0).astype(np.float32)[None, :]
+    elev = (grid[np.ix_(r0, c0)] * (1 - dr) * (1 - dc)
+            + grid[np.ix_(r0, c0 + 1)] * (1 - dr) * dc
+            + grid[np.ix_(r0 + 1, c0)] * dr * (1 - dc)
+            + grid[np.ix_(r0 + 1, c0 + 1)] * dr * dc)
+    arr = np.clip((elev - np.float32(base_elev)) / np.float32(MAX_HEIGHT) * 65535.0,
+                  0.0, 65535.0)
+    return arr.astype(np.uint16).reshape(-1).tolist()
 
 
 # ── Layermap ─────────────────────────────────────────────────────────────────
@@ -157,15 +234,17 @@ def build_layermap(feature_polygons, roads, level_size, terrain_size):
       1. Base fill: Grass (0)
       2. Feature polygons: parking → Asphalt (2), waterway banks → Dirt (1)
       3. Road stripes: Asphalt (2) on top of everything
-    PIL ImageDraw used; row 0 = north in PIL (top), row 0 = south in terrain (bottom).
+    Row 0 = south, col 0 = west — the same bottom-left origin the heightmap
+    uses, i.e. index r is the .ter sample row the engine reads at
+    world y = -level_size/2 + r * (level_size / terrain_size).
     """
     half = level_size / 2.0
     n = terrain_size
 
     def to_px(x, y):
-        col = (x + half) / level_size * n
-        row = n - (y + half) / level_size * n   # flip: PIL row 0 = top = north
-        return int(col), int(row)
+        col = int((x + half) / level_size * n)
+        row = int((y + half) / level_size * n)     # row 0 = south
+        return col, row
 
     try:
         from PIL import Image, ImageDraw
@@ -333,7 +412,7 @@ def make_terrain_json(level_size, terrain_size):
         'heightMapItemSize': 2, 'heightMapSize': terrain_size * terrain_size,
         'layerMapItemSize': 1, 'layerMapSize': terrain_size * terrain_size,
         'materials': ['Grass', 'Dirt', 'Asphalt'],
-        'size': level_size, 'version': 9,
+        'size': terrain_size, 'version': 9,
     }
 
 
@@ -342,15 +421,15 @@ def make_info_json(level_size, spawn_names, preview_filename=None):
         'title': 'Ballymena Town Centre',
         'description': (
             'Drive the streets of Ballymena, Co Antrim, Northern Ireland. '
-            'OSM road network, SRTM terrain, footways, parking and AI traffic waypoints. '
-            f'v{VERSION}'
+            'OSM road network, OSNI 1 m LiDAR terrain, footways, parking and '
+            f'AI traffic waypoints. v{VERSION}'
         ),
         'size': [level_size, level_size],
         'biome': 'Northern Ireland Town',
         'roads': 'OSM: A26 primary, secondary, residential, service, footways',
         'suitablefor': 'Free Roam, Point-to-Point',
-        'features': 'SRTM terrain, asphalt/park layermap, AI waypoint graph, footways',
-        'authors': 'ballymena-ng-drive (data: © OpenStreetMap, SRTM)',
+        'features': 'OSNI 1 m LiDAR terrain, asphalt/park layermap, AI waypoint graph, footways',
+        'authors': 'ballymena-ng-drive (data: © OpenStreetMap, OSNI LiDAR/OGL)',
         'version': VERSION,
         'defaultSpawnPointName': 'spawn_default',
         'spawnPoints': [{'objectname': s} for s in spawn_names],
@@ -406,13 +485,16 @@ def make_root_main():
              'persistentId': new_pid(), 'enabled': '1'}]
 
 
-def make_mission_group(level_size):
+def make_mission_group(level_size, terrain_size=None):
     half = level_size // 2
+    grid = terrain_size or pick_terrain_res(level_size)
     objs = [
         {'name': 'theTerrain', 'class': 'TerrainBlock',
          'persistentId': new_pid(), '__parent': 'MissionGroup',
-         'position': [-half, -half, 0],
+         'position': [-half, -half, 0],   # SW corner: terrain spans ±level/2
+         'squareSize': level_size / grid,  # metres per heightmap sample
          'maxHeight': MAX_HEIGHT,
+         'castShadows': True,
          'terrainFile': '/levels/ballymena/' + TERRAIN_FILENAME},
     ]
     groups = [
@@ -422,6 +504,7 @@ def make_mission_group(level_size):
         ('Footways',         None),
         ('Waypoints',        '1'),
         ('PhotoSpots',       '1'),
+        ('GameElements',     '1'),
         ('CameraBookmarks',  None),
         ('PlayerDropPoints', '1'),
     ]
@@ -530,10 +613,10 @@ def write_mod_info(dest_dir):
         'version': VERSION,
         'author': 'ballymena-ng-drive',
         'description': (
-            'Ballymena, Co Antrim, NI — OSM road network, SRTM terrain, '
+            'Ballymena, Co Antrim, NI — OSM road network, OSNI 1 m LiDAR terrain, '
             'footways/pavements, parking layer, AI traffic waypoints. '
             'Based on OpenStreetMap data (© ODbL contributors) '
-            'and NASA SRTM elevation data.'
+            'and OSNI River Basin LiDAR 2010 (© Crown copyright, OGL).'
         ),
         'type': 'level',
     }
@@ -554,8 +637,9 @@ def main():
     dem         = load_dem()
 
     if dem:
+        src = dem.get('source_path', 'elevation_grid.json')
         print(f'DEM: {dem["rows"]}×{dem["cols"]} grid, '
-              f'{dem["min_elev"]:.1f}–{dem["max_elev"]:.1f} m AMSL')
+              f'{dem["min_elev"]:.1f}–{dem["max_elev"]:.1f} m AMSL  [{src}]')
         base_elev = dem['min_elev'] - 2.0
     else:
         print('No DEM — flat terrain (run dem step)')
@@ -582,12 +666,24 @@ def main():
     terrain_size = pick_terrain_res(level_size)
     spawn_z = max(0.0, sample_dem(dem, cx, cy) - base_elev) if dem else 0.0
 
+    # Preserve generated photo-spot textures across the level rebuild — the
+    # rmtree below would otherwise delete them (gen_photo_spots.py writes them
+    # into the level tree, so a clean "run.py all" would lose them).
+    photo_tex_dir = os.path.join(LEVEL_DIR, 'art', 'textures', 'photo_spots')
+    preserved_tex = {}
+    if os.path.isdir(photo_tex_dir):
+        for fname in os.listdir(photo_tex_dir):
+            if fname.endswith('.png'):
+                with open(os.path.join(photo_tex_dir, fname), 'rb') as fh:
+                    preserved_tex[fname] = fh.read()
+
     shutil.rmtree(LEVEL_DIR, ignore_errors=True)
     for sub in ('main/MissionGroup/DecalRoads',
                 'main/MissionGroup/Footways',
                 'main/MissionGroup/Buildings/buildings_group',
                 'main/MissionGroup/Waypoints',
                 'main/MissionGroup/PhotoSpots',
+                'main/MissionGroup/GameElements',
                 'main/MissionGroup/sky_and_sun',
                 'main/MissionGroup/CameraBookmarks',
                 'main/MissionGroup/PlayerDropPoints',
@@ -602,7 +698,7 @@ def main():
 
     # ── Terrain ──────────────────────────────────────────────────────────────
     print(f'Generating terrain ({terrain_size}×{terrain_size} on {level_size}×{level_size} m) …')
-    heightmap = build_elevation_array(dem, terrain_size, base_elev)
+    heightmap = build_elevation_array(dem, terrain_size, base_elev, level_size)
     print('Painting layermap …')
     layermap = build_layermap(features, roads, level_size, terrain_size)
     make_ter_binary(os.path.join(LEVEL_DIR, TERRAIN_FILENAME), terrain_size, heightmap, layermap)
@@ -660,13 +756,38 @@ def main():
     print(f'  Camera bookmarks: {len(all_bookmarks)} '
           f'({", ".join(b["name"] for b in all_bookmarks)})')
 
+    # ── Game elements (OSM road semantics → medians/barriers/signs) ───────────
+    osm_roads = load_roads()
+    game_element_objects = []
+    if osm_roads:
+        def _elev_fn(x, y):
+            return max(0.0, sample_dem(dem, x, y) - base_elev) if dem else 0.0
+
+        elements = build_game_elements(osm_roads, _elev_fn,
+                                       world_half=level_size / 2.0)
+        elem_roads = [dr for dr in (make_game_element_road(e)
+                                    for e in elements['linear']) if dr]
+        roads.extend(elem_roads)
+        for obj in elements['objects']:
+            obj = dict(obj)
+            obj.setdefault('persistentId', new_pid())
+            obj['__parent'] = 'GameElements'
+            game_element_objects.append(obj)
+        n_med = sum(1 for e in elements['linear']
+                    if e.get('gameElement') == 'central_reserve')
+        print(f'  Game elements: {len(elem_roads)} linear '
+              f'({n_med} central reservations), '
+              f'{len(game_element_objects)} point objects')
+    else:
+        print('  Game elements: skipped (no raw OSM cache — run "python run.py fetch")')
+
     # ── Write level files ─────────────────────────────────────────────────────
     print('Writing level files …')
     with open(os.path.join(LEVEL_DIR, 'ballymena.terrain.json'), 'w') as f:
         json.dump(make_terrain_json(level_size, terrain_size), f, indent=2)
 
     write_items_level(os.path.join(LEVEL_DIR, 'main', 'items.level.json'), make_root_main())
-    mission_objs = make_mission_group(level_size)
+    mission_objs = make_mission_group(level_size, terrain_size)
     if sat_plane_obj:
         mission_objs.append(sat_plane_obj)
     write_items_level(os.path.join(LEVEL_DIR, 'main', 'MissionGroup', 'items.level.json'),
@@ -711,20 +832,25 @@ def main():
         write_items_level(os.path.join(LEVEL_DIR, 'main', 'MissionGroup', 'Waypoints', 'items.level.json'), [])
         print('  Warning: no waypoint data (run process step)')
 
+    # ── Game elements (speed signs, lamps, bridge/tunnel markers) ─────────────
+    write_items_level(os.path.join(LEVEL_DIR, 'main', 'MissionGroup', 'GameElements', 'items.level.json'),
+                      game_element_objects)
+    print(f'  Game elements: {len(game_element_objects)} point objects')
+
     # ── Photo spots ───────────────────────────────────────────────────────────
     write_items_level(os.path.join(LEVEL_DIR, 'main', 'MissionGroup', 'PhotoSpots', 'items.level.json'),
                       photo_spots)
     print(f'  Photo spots: {n_photo_spots} billboards '
           f'(run "python run.py photos" to regenerate)')
 
-    # Copy photo composite textures generated by gen_photo_spots.py
-    src_tex_dir = os.path.join(OUT_DIR, 'levels', 'ballymena', 'art', 'textures', 'photo_spots')
+    # Restore photo composite textures (preserved across the rebuild; re-copied
+    # from the level tree itself since gen_photo_spots.py writes them there).
     dst_tex_dir = os.path.join(LEVEL_DIR, 'art', 'textures', 'photo_spots')
-    if os.path.isdir(src_tex_dir) and src_tex_dir != dst_tex_dir:
-        for fname in os.listdir(src_tex_dir):
-            if fname.endswith('.png'):
-                shutil.copy2(os.path.join(src_tex_dir, fname),
-                             os.path.join(dst_tex_dir, fname))
+    if preserved_tex:
+        for fname, data in preserved_tex.items():
+            with open(os.path.join(dst_tex_dir, fname), 'wb') as fh:
+                fh.write(data)
+        print(f'  Photo textures: {len(preserved_tex)} preserved')
 
     # Bundle manifest + Lua script into the level (for in-game Lua access)
     if os.path.exists(PHOTO_MANIFEST_SRC):
